@@ -1,0 +1,269 @@
+import * as MDAST from 'mdast'
+
+export function root(children: MDAST.Root['children']): MDAST.Root {
+  return {
+    type: 'root'
+  , children
+  }
+}
+
+export function paragraph(children: MDAST.Paragraph['children']): MDAST.Paragraph {
+  return {
+    type: 'paragraph'
+  , children
+  }
+}
+
+export function heading(depth: MDAST.Heading['depth'], children: MDAST.Heading['children']): MDAST.Heading {
+  return {
+    type: 'heading'
+  , depth
+  , children
+  }
+}
+
+export function thematicBreak(): MDAST.ThematicBreak {
+  return { type: 'thematicBreak' }
+}
+
+export function blockquote(children: MDAST.Blockquote['children']): MDAST.Blockquote {
+  return {
+    type: 'blockquote'
+  , children
+  }
+}
+
+export function list(
+  children: MDAST.List['children']
+, { ordered, start, spread }: {
+    ordered?: MDAST.List['ordered']
+    start?: MDAST.List['start']
+    spread?: MDAST.List['spread']
+  } = {}
+): MDAST.List {
+  return {
+    type: 'list'
+  , ordered
+  , start
+  , spread
+  , children
+  }
+}
+
+export function listItem(
+  children: MDAST.ListItem['children']
+, { checked, spread }: {
+    checked?: MDAST.ListItem['checked']
+    spread?: MDAST.ListItem['spread']
+  } = {}
+): MDAST.ListItem {
+  return {
+    type: 'listItem'
+  , checked
+  , spread
+  , children
+  }
+}
+
+export function table(
+  children: MDAST.Table['children']
+, { align }: { align?: MDAST.Table['align'] } = {}
+): MDAST.Table {
+  return {
+    type: 'table'
+  , align
+  , children
+  }
+}
+
+export function tableRow(children: MDAST.TableRow['children']): MDAST.TableRow {
+  return {
+    type: 'tableRow'
+  , children
+  }
+}
+
+export function tableCell(children: MDAST.TableCell['children']): MDAST.TableCell {
+  return {
+    type: 'tableCell'
+  , children
+  }
+}
+
+export function html(value: MDAST.HTML['value']): MDAST.HTML {
+  return {
+    type: 'html'
+  , value
+  }
+}
+
+export function code(
+  value: MDAST.Code['value']
+, { lang, meta }: {
+    lang?: MDAST.Code['lang']
+    meta?: MDAST.Code['meta']
+  } = {}
+): MDAST.Code {
+  return {
+    type: 'code'
+  , lang
+  , meta
+  , value
+  }
+}
+
+export function yaml(value: MDAST.YAML['value']): MDAST.YAML {
+  return {
+    type: 'yaml'
+  , value
+  }
+}
+
+export function definition(
+  identifier: MDAST.Definition['identifier']
+, url: MDAST.Definition['url']
+, { title, label }: {
+    title?: MDAST.Definition['title']
+    label?: MDAST.Definition['label']
+  } = {}
+): MDAST.Definition {
+  return {
+    type: 'definition'
+  , identifier
+  , url
+  , title
+  , label
+  }
+}
+
+export function footnoteDef(
+  identifier: MDAST.FootnoteDefinition['identifier']
+, children: MDAST.FootnoteDefinition['children']
+, { label }: {
+    label?: MDAST.FootnoteDefinition['label']
+  } = {}
+): MDAST.FootnoteDefinition {
+  return {
+    type: 'footnoteDefinition'
+  , children
+  , identifier
+  , label
+  }
+}
+
+export function text(value: MDAST.Text['value']): MDAST.Text {
+  return {
+    type: 'text'
+  , value
+  }
+}
+
+export function emphasis(children: MDAST.Emphasis['children']): MDAST.Emphasis {
+  return {
+    type: 'emphasis'
+  , children
+  }
+}
+
+export function strong(children: MDAST.Strong['children']): MDAST.Strong {
+  return {
+    type: 'strong'
+  , children
+  }
+}
+
+export function del(children: MDAST.Delete['children']): MDAST.Delete {
+  return {
+    type: 'delete'
+  , children
+  }
+}
+
+export function inlineCode(value: MDAST.InlineCode['value']): MDAST.InlineCode {
+  return {
+    type: 'inlineCode'
+  , value
+  }
+}
+
+export function brk(): MDAST.Break {
+  return { type: 'break' }
+}
+
+export function link(
+  url: MDAST.Link['url']
+, children: MDAST.Link['children']
+, { title }: {
+    title?: MDAST.Link['title']
+  } = {}
+): MDAST.Link {
+  return {
+    type: 'link'
+  , url
+  , children
+  , title
+  }
+}
+
+export function image(
+  url: MDAST.Image['url']
+, { title, alt }: {
+    title?: MDAST.Image['title']
+    alt?: MDAST.Image['alt']
+  } = {}
+): MDAST.Image {
+  return {
+    type: 'image'
+  , url
+  , title
+  , alt
+  }
+}
+
+export function linkRef(
+  identifier: MDAST.LinkReference['identifier']
+, referenceType: MDAST.LinkReference['referenceType']
+, children: MDAST.LinkReference['children']
+): MDAST.LinkReference {
+  return {
+    type: 'linkReference'
+  , identifier
+  , children
+  , referenceType
+  }
+}
+
+export function imageRef(
+  identifier: MDAST.ImageReference['identifier']
+, referenceType: MDAST.ImageReference['referenceType']
+, { alt, label }: {
+    alt?: MDAST.ImageReference['alt']
+    label?: MDAST.ImageReference['label']
+  } = {}
+): MDAST.ImageReference {
+  return {
+    type: 'imageReference'
+  , identifier
+  , referenceType
+  , alt
+  , label
+  }
+}
+
+export function footnote(children: MDAST.Footnote['children']): MDAST.Footnote {
+  return {
+    type: 'footnote'
+  , children
+  }
+}
+
+export function footnoteRef(
+  identifier: MDAST.FootnoteReference['identifier']
+, { label }: { label?: MDAST.FootnoteReference['label'] } = {}
+): MDAST.FootnoteReference {
+  return {
+    type: 'footnoteReference'
+  , identifier
+  , label
+  }
+}
