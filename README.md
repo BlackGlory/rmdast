@@ -17,6 +17,8 @@ e.g. React.
 
 The type of `Footnote.children` is changed to `Array<PhrasingContent | BlockContent>`.
 
+The type of `Literal.value` is changed to `string`.
+
 The following node types are removed:
 - `YAML`
 - `Definition`
