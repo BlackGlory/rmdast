@@ -4,7 +4,7 @@ import * as MDAST from 'mdast'
 import * as AST from '@src/ast'
 import definitions = require('mdast-util-definitions')
 import { isDefined } from 'ts-is-present'
-import { getFootnoteDefinition } from './get-footnote-definitions'
+import { getFootnoteDefinition } from './get-footnote-definition'
 
 export function transform(root: MDAST.Root): AST.Root {
   return {
