@@ -1,5 +1,9 @@
 import { AlignType, Resource, Alternative } from 'mdast'
 
+export interface Node {
+  type: string
+}
+
 export type Content =
 | TopLevelContent
 | ListContent
@@ -97,19 +101,19 @@ export interface TableCell {
 
 export interface HTML {
   type: 'html'
-  value: unknown
+  value: string
 }
 
 export interface Code {
   type: 'code'
-  value: unknown
+  value: string
   lang?: string
   meta?: string
 }
 
 export interface Text {
   type: 'text'
-  value: unknown
+  value: string
 }
 
 export interface Emphasis {
@@ -129,7 +133,7 @@ export interface Delete {
 
 export interface InlineCode {
   type: 'inlineCode'
-  value: unknown
+  value: string
 }
 
 export interface Break {
