@@ -151,5 +151,5 @@ export interface Image extends Resource, Alternative {
 
 export interface Footnote {
   type: 'footnote'
-  children: Array<PhrasingContent | BlockContent>
+  children: PhrasingContent[] | BlockContent[]
 }
