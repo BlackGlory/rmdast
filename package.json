@@ -33,6 +33,7 @@
   "devDependencies": {
     "@commitlint/cli": "^9.1.1",
     "@commitlint/config-conventional": "^9.1.1",
+    "@types/common-tags": "^1.8.0",
     "@types/fs-extra": "^9.0.1",
     "@types/jest": "^26.0.9",
     "@types/mdast": "^3.0.3",
@@ -41,6 +42,7 @@
     "@types/react": "^16.9.46",
     "@typescript-eslint/eslint-plugin": "^3.9.0",
     "@typescript-eslint/parser": "^3.9.0",
+    "common-tags": "^1.8.0",
     "eslint": "^7.6.0",
     "husky": "^4.2.5",
     "jest": "^26.4.1",
@@ -50,6 +52,7 @@
     "typescript": "^4.0.2"
   },
   "dependencies": {
+    "hyntax": "^1.1.6",
     "mdast-util-definitions": "^3.0.1",
     "remark-footnotes": "^1.0.0",
     "remark-parse": "^8.0.3",

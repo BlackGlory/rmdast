@@ -1,37 +1,25 @@
-import { tag } from './tag'
 import { Eat, Tokenizer } from './types'
 import { Node } from 'unist'
+import { tokenize } from 'hyntax'
+import {
+  getBeforeFirstStartTagTokens
+, getFirstStartTagToItsCloseTokens
+} from './shared'
 
-const LESS_THAN = '<'
-// const GREATER_THAN = '>'
-const SLASH = '/'
-const EXCLAMATION = '!'
+export const componentInlineTokenizer: Tokenizer = function (eat: Eat, text: string, silent: boolean): boolean | Node | void {
+  const { tokens } = tokenize(text)
 
-export const componentInlineTokenizer: Tokenizer = function (eat: Eat, value: string, silent: boolean = false): boolean | Node | void {
-  const firstChar = value.charAt(0)
-  // 如果第一个字符不是<, 则返回, 因为这不会是HTML标签的起点
-  if (firstChar !== LESS_THAN) return
+  // 在第一个打开标签之前存在其他内容, 说明不是HTML代码段的开始
+  if (getBeforeFirstStartTagTokens(tokens).length > 0) return
 
-  const secondChar = value.charAt(1)
-  if (isAlphabetical(secondChar) // HTML Tag Open
-//|| secondChar === GREATER_THAN // JSX Fragment
-  || secondChar === EXCLAMATION // HTML Comment
-  || secondChar === SLASH // HTML Tag Close
-  ) {
-    const subvalueMatches = value.match(tag)
-    if (subvalueMatches) {
-      // 沉默模式, 该模式不消耗文本, 但返回测试结果
-      if (silent) return true
-      const subvalue = subvalueMatches[0]
-      return eat(subvalue)({ type: 'component', value: subvalue })
-    }
+  const blockTokens = getFirstStartTagToItsCloseTokens(tokens)
+  if (blockTokens.length > 0) {
+    if (silent) return true
+
+    const lastToken = blockTokens[blockTokens.length - 1]
+    const subText = text.slice(0, lastToken.endPosition + 1)
+    return eat(subText)({ type: 'inline-component', value: subText })
   }
-}
-
-function isAlphabetical(char: string): boolean {
-  const code = char.charCodeAt(0)
-  return (code >= 97 && code <= 122) // a-z
-      || (code >= 65 && code <= 90) // A-Z
 }
 
 // 用于加速寻找下一个token

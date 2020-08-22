@@ -1,20 +1,26 @@
 import { parse } from '@src/parse'
+import { stripIndent } from 'common-tags'
 
 describe('parse', () => {
   it('test', () => {
-    const markdown =
-`
-# Good
-<div class="note">
-A mix of *Markdown* and <em>HTML</em>.
-</div>
+    const markdown = stripIndent`
+      Bad
+          <div class="note">
 
-# Bad
-<div class="note">
+      A mix of *Markdown* and <em>HTML</em>.
+      </div>
 
-A mix of *Markdown* and <em>HTML</em>.
-</div>
-`
-    console.log(JSON.stringify(parse(markdown), null, 2))
+      123
+
+      Good <sub>Sub</sub><sup>Sup</sup>
+      why?
+
+      <youtube-dl class="note">
+
+      A mix of *Markdown* and <em>HTML</em>.
+      </youtube-dl> EATEN
+    `
+    const result = parse(markdown)
+    console.log(JSON.stringify(result, null, 2))
   })
 })

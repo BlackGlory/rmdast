@@ -8,13 +8,8 @@ export const remarkWebComponents: Plugin = function () {
 }
 
 function attachParser(parser: Parser) {
-  const { blockTokenizers, inlineTokenizers, blockMethods } = parser.prototype
+  const { blockTokenizers, inlineTokenizers } = parser.prototype
 
   blockTokenizers.html = componentBlockTokenizer
   inlineTokenizers.html = componentInlineTokenizer
-
-  /*
-  blockMethods.splice(blockMethods.indexOf('html'), 1)
-  blockMethods.unshift('html')
-  */
 }

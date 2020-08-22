@@ -10,19 +10,8 @@ export type Eat = (value: string) => Add
 
 export type Locator = (value: string, fromIndex: number) => number
 
-export type Tokenizer = TokenizerNotCareSilent | TokenizerCareSilent
-
-export interface TokenizerNotCareSilent {
-  (eat: Eat, value: string): Node | void
-  locator?: Locator
-  onlyAtStart?: boolean
-  notInBlock?: boolean
-  notInList?: boolean
-  notInLink?: boolean
-}
-
-export interface TokenizerCareSilent {
-  (eat: Eat, value: string, silent: true): boolean | void | Node
+export interface Tokenizer {
+  (eat: Eat, value: string, silent: true): boolean | Node | void
   locator?: Locator
   onlyAtStart?: boolean
   notInBlock?: boolean

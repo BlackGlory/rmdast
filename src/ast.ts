@@ -153,3 +153,9 @@ export interface Footnote {
   type: 'footnote'
   children: PhrasingContent[] | BlockContent[]
 }
+
+export interface Component {
+  type: 'component'
+  attrs: { [index: string]: string }
+  children: any[]
+}
