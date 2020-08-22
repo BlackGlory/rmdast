@@ -6,7 +6,7 @@ import {
 , getFirstStartTagToItsCloseTokens
 } from './shared'
 
-export const componentInlineTokenizer: Tokenizer = function (eat: Eat, text: string, silent: boolean): boolean | Node | void {
+export const inlineTokenizer: Tokenizer = function (eat: Eat, text: string, silent: boolean): boolean | Node | void {
   const { tokens } = tokenize(text)
 
   // 在第一个打开标签之前存在其他内容, 说明不是HTML代码段的开始
@@ -18,9 +18,9 @@ export const componentInlineTokenizer: Tokenizer = function (eat: Eat, text: str
 
     const lastToken = blockTokens[blockTokens.length - 1]
     const subText = text.slice(0, lastToken.endPosition + 1)
-    return eat(subText)({ type: 'inline-component', value: subText })
+    return eat(subText)({ type: 'html', value: subText })
   }
 }
 
 // 用于加速寻找下一个token
-componentInlineTokenizer.locator = (value, fromIndex) => value.indexOf('<', fromIndex)
+inlineTokenizer.locator = (value, fromIndex) => value.indexOf('<', fromIndex)

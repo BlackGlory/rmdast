@@ -6,7 +6,7 @@ import {
 , getFirstStartTagToItsCloseTokens
 } from './shared'
 
-export const componentBlockTokenizer: Tokenizer = function (eat: Eat, text: string, silent: boolean): boolean | Node | void {
+export const blockTokenizer: Tokenizer = function (eat: Eat, text: string, silent: boolean): boolean | Node | void {
   const { tokens } = tokenize(text)
 
   const beforeFirstStartTagTokens = getBeforeFirstStartTagTokens(tokens)
@@ -27,7 +27,7 @@ export const componentBlockTokenizer: Tokenizer = function (eat: Eat, text: stri
     const newlineIndexAfterLastTokenEnd = text.indexOf('\n', lastToken.endPosition)
     const endPosition = newlineIndexAfterLastTokenEnd !== -1 ? newlineIndexAfterLastTokenEnd + 1 : text.length
     const subText = text.slice(0, endPosition)
-    return eat(subText)({ type: 'block-component', value: subText })
+    return eat(subText)({ type: 'html', value: subText })
   }
 }
 

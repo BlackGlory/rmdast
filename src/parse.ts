@@ -2,13 +2,13 @@ import * as MDAST from 'mdast'
 import unified = require('unified')
 import markdown = require('remark-parse')
 import footnotes = require('remark-footnotes')
-import { remarkWebComponents } from './remark-web-components'
+import { html } from './remark-html'
 
 export function parse(text: string): MDAST.Root {
   const node = unified()
     .use(markdown)
     .use(footnotes, { inlineNotes: true })
-    .use(remarkWebComponents)
+    .use(html)
     .parse(text) as MDAST.Root
   return node
 }
