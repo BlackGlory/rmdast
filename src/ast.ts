@@ -99,9 +99,28 @@ export interface TableCell {
   children: PhrasingContent[]
 }
 
+/**
+ * @deprecated
+ */
 export interface HTML {
   type: 'html'
   value: string
+}
+
+export interface Element {
+  type: 'element'
+  value: string
+}
+
+export interface Comment {
+  type: 'comment'
+  value: string
+}
+
+export interface Component {
+  type: 'component'
+  attrs: { [index: string]: string }
+  children: any[]
 }
 
 export interface Code {
@@ -152,10 +171,4 @@ export interface Image extends Resource, Alternative {
 export interface Footnote {
   type: 'footnote'
   children: PhrasingContent[] | BlockContent[]
-}
-
-export interface Component {
-  type: 'component'
-  attrs: { [index: string]: string }
-  children: any[]
 }
