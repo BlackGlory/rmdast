@@ -11,7 +11,7 @@ export type Content =
 
 export type TopLevelContent =
 | BlockContent
-| TopLevelImage
+// | TopLevelImage
 
 export type BlockContent =
 | Paragraph
@@ -163,12 +163,14 @@ export interface Image {
   alt?: string
 }
 
+/*
 export interface TopLevelImage {
   type: 'topLevelImage'
   url: string
   title?: string
   alt?: string
 }
+*/
 
 export interface Footnote {
   type: 'footnote'
