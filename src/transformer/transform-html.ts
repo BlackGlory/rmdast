@@ -46,10 +46,10 @@ function transformTagNode(node: TreeConstructor.TagNode, text: string): AST.Comp
       const end = node.content.close.startPosition
       return [start, end]
     }
-  }
 
-  function isSelfClosing(node: TreeConstructor.TagNode): boolean {
-    return !node.content.close
+    function isSelfClosing(node: TreeConstructor.TagNode): boolean {
+      return !node.content.close
+    }
   }
 
   function transformAttributes(attributes: TreeConstructor.TagAttribute[]): { [index: string]: string } {
