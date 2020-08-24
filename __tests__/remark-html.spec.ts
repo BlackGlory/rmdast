@@ -2,6 +2,87 @@ import { parse } from '@src/parse'
 import { root, html, paragraph, text } from '@test/builder'
 
 describe('reamrk-html', () => {
+  describe('comment', () => {
+    it('single-line', () => {
+      const markdown = '<!--Hello World-->'
+
+      const result = parse(markdown)
+
+      expect(result).toMatchObject(
+        root([
+          html('<!--Hello World-->')
+        ])
+      )
+    })
+
+    it('single-line at the start', () => {
+      const markdown = '<!--Hello-->World'
+
+      const result = parse(markdown)
+
+      expect(result).toMatchObject(
+        root([
+          paragraph([
+            html('<!--Hello-->')
+          , text('World')
+          ])
+        ])
+      )
+    })
+
+    it('single-line in the middle', () => {
+      const markdown = 'Hello<!---->World'
+
+      const result = parse(markdown)
+
+      expect(result).toMatchObject(
+        root([
+          paragraph([
+            text('Hello')
+          , html('<!---->')
+          , text('World')
+          ])
+        ])
+      )
+    })
+
+    it('single-line at the end', () => {
+      const markdown = 'Hello<!--World-->'
+
+      const result = parse(markdown)
+
+      expect(result).toMatchObject(
+        root([
+          paragraph([
+            text('Hello')
+          , html('<!--World-->')
+          ])
+        ])
+      )
+    })
+
+    it('multi-line', () => {
+      const markdown =
+        '<!--' + '\n'
+      + '  Hello' + '\n'
+      + '  World' + '\n'
+      + '-->'
+
+      const result = parse(markdown)
+
+      expect(result).toMatchObject(
+        root([
+          html(
+            '<!--' + '\n'
+          + '  Hello' + '\n'
+          + '  World' + '\n'
+          + '-->'
+          )
+        ])
+      )
+    })
+  })
+
   describe('tag', () => {
     it('single-line', () => {
       const markdown = '<html-tag switch prop=value>Hello World</html-tag>'
@@ -172,24 +253,3 @@ describe('reamrk-html', () => {
     })
   })
 })
-
-// Unlike stripIndent in the common-tag module,
-// this function does not trim the blank lines at the end.
-function stripIndent(strings: TemplateStringsArray) {
-  const lines = strings.join('').split('\n')
-
-  // remove the tagged string syntax sugar
-  const emptyLine = /^\s*$/
-  if (emptyLine.test(lines[0])) lines.shift()
-  if (emptyLine.test(lines[lines.length - 1])) lines.pop()
-
-  const trimIndex = lines.reduce((min, line) => {
-    const pos = line.search(/\S/)
-    if (pos !== -1) {
-      if (pos < min) return pos
-    }
-    return min
-  }, lines.length > 0 ? lines[0].length : 0)
-
-  return lines.map(line => line.slice(trimIndex)).join('\n')
-}
