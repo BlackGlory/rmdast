@@ -241,7 +241,7 @@ describe('TableCell', () => {
 
 describe('MDAST.HTML', () => {
   describe('comments', () => {
-    it('return AST.Comment', () => {
+    it('return undefined', () => {
       const mdast = root([
         html(
           '<!--' + '\n'
@@ -251,15 +251,7 @@ describe('MDAST.HTML', () => {
       ])
       const ast: AST.Root = {
         type: 'root'
-      , children: [
-          {
-            type: 'comment'
-          , value:
-              '' + '\n'
-            + '  example' + '\n'
-            + ''
-          }
-        ]
+      , children: []
       }
 
       const result = transform(mdast)

@@ -1,3 +1,4 @@
+import { isDefined } from 'ts-is-present'
 import { tokenize, constructTree, TreeConstructor } from 'hyntax'
 import * as MDAST from 'mdast'
 import * as AST from '@src/ast'
@@ -6,7 +7,7 @@ export class UnknownHTMLError extends Error {
   name = this.constructor.name
 }
 
-export function transformHTML(node: MDAST.HTML, root: MDAST.Root): AST.Component | AST.Comment {
+export function transformHTML(node: MDAST.HTML, root: MDAST.Root): AST.Component | undefined {
   const { tokens } = tokenize(node.value)
   const { ast } = constructTree(tokens)
   const htmlNode = ast.content.children[0]
@@ -29,7 +30,7 @@ function transformTagNode(node: TreeConstructor.TagNode, text: string): AST.Comp
       if (isText(x)) return transformTextNode(x)
       if (isTag(x)) return transformTagNode(x, text)
       throw new UnknownHTMLError()
-    }) ?? []
+    }).filter(isDefined) ?? []
   , value
   }
 
@@ -67,11 +68,8 @@ function transformTagNode(node: TreeConstructor.TagNode, text: string): AST.Comp
   }
 }
 
-function transformCommentNode(node: TreeConstructor.CommentNode): AST.Comment {
-  return {
-    type: 'comment'
-  , value: node.content.value.content
-  }
+function transformCommentNode(node: TreeConstructor.CommentNode): undefined {
+  return undefined
 }
 
 function transformTextNode(node: TreeConstructor.TextNode): AST.Text {

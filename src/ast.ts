@@ -42,7 +42,7 @@ export type StaticPhrasingContent =
 | Image
 | Footnote
 
-export type HTML = Component | Comment
+export type HTML = Component
 
 export interface Root {
   type: 'root'
@@ -104,12 +104,7 @@ export interface Component {
   type: 'component'
   name: string
   attrs: { [index: string]: string }
-  children: Array<Text | Comment | Component | Component[]>
-  value: string
-}
-
-export interface Comment {
-  type :'comment'
+  children: Array<Text | Component | Component[]>
   value: string
 }
 
