@@ -1,6 +1,6 @@
 import * as MDAST from 'mdast'
 import * as AST from '@src/ast'
-import { transform } from '@src/transform'
+import { transform } from '@src/transformer'
 import {
   blockquote
 , brk
@@ -240,23 +240,66 @@ describe('TableCell', () => {
 })
 
 describe('MDAST.HTML', () => {
-  it('return AST.HTML', () => {
-    const mdast = root([
-      html('value')
-    ])
-    const ast: AST.Root = {
-      type: 'root'
-    , children: [
-        {
-          type: 'html'
-        , value: 'value'
-        }
-      ]
-    }
+  describe('comments', () => {
+    it('return AST.Comment', () => {
+      const mdast = root([
+        html(
+          '<!--' + '\n'
+        + '  example' + '\n'
+        + '-->'
+        )
+      ])
+      const ast: AST.Root = {
+        type: 'root'
+      , children: [
+          {
+            type: 'comment'
+          , value:
+              '' + '\n'
+            + '  example' + '\n'
+            + ''
+          }
+        ]
+      }
 
-    const result = transform(mdast)
+      const result = transform(mdast)
 
-    expect(result).toStrictEqual(ast)
+      expect(result).toStrictEqual(ast)
+    })
+  })
+
+  describe('components', () => {
+    it('return AST.Component', () => {
+      const mdast = root([
+        html('<a href="url"><em>content</em></a>')
+      ])
+      const ast: AST.Root = {
+        type: 'root'
+      , children: [
+          {
+            type: 'component'
+          , name: 'a'
+          , attrs: { href: 'url' }
+          , children: [
+              {
+                type: 'component'
+              , name: 'em'
+              , attrs: {}
+              , children: [
+                  { type: 'text', value: 'content' }
+                ]
+              , value: 'content'
+              }
+            ]
+          , value: '<em>content</em>'
+          }
+        ]
+      }
+
+      const result = transform(mdast)
+
+      expect(result).toStrictEqual(ast)
+    })
   })
 })
 

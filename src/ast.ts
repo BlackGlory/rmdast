@@ -1,5 +1,3 @@
-import { AlignType, Resource, Alternative } from 'mdast'
-
 export interface Node {
   type: string
 }
@@ -13,6 +11,7 @@ export type Content =
 
 export type TopLevelContent =
 | BlockContent
+| TopLevelImage
 
 export type BlockContent =
 | Paragraph
@@ -24,11 +23,11 @@ export type BlockContent =
 | HTML
 | Code
 
-export type ListContent = ListItem;
+export type ListContent = ListItem
 
-export type TableContent = TableRow;
+export type TableContent = TableRow
 
-export type RowContent = TableCell;
+export type RowContent = TableCell
 
 export type PhrasingContent = StaticPhrasingContent | Link
 
@@ -42,6 +41,8 @@ export type StaticPhrasingContent =
 | Break
 | Image
 | Footnote
+
+export type HTML = Component | Comment
 
 export interface Root {
   type: 'root'
@@ -85,7 +86,7 @@ export interface ListItem {
 
 export interface Table {
   type: 'table'
-  align?: AlignType[]
+  align?: Array<'left' | 'right' | 'center' | null> // null?
   children: TableContent[]
 }
 
@@ -99,28 +100,17 @@ export interface TableCell {
   children: PhrasingContent[]
 }
 
-/**
- * @deprecated
- */
-export interface HTML {
-  type: 'html'
-  value: string
-}
-
-export interface Element {
-  type: 'element'
+export interface Component {
+  type: 'component'
+  name: string
+  attrs: { [index: string]: string }
+  children: Array<Text | Comment | Component | Component[]>
   value: string
 }
 
 export interface Comment {
-  type: 'comment'
+  type :'comment'
   value: string
-}
-
-export interface Component {
-  type: 'component'
-  attrs: { [index: string]: string }
-  children: any[]
 }
 
 export interface Code {
@@ -159,13 +149,25 @@ export interface Break {
   type: 'break'
 }
 
-export interface Link extends Resource {
+export interface Link {
   type: 'link'
+  url: string
+  title?: string
   children: StaticPhrasingContent[]
 }
 
-export interface Image extends Resource, Alternative {
+export interface Image {
   type: 'image'
+  url: string
+  title?: string
+  alt?: string
+}
+
+export interface TopLevelImage {
+  type: 'topLevelImage'
+  url: string
+  title?: string
+  alt?: string
 }
 
 export interface Footnote {
