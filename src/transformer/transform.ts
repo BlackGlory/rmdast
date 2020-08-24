@@ -19,7 +19,7 @@ export function transformRoot(root: MDAST.Root): AST.Root {
   }
 }
 
-export function transformContent(node: MDAST.Content, root: MDAST.Root): AST.Content | undefined {
+function transformContent(node: MDAST.Content, root: MDAST.Root): AST.Content | undefined {
   if (isTopLevelContent(node)) return transformTopLevelContent(node, root)
   if (isListContent(node)) return transformListContent(node, root)
   if (isTableContent(node)) return transformTableContent(node, root)
@@ -28,36 +28,36 @@ export function transformContent(node: MDAST.Content, root: MDAST.Root): AST.Con
   throw new UnknownNodeError()
 }
 
-export function transformTopLevelContent(node: MDAST.TopLevelContent, root: MDAST.Root): AST.TopLevelContent | undefined {
+function transformTopLevelContent(node: MDAST.TopLevelContent, root: MDAST.Root): AST.TopLevelContent | undefined {
   if (isBlockContent(node)) return transformBlockContent(node, root)
   if (isFrontmatterContent(node)) return transformFrontmatterContent(node, root)
   if (isDefinitionContent(node)) return transformDefinitionContent(node, root)
   throw new UnknownNodeError()
 }
 
-export function transformListContent(node: MDAST.ListContent, root: MDAST.Root): AST.ListContent {
+function transformListContent(node: MDAST.ListContent, root: MDAST.Root): AST.ListContent {
   if (isListContent(node)) return transformListItem(node, root)
   throw new UnknownNodeError()
 }
 
-export function transformTableContent(node: MDAST.TableContent, root: MDAST.Root): AST.TableContent {
+function transformTableContent(node: MDAST.TableContent, root: MDAST.Root): AST.TableContent {
   if (isTableRow(node)) return transformTableRow(node, root)
   throw new UnknownNodeError()
 }
 
-export function transformRowContent(node: MDAST.RowContent, root: MDAST.Root): AST.RowContent {
+function transformRowContent(node: MDAST.RowContent, root: MDAST.Root): AST.RowContent {
   if (isTableCell(node)) return transformTableCell(node, root)
   throw new UnknownNodeError()
 }
 
-export function transformPhrasingContent(node: MDAST.PhrasingContent, root: MDAST.Root): AST.PhrasingContent | undefined {
+function transformPhrasingContent(node: MDAST.PhrasingContent, root: MDAST.Root): AST.PhrasingContent | undefined {
   if (isStaticPhrasingContent(node)) return transformStaticPhrasingContent(node, root)
   if (isLink(node)) return transformLink(node, root)
   if (isLinkReference(node)) return transformLinkReference(node, root)
   throw new UnknownNodeError()
 }
 
-export function transformBlockContent(node: MDAST.BlockContent, root: MDAST.Root): AST.BlockContent | undefined {
+function transformBlockContent(node: MDAST.BlockContent, root: MDAST.Root): AST.BlockContent | undefined {
   if (isParagraph(node)) return transformParagraph(node, root)
   if (isHeading(node)) return transformHeading(node, root)
   if (isThematicBreak(node)) return transformThematicBreak(node, root)
@@ -69,40 +69,13 @@ export function transformBlockContent(node: MDAST.BlockContent, root: MDAST.Root
   throw new UnknownNodeError()
 }
 
-export function transformFrontmatterContent(node: MDAST.FrontmatterContent, root: MDAST.Root): undefined {
-  return undefined
-}
-
-export function transformDefinitionContent(node: MDAST.DefinitionContent, root: MDAST.Root) {
+function transformDefinitionContent(node: MDAST.DefinitionContent, root: MDAST.Root) {
   if (isDefinition(node)) return transformDefinition(node, root)
   if (isFootnoteDefinition(node)) return transformFootnoteDefinition(node, root)
   throw new UnknownNodeError()
 }
 
-export function transformListItem(node: MDAST.ListItem, root: MDAST.Root): AST.ListItem {
-  return {
-    type: 'listItem'
-  , checked: node.checked
-  , spread: node.spread
-  , children: map(node.children, x => transformBlockContent(x, root))
-  }
-}
-
-export function transformTableRow(node: MDAST.TableRow, root: MDAST.Root): AST.TableRow {
-  return {
-    type: 'tableRow'
-  , children: map(node.children, x => transformRowContent(x, root))
-  }
-}
-
-export function transformTableCell(node: MDAST.TableCell, root: MDAST.Root): AST.TableCell {
-  return {
-    type: 'tableCell'
-  , children: map(node.children, x => transformPhrasingContent(x, root))
-  }
-}
-
-export function transformStaticPhrasingContent(node: MDAST.StaticPhrasingContent, root: MDAST.Root): AST.StaticPhrasingContent | undefined {
+function transformStaticPhrasingContent(node: MDAST.StaticPhrasingContent, root: MDAST.Root): AST.StaticPhrasingContent | undefined {
   if (isText(node)) return transformText(node, root)
   if (isEmphasis(node)) return transformEmphasis(node, root)
   if (isStrong(node)) return transformStrong(node, root)
@@ -117,7 +90,34 @@ export function transformStaticPhrasingContent(node: MDAST.StaticPhrasingContent
   throw new UnknownNodeError()
 }
 
-export function transformLink(node: MDAST.Link, root: MDAST.Root): AST.Link {
+function transformFrontmatterContent(node: MDAST.FrontmatterContent, root: MDAST.Root): undefined {
+  return undefined
+}
+
+function transformListItem(node: MDAST.ListItem, root: MDAST.Root): AST.ListItem {
+  return {
+    type: 'listItem'
+  , checked: node.checked
+  , spread: node.spread
+  , children: map(node.children, x => transformBlockContent(x, root))
+  }
+}
+
+function transformTableRow(node: MDAST.TableRow, root: MDAST.Root): AST.TableRow {
+  return {
+    type: 'tableRow'
+  , children: map(node.children, x => transformRowContent(x, root))
+  }
+}
+
+function transformTableCell(node: MDAST.TableCell, root: MDAST.Root): AST.TableCell {
+  return {
+    type: 'tableCell'
+  , children: map(node.children, x => transformPhrasingContent(x, root))
+  }
+}
+
+function transformLink(node: MDAST.Link, root: MDAST.Root): AST.Link {
   return {
     type: 'link'
   , url: node.url
@@ -126,7 +126,7 @@ export function transformLink(node: MDAST.Link, root: MDAST.Root): AST.Link {
   }
 }
 
-export function transformLinkReference(node: MDAST.LinkReference, root: MDAST.Root): AST.Link {
+function transformLinkReference(node: MDAST.LinkReference, root: MDAST.Root): AST.Link {
   const definition = definitions(root)(node.identifier)
   return {
     type: 'link'
@@ -136,14 +136,14 @@ export function transformLinkReference(node: MDAST.LinkReference, root: MDAST.Ro
   }
 }
 
-export function transformParagraph(node: MDAST.Paragraph, root: MDAST.Root): AST.Paragraph {
+function transformParagraph(node: MDAST.Paragraph, root: MDAST.Root): AST.Paragraph {
   return {
     type: 'paragraph'
   , children: map(node.children, x => transformPhrasingContent(x, root))
   }
 }
 
-export function transformHeading(node: MDAST.Heading, root: MDAST.Root): AST.Heading {
+function transformHeading(node: MDAST.Heading, root: MDAST.Root): AST.Heading {
   return {
     type: 'heading'
   , depth: node.depth
@@ -151,20 +151,20 @@ export function transformHeading(node: MDAST.Heading, root: MDAST.Root): AST.Hea
   }
 }
 
-export function transformThematicBreak(node: MDAST.ThematicBreak, root: MDAST.Root): AST.ThematicBreak {
+function transformThematicBreak(node: MDAST.ThematicBreak, root: MDAST.Root): AST.ThematicBreak {
   return {
     type: 'thematicBreak'
   }
 }
 
-export function transformBlockquote(node: MDAST.Blockquote, root: MDAST.Root): AST.Blockquote {
+function transformBlockquote(node: MDAST.Blockquote, root: MDAST.Root): AST.Blockquote {
   return {
     type: 'blockquote'
   , children: map(node.children, x => transformBlockContent(x, root))
   }
 }
 
-export function transformList(node: MDAST.List, root: MDAST.Root): AST.List {
+function transformList(node: MDAST.List, root: MDAST.Root): AST.List {
   return {
     type: 'list'
   , ordered: node.ordered
@@ -174,7 +174,7 @@ export function transformList(node: MDAST.List, root: MDAST.Root): AST.List {
   }
 }
 
-export function transformTable(node: MDAST.Table, root: MDAST.Root): AST.Table {
+function transformTable(node: MDAST.Table, root: MDAST.Root): AST.Table {
   return {
     type: 'table'
   , align: node.align
@@ -182,7 +182,7 @@ export function transformTable(node: MDAST.Table, root: MDAST.Root): AST.Table {
   }
 }
 
-export function transformCode(node: MDAST.Code, root: MDAST.Root): AST.Code {
+function transformCode(node: MDAST.Code, root: MDAST.Root): AST.Code {
   return {
     type: 'code'
   , lang: node.lang
@@ -191,56 +191,56 @@ export function transformCode(node: MDAST.Code, root: MDAST.Root): AST.Code {
   }
 }
 
-export function transformDefinition(node: MDAST.Definition, root: MDAST.Root): undefined {
+function transformDefinition(node: MDAST.Definition, root: MDAST.Root): undefined {
   return undefined
 }
 
-export function transformFootnoteDefinition(node: MDAST.FootnoteDefinition, root: MDAST.Root): undefined {
+function transformFootnoteDefinition(node: MDAST.FootnoteDefinition, root: MDAST.Root): undefined {
   return undefined
 }
 
-export function transformText(node: MDAST.Text, root: MDAST.Root): AST.Text {
+function transformText(node: MDAST.Text, root: MDAST.Root): AST.Text {
   return {
     type: 'text'
   , value: node.value
   }
 }
 
-export function transformEmphasis(node: MDAST.Emphasis, root: MDAST.Root): AST.Emphasis {
+function transformEmphasis(node: MDAST.Emphasis, root: MDAST.Root): AST.Emphasis {
   return {
     type: 'emphasis'
   , children: map(node.children, x => transformPhrasingContent(x, root))
   }
 }
 
-export function transformStrong(node: MDAST.Strong, root: MDAST.Root): AST.Strong {
+function transformStrong(node: MDAST.Strong, root: MDAST.Root): AST.Strong {
   return {
     type: 'strong'
   , children: map(node.children, x => transformPhrasingContent(x, root))
   }
 }
 
-export function transformDelete(node: MDAST.Delete, root: MDAST.Root): AST.Delete {
+function transformDelete(node: MDAST.Delete, root: MDAST.Root): AST.Delete {
   return {
     type: 'delete'
   , children: map(node.children, x => transformPhrasingContent(x, root))
   }
 }
 
-export function transformInlineCode(node: MDAST.InlineCode, root: MDAST.Root): AST.InlineCode {
+function transformInlineCode(node: MDAST.InlineCode, root: MDAST.Root): AST.InlineCode {
   return {
     type: 'inlineCode'
   , value: node.value
   }
 }
 
-export function transformBreak(node: MDAST.Break, root: MDAST.Root): AST.Break {
+function transformBreak(node: MDAST.Break, root: MDAST.Root): AST.Break {
   return {
     type: 'break'
   }
 }
 
-export function transformImage(node: MDAST.Image, root: MDAST.Root): AST.Image {
+function transformImage(node: MDAST.Image, root: MDAST.Root): AST.Image {
   return {
     type: 'image'
   , alt: node.alt
@@ -249,7 +249,7 @@ export function transformImage(node: MDAST.Image, root: MDAST.Root): AST.Image {
   }
 }
 
-export function transformImageReference(node: MDAST.ImageReference, root: MDAST.Root): AST.Image {
+function transformImageReference(node: MDAST.ImageReference, root: MDAST.Root): AST.Image {
   const definition = definitions(root)(node.identifier)
   return {
     type: 'image'
@@ -259,14 +259,14 @@ export function transformImageReference(node: MDAST.ImageReference, root: MDAST.
   }
 }
 
-export function transformFootnote(node: MDAST.Footnote, root: MDAST.Root): AST.Footnote {
+function transformFootnote(node: MDAST.Footnote, root: MDAST.Root): AST.Footnote {
   return {
     type: 'footnote'
   , children: map(node.children, x => transformPhrasingContent(x, root))
   }
 }
 
-export function transformFootnoteReference(node: MDAST.FootnoteReference, root: MDAST.Root): AST.Footnote {
+function transformFootnoteReference(node: MDAST.FootnoteReference, root: MDAST.Root): AST.Footnote {
   const definition = getFootnoteDefinition(root, node.identifier)
   return {
     type: 'footnote'
