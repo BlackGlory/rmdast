@@ -5,7 +5,7 @@ export function is<T extends Node>(node: Node, type: string): node is T {
   return node.type === type
 }
 
-export function isParent(node: Node): node is AST.Parent {
+export function isParent(node: Node): node is Node & AST.Parent {
   return 'children' in node
 }
 
