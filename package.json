@@ -50,6 +50,7 @@
   },
   "dependencies": {
     "hyntax": "^1.1.6",
+    "immer": "^7.0.7",
     "mdast-util-definitions": "^3.0.1",
     "remark-footnotes": "^1.0.0",
     "remark-parse": "^8.0.3",
