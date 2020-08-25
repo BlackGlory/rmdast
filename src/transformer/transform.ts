@@ -3,9 +3,10 @@ import * as MDAST from 'mdast'
 import * as AST from '@src/ast'
 import { isDefined } from 'ts-is-present'
 import { getFootnoteDefinition } from './get-footnote-definition'
+import { getDefinition } from './get-definition'
 import is = require('unist-util-is')
-import getDefinitions = require('mdast-util-definitions')
 import { transformHTML } from './transform-html'
+
 export { UnknownHTMLError } from './transform-html'
 
 export class UnknownNodeError extends Error {
@@ -127,7 +128,7 @@ function transformLink(node: MDAST.Link, root: MDAST.Root): AST.Link {
 }
 
 function transformLinkReference(node: MDAST.LinkReference, root: MDAST.Root): AST.Link {
-  const definition = getDefinitions(root)(node.identifier)
+  const definition = getDefinition(root, node.identifier)
   return {
     type: 'link'
   , url: definition?.url ?? ''
@@ -250,7 +251,7 @@ function transformImage(node: MDAST.Image, root: MDAST.Root): AST.Image {
 }
 
 function transformImageReference(node: MDAST.ImageReference, root: MDAST.Root): AST.Image {
-  const definition = getDefinitions(root)(node.identifier)
+  const definition = getDefinition(root, node.identifier)
   return {
     type: 'image'
   , url: definition?.url ?? ''
