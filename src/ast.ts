@@ -42,114 +42,100 @@ export type StaticPhrasingContent =
 | Image
 | Footnote
 
-export interface Root {
+export interface Root extends Node, ParentOf<Content[]> {
   type: 'root'
-  children: Content[]
 }
 
-export interface Paragraph {
+export interface Paragraph extends Node, ParentOf<PhrasingContent[]> {
   type: 'paragraph'
-  children: PhrasingContent[]
 }
 
-export interface Heading {
+export interface Heading extends Node, ParentOf<PhrasingContent[]> {
   type: 'heading'
   depth: 1 | 2 | 3 | 4 | 5 | 6
-  children: PhrasingContent[]
 }
 
-export interface ThematicBreak {
+export interface ThematicBreak extends Node {
   type: 'thematicBreak'
 }
 
-export interface Blockquote {
+export interface Blockquote extends Node, ParentOf<BlockContent[]> {
   type: 'blockquote'
-  children: BlockContent[]
 }
 
-export interface List {
+export interface List extends Node, ParentOf<ListContent[]> {
   type: 'list'
   ordered?: boolean
   start?: number
   spread?: boolean
-  children: ListContent[]
 }
 
-export interface ListItem {
+export interface ListItem extends Node, ParentOf<BlockContent[]> {
   type: 'listItem'
   checked?: boolean
   spread?: boolean
-  children: BlockContent[]
 }
 
-export interface Table {
+export interface Table extends Node, ParentOf<TableContent[]> {
   type: 'table'
   align?: Array<'left' | 'right' | 'center' | null> // null?
-  children: TableContent[]
 }
 
-export interface TableRow {
+export interface TableRow extends Node, ParentOf<RowContent[]> {
   type: 'tableRow'
-  children: RowContent[]
 }
 
-export interface TableCell {
+export interface TableCell extends Node, ParentOf<PhrasingContent[]> {
   type: 'tableCell'
-  children: PhrasingContent[]
 }
 
-export interface Component {
+export interface Component extends Node, ParentOf<Array<Text | Component | Component[]>> {
   type: 'component'
   name: string
   attributes: { [index: string]: string }
-  children: Array<Text | Component | Component[]>
   content: string
 }
 
-export interface Code {
+export interface Code extends Node {
   type: 'code'
   value: string
   lang?: string
   meta?: string
 }
 
-export interface Text {
+export interface Text extends Node {
   type: 'text'
   value: string
 }
 
-export interface Emphasis {
+export interface Emphasis extends Node, ParentOf<PhrasingContent[]> {
   type: 'emphasis'
-  children: PhrasingContent[]
 }
 
-export interface Strong {
+export interface Strong extends Node, ParentOf<PhrasingContent[]> {
   type: 'strong'
-  children: PhrasingContent[]
 }
 
-export interface Delete {
+export interface Delete extends Node, ParentOf<PhrasingContent[]> {
   type: 'delete'
-  children: PhrasingContent[]
 }
 
-export interface InlineCode {
+export interface InlineCode extends Node {
   type: 'inlineCode'
   value: string
 }
 
-export interface Break {
+export interface Break extends Node {
   type: 'break'
 }
 
-export interface Link {
+export interface Link extends Node, ParentOf<StaticPhrasingContent[]> {
   type: 'link'
   url: string
   title?: string
-  children: StaticPhrasingContent[]
 }
 
-export interface Image {
+export interface Image extends Node {
   type: 'image'
   url: string
   title?: string
@@ -157,7 +143,7 @@ export interface Image {
 }
 
 /*
-export interface TopLevelImage {
+export interface TopLevelImage extends Node {
   type: 'topLevelImage'
   url: string
   title?: string
@@ -165,7 +151,10 @@ export interface TopLevelImage {
 }
 */
 
-export interface Footnote {
+export interface Footnote extends Node, ParentOf<PhrasingContent[] | BlockContent[]> {
   type: 'footnote'
-  children: PhrasingContent[] | BlockContent[]
+}
+
+interface ParentOf<T extends any[]> {
+  children: T
 }
