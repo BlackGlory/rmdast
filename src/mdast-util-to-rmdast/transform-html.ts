@@ -31,7 +31,7 @@ function transformTagNode(node: TreeConstructor.TagNode, text: string): AST.Comp
       if (isTag(x)) return transformTagNode(x, text)
       throw new UnknownHTMLError()
     }).filter(isDefined) ?? []
-  , value: value
+  , content: value
   }
 
   function getInnerRange(node: TreeConstructor.TagNode): [start: number, end: number] {

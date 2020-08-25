@@ -280,10 +280,10 @@ describe('MDAST.HTML', () => {
               , children: [
                   { type: 'text', value: 'content' }
                 ]
-              , value: 'content'
+              , content: 'content'
               }
             ]
-          , value: '<em>content</em>'
+          , content: '<em>content</em>'
           }
         ]
       }

@@ -103,7 +103,7 @@ export interface Component {
   name: string
   attributes: { [index: string]: string }
   children: Array<Text | Component | Component[]>
-  value: string
+  content: string
 }
 
 export interface Code {
