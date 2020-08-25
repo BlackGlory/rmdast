@@ -1,6 +1,7 @@
 import * as AST from '@src/ast'
 import { isParent, isComponent } from '@src/is'
 import { produce } from 'immer'
+import 'core-js/es/array/flat-map'
 
 export function flatMap(node: AST.Node, fn: (node: AST.Node) => AST.Node[]): AST.Node[] {
   const newNodes = fn(node)

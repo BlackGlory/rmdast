@@ -1,3 +1,4 @@
+// Content Categories
 export interface Node {
   type: string
 }

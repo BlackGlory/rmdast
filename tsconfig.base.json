@@ -3,6 +3,7 @@
     "target": "ES2019"
   , "module": "CommonJS"
   , "strict": true
+  , "lib": ["ES2019.Array"]
   , "noUnusedLocals": false
   , "noUnusedParameters": false
   , "experimentalDecorators": true
