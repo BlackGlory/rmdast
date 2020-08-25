@@ -2,6 +2,14 @@ export interface Node {
   type: string
 }
 
+export interface Parent {
+  children: Node[]
+}
+
+export interface ParentOf<T extends Node[]> extends Parent {
+  children: T
+}
+
 export type Content =
 | TopLevelContent
 | ListContent
@@ -89,11 +97,11 @@ export interface TableCell extends Node, ParentOf<PhrasingContent[]> {
   type: 'tableCell'
 }
 
-export interface Component extends Node, ParentOf<Array<Text | Component | Component[]>> {
+export interface Component extends Node, ParentOf<Array<Text | Component>> {
   type: 'component'
   name: string
   attributes: { [index: string]: string }
-  content: string
+  value: string
 }
 
 export interface Code extends Node {
@@ -153,8 +161,4 @@ export interface TopLevelImage extends Node {
 
 export interface Footnote extends Node, ParentOf<PhrasingContent[] | BlockContent[]> {
   type: 'footnote'
-}
-
-interface ParentOf<T extends any[]> {
-  children: T
 }

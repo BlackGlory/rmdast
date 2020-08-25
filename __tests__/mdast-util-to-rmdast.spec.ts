@@ -29,7 +29,7 @@ import {
 , text
 , thematicBreak
 , yaml
-} from '@test/builder'
+} from '@test/mdast-builder'
 
 describe('MDAST.Root', () => {
   it('return AST.Root', () => {
@@ -280,10 +280,10 @@ describe('MDAST.HTML', () => {
               , children: [
                   { type: 'text', value: 'content' }
                 ]
-              , content: 'content'
+              , value: 'content'
               }
             ]
-          , content: '<em>content</em>'
+          , value: '<em>content</em>'
           }
         ]
       }
