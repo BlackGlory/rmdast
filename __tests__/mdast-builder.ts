@@ -35,11 +35,7 @@ export function blockquote(children: MDAST.Blockquote['children']): MDAST.Blockq
 
 export function list(
   children: MDAST.List['children']
-, { ordered, start, spread }: {
-    ordered?: MDAST.List['ordered']
-    start?: MDAST.List['start']
-    spread?: MDAST.List['spread']
-  } = {}
+, { ordered, start, spread }: Pick<MDAST.List, 'ordered' | 'start' | 'spread'> = {}
 ): MDAST.List {
   return {
     type: 'list'
@@ -52,10 +48,7 @@ export function list(
 
 export function listItem(
   children: MDAST.ListItem['children']
-, { checked, spread }: {
-    checked?: MDAST.ListItem['checked']
-    spread?: MDAST.ListItem['spread']
-  } = {}
+, { checked, spread }: Pick<MDAST.ListItem, 'checked' | 'spread'> = {}
 ): MDAST.ListItem {
   return {
     type: 'listItem'
@@ -67,7 +60,7 @@ export function listItem(
 
 export function table(
   children: MDAST.Table['children']
-, { align }: { align?: MDAST.Table['align'] } = {}
+, { align }: Pick<MDAST.Table, 'align'> = {}
 ): MDAST.Table {
   return {
     type: 'table'
@@ -99,10 +92,7 @@ export function html(value: MDAST.HTML['value']): MDAST.HTML {
 
 export function code(
   value: MDAST.Code['value']
-, { lang, meta }: {
-    lang?: MDAST.Code['lang']
-    meta?: MDAST.Code['meta']
-  } = {}
+, { lang, meta }: Pick<MDAST.Code, 'lang' | 'meta'> = {}
 ): MDAST.Code {
   return {
     type: 'code'
@@ -122,10 +112,7 @@ export function yaml(value: MDAST.YAML['value']): MDAST.YAML {
 export function definition(
   identifier: MDAST.Definition['identifier']
 , url: MDAST.Definition['url']
-, { title, label }: {
-    title?: MDAST.Definition['title']
-    label?: MDAST.Definition['label']
-  } = {}
+, { title, label }: Pick<MDAST.Definition, 'title' | 'label'> = {}
 ): MDAST.Definition {
   return {
     type: 'definition'
@@ -139,9 +126,7 @@ export function definition(
 export function footnoteDef(
   identifier: MDAST.FootnoteDefinition['identifier']
 , children: MDAST.FootnoteDefinition['children']
-, { label }: {
-    label?: MDAST.FootnoteDefinition['label']
-  } = {}
+, { label }: Pick<MDAST.FootnoteDefinition, 'label'> = {}
 ): MDAST.FootnoteDefinition {
   return {
     type: 'footnoteDefinition'
@@ -193,9 +178,7 @@ export function brk(): MDAST.Break {
 export function link(
   url: MDAST.Link['url']
 , children: MDAST.Link['children']
-, { title }: {
-    title?: MDAST.Link['title']
-  } = {}
+, { title }: Pick<MDAST.Link, 'title'> = {}
 ): MDAST.Link {
   return {
     type: 'link'
@@ -207,10 +190,7 @@ export function link(
 
 export function image(
   url: MDAST.Image['url']
-, { title, alt }: {
-    title?: MDAST.Image['title']
-    alt?: MDAST.Image['alt']
-  } = {}
+, { title, alt }: Pick<MDAST.Image, 'title' | 'alt'> = {}
 ): MDAST.Image {
   return {
     type: 'image'
@@ -236,10 +216,7 @@ export function linkRef(
 export function imageRef(
   identifier: MDAST.ImageReference['identifier']
 , referenceType: MDAST.ImageReference['referenceType']
-, { alt, label }: {
-    alt?: MDAST.ImageReference['alt']
-    label?: MDAST.ImageReference['label']
-  } = {}
+, { alt, label }: Pick<MDAST.ImageReference, 'alt' | 'label'> = {}
 ): MDAST.ImageReference {
   return {
     type: 'imageReference'
@@ -259,7 +236,7 @@ export function footnote(children: MDAST.Footnote['children']): MDAST.Footnote {
 
 export function footnoteRef(
   identifier: MDAST.FootnoteReference['identifier']
-, { label }: { label?: MDAST.FootnoteReference['label'] } = {}
+, { label }: Pick<MDAST.FootnoteReference, 'label'> = {}
 ): MDAST.FootnoteReference {
   return {
     type: 'footnoteReference'
