@@ -20,7 +20,7 @@ export type BlockContent =
 | Blockquote
 | List
 | Table
-| HTML
+| Component
 | Code
 
 export type ListContent = ListItem
@@ -36,13 +36,11 @@ export type StaticPhrasingContent =
 | Emphasis
 | Strong
 | Delete
-| HTML
+| Component
 | InlineCode
 | Break
 | Image
 | Footnote
-
-export type HTML = Component
 
 export interface Root {
   type: 'root'

@@ -24,7 +24,7 @@ export function isBlockContent(node: Node): node is AST.BlockContent {
       || isBlockquote(node)
       || isList(node)
       || isTable(node)
-      || isHTML(node)
+      || isComponent(node)
       || isCode(node)
 }
 
@@ -50,7 +50,7 @@ export function isStaticPhrasingContent(node: Node): node is AST.StaticPhrasingC
       || isEmphasis(node)
       || isStrong(node)
       || isDelete(node)
-      || isHTML(node)
+      || isComponent(node)
       || isInlineCode(node)
       || isBreak(node)
       || isImage(node)
@@ -97,8 +97,8 @@ export function isTableCell(node: Node): node is AST.TableCell {
   return is<AST.TableCell>(node, 'tableCell')
 }
 
-export function isHTML(node: Node): node is AST.HTML {
-  return is<AST.HTML>(node, 'html')
+export function isComponent(node: Node): node is AST.Component {
+  return is<AST.Component>(node, 'component')
 }
 
 export function isCode(node: Node): node is AST.Code {
