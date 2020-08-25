@@ -101,7 +101,7 @@ export interface TableCell {
 export interface Component {
   type: 'component'
   name: string
-  attrs: { [index: string]: string }
+  attributes: { [index: string]: string }
   children: Array<Text | Component | Component[]>
   value: string
 }

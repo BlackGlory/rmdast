@@ -24,7 +24,7 @@ function transformTagNode(node: TreeConstructor.TagNode, text: string): AST.Comp
   return {
     type: 'component'
   , name: node.content.name
-  , attrs: transformAttributes(node.content.attributes ?? [])
+  , attributes: transformAttributes(node.content.attributes ?? [])
   , children: node.content.children?.map(x => {
       if (isComment(x)) return transformCommentNode(x)
       if (isText(x)) return transformTextNode(x)

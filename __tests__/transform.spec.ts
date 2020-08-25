@@ -271,12 +271,12 @@ describe('MDAST.HTML', () => {
           {
             type: 'component'
           , name: 'a'
-          , attrs: { href: 'url' }
+          , attributes: { href: 'url' }
           , children: [
               {
                 type: 'component'
               , name: 'em'
-              , attrs: {}
+              , attributes: {}
               , children: [
                   { type: 'text', value: 'content' }
                 ]
