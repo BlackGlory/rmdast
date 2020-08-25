@@ -30,7 +30,9 @@ export const blockTokenizer: Tokenizer = function (eat: Eat, text: string, silen
     if (silent) return true
 
     const subText = text.slice(0, endPosition)
-    return eat(subText)({ type: 'html', value: subText })
+    const add = eat(subText)
+    const node = add({ type: 'html', value: subText })
+    return node
   }
 }
 

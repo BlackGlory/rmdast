@@ -18,7 +18,9 @@ export const inlineTokenizer: Tokenizer = function (eat: Eat, text: string, sile
 
     const lastToken = blockTokens[blockTokens.length - 1]
     const subText = text.slice(0, lastToken.endPosition + 1)
-    return eat(subText)({ type: 'html', value: subText })
+    const add = eat(subText)
+    const node = add({ type: 'html', value: subText })
+    return node
   }
 }
 
