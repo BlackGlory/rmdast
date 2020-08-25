@@ -1,619 +1,392 @@
-import * as MDAST from 'mdast'
-import * as AST from '@src/ast'
 import { transform } from '@src/mdast-util-to-rmdast'
-import {
-  blockquote
-, brk
-, code
-, definition
-, del
-, emphasis
-, footnote
-, footnoteDef
-, footnoteRef
-, heading
-, html
-, image
-, imageRef
-, inlineCode
-, link
-, linkRef
-, list
-, listItem
-, paragraph
-, root
-, strong
-, table
-, tableCell
-, tableRow
-, text
-, thematicBreak
-, yaml
-} from '@test/mdast-builder'
+import * as mb from '@test/mdast-builder'
+import * as rb from '@src/builder'
 
 describe('MDAST.Root', () => {
   it('return AST.Root', () => {
-    const mdast = root([])
-    const ast: AST.Root = {
-      type: 'root'
-    , children: []
-    }
+    const mdast = mb.root([])
 
     const result = transform(mdast)
 
-    expect(result).toStrictEqual(ast)
+    expect(result).toStrictEqual(rb.root([]))
   })
 })
 
 describe('MDAST.Paragraph', () => {
   it('return AST.Paragraph', () => {
-    const mdast = root([
-      paragraph([])
-    ]) as MDAST.Root
-    const ast: AST.Root = {
-      type: 'root'
-    , children: [
-        {
-          type: 'paragraph'
-        , children: []
-        }
-      ]
-    }
+    const mdast = mb.root([
+      mb.paragraph([])
+    ])
 
     const result = transform(mdast)
 
-    expect(result).toStrictEqual(ast)
+    expect(result).toStrictEqual(rb.root([
+      rb.paragraph([])
+    ]))
   })
 })
 
 describe('MDAST.Heading', () => {
   it('return AST.Heading', () => {
-    const mdast = root([
-      heading(1, [])
-    ]) as MDAST.Root
-    const ast: AST.Root = {
-      type: 'root'
-    , children: [
-        {
-          type: 'heading'
-        , children: []
-        , depth: 1
-        }
-      ]
-    }
+    const mdast = mb.root([
+      mb.heading(1, [])
+    ])
 
     const result = transform(mdast)
 
-    expect(result).toStrictEqual(ast)
+    expect(result).toStrictEqual(rb.root([
+      rb.heading(1, [])
+    ]))
   })
 })
 
 describe('MDAST.ThematicBreak', () => {
   it('return AST.ThematicBreak', () => {
-    const mdast = root([
-      thematicBreak()
+    const mdast = mb.root([
+      mb.thematicBreak()
     ])
-    const ast: AST.Root = {
-      type: 'root'
-    , children: [
-        { type: 'thematicBreak' }
-      ]
-    }
 
     const result = transform(mdast)
 
-    expect(result).toStrictEqual(ast)
+    expect(result).toStrictEqual(rb.root([
+      rb.thematicBreak()
+    ]))
   })
 })
 
 describe('MDAST.Blockquote', () => {
   it('return AST.Blockquote', () => {
-    const mdast = root([
-      blockquote([])
+    const mdast = mb.root([
+      mb.blockquote([])
     ])
-    const ast: AST.Root = {
-      type: 'root'
-    , children: [
-        {
-          type: 'blockquote'
-        , children: []
-        }
-      ]
-    }
 
     const result = transform(mdast)
 
-    expect(result).toStrictEqual(ast)
+    expect(result).toStrictEqual(rb.root([
+      rb.blockquote([])
+    ]))
   })
 })
 
 describe('MDAST.List', () => {
   it('return AST.List', () => {
-    const mdast = root([
-      list([], { ordered: true, start: 1, spread: true })
+    const mdast = mb.root([
+      mb.list([], { ordered: true, start: 1, spread: true })
     ])
-
-    const ast: AST.Root = {
-      type: 'root'
-    , children: [
-        {
-          type: 'list'
-        , children: []
-        , ordered: true
-        , start: 1
-        , spread: true
-        }
-      ]
-    }
 
     const result = transform(mdast)
 
-    expect(result).toStrictEqual(ast)
+    expect(result).toStrictEqual(rb.root([
+      rb.list([], { ordered: true, start: 1, spread: true })
+    ]))
   })
 })
 
 describe('MDAST.ListItem', () => {
   it('return AST.ListItem', () => {
-    const mdast = root([
-      listItem([], { checked: true, spread: true })
+    const mdast = mb.root([
+      mb.listItem([], { checked: true, spread: true })
     ])
-    const ast: AST.Root = {
-      type: 'root'
-    , children: [
-        {
-          type: 'listItem'
-        , checked: true
-        , spread: true
-        , children: []
-        }
-      ]
-    }
 
     const result = transform(mdast)
 
-    expect(result).toStrictEqual(ast)
+    expect(result).toStrictEqual(rb.root([
+      rb.listItem([], { checked: true, spread: true })
+    ]))
   })
 })
 
 describe('MDAST.Table', () => {
   it('return AST.Table', () => {
-    const mdast = root([
-      table([], { align: ['left'] })
+    const mdast = mb.root([
+      mb.table([], { align: ['left'] })
     ])
-    const ast: AST.Root = {
-      type: 'root'
-    , children: [
-        {
-          type: 'table'
-        , align: ['left']
-        , children: []
-        }
-      ]
-    }
 
     const result = transform(mdast)
 
-    expect(result).toStrictEqual(ast)
+    expect(result).toStrictEqual(rb.root([
+      rb.table([], { align: ['left'] })
+    ]))
   })
 })
 
 describe('MDAST.TableRow', () => {
   it('return AST.TableRow', () => {
-    const mdast = root([
-      tableRow([])
+    const mdast = mb.root([
+      mb.tableRow([])
     ])
-    const ast: AST.Root = {
-      type: 'root'
-    , children: [
-        {
-          type: 'tableRow'
-        , children: []
-        }
-      ]
-    }
 
     const result = transform(mdast)
 
-    expect(result).toStrictEqual(ast)
+    expect(result).toStrictEqual(rb.root([
+      rb.tableRow([])
+    ]))
   })
 })
 
 describe('TableCell', () => {
   it('return AST.TableCell', () => {
-    const mdast = root([
-      tableCell([])
+    const mdast = mb.root([
+      mb.tableCell([])
     ])
-    const ast: AST.Root = {
-      type: 'root'
-    , children: [
-        {
-          type: 'tableCell'
-        , children: []
-        }
-      ]
-    }
 
     const result = transform(mdast)
 
-    expect(result).toStrictEqual(ast)
+    expect(result).toStrictEqual(rb.root([
+      rb.tableCell([])
+    ]))
   })
 })
 
 describe('MDAST.HTML', () => {
   describe('comments', () => {
     it('return undefined', () => {
-      const mdast = root([
-        html(
+      const mdast = mb.root([
+        mb.html(
           '<!--' + '\n'
         + '  example' + '\n'
         + '-->'
         )
       ])
-      const ast: AST.Root = {
-        type: 'root'
-      , children: []
-      }
 
       const result = transform(mdast)
 
-      expect(result).toStrictEqual(ast)
+      expect(result).toStrictEqual(rb.root([]))
     })
   })
 
   describe('components', () => {
     it('return AST.Component', () => {
-      const mdast = root([
-        html('<a href="url"><em>content</em></a>')
+      const mdast = mb.root([
+        mb.html('<a href="url"><em>content</em></a>')
       ])
-      const ast: AST.Root = {
-        type: 'root'
-      , children: [
-          {
-            type: 'component'
-          , name: 'a'
-          , attributes: { href: 'url' }
-          , children: [
-              {
-                type: 'component'
-              , name: 'em'
-              , attributes: {}
-              , children: [
-                  { type: 'text', value: 'content' }
-                ]
-              , value: 'content'
-              }
-            ]
-          , value: '<em>content</em>'
-          }
-        ]
-      }
 
       const result = transform(mdast)
 
-      expect(result).toStrictEqual(ast)
+      expect(result).toStrictEqual(rb.root([
+        rb.component('a', { href: 'url' }, '<em>content</em>', [
+          rb.component('em', {}, 'content', [
+            rb.text('content')
+          ])
+        ])
+      ]))
     })
   })
 })
 
 describe('MDAST.Code', () => {
   it('return AST.Code', () => {
-    const mdast = root([
-      code('value', { lang: 'lang', meta: 'meta' })
+    const mdast = mb.root([
+      mb.code('value', { lang: 'lang', meta: 'meta' })
     ])
-    const ast: AST.Root = {
-      type: 'root'
-    , children: [
-        {
-          type: 'code'
-        , value: 'value'
-        , lang: 'lang'
-        , meta: 'meta'
-        }
-      ]
-    }
 
     const result = transform(mdast)
 
-    expect(result).toStrictEqual(ast)
+    expect(result).toStrictEqual(rb.root([
+      rb.code('value', { lang: 'lang', meta: 'meta' })
+    ]))
   })
 })
 
 describe('MDAST.YAML', () => {
-  it('return AST.YAML', () => {
-    const mdast = root([
-      yaml('value')
+  it('return undefined', () => {
+    const mdast = mb.root([
+      mb.yaml('value')
     ])
-    const ast: AST.Root = {
-      type: 'root'
-    , children: []
-    }
 
     const result = transform(mdast)
 
-    expect(result).toStrictEqual(ast)
+    expect(result).toStrictEqual(rb.root([]))
   })
 })
 
 describe('MDAST.Definition', () => {
   it('return undefined', () => {
-    const mdast = root([
-      definition('identifier', 'url', { label: 'label', title: 'title' })
+    const mdast = mb.root([
+      mb.definition('identifier', 'url', { label: 'label', title: 'title' })
     ])
-    const ast: AST.Root = {
-      type: 'root'
-    , children: []
-    }
 
     const result = transform(mdast)
 
-    expect(result).toStrictEqual(ast)
+    expect(result).toStrictEqual(rb.root([]))
   })
 })
 
 describe('MDAST.Text', () => {
   it('return AST.Text', () => {
-    const mdast = root([
-      text('value')
+    const mdast = mb.root([
+      mb.text('value')
     ])
-    const ast: AST.Root = {
-      type: 'root'
-    , children: [
-        {
-          type: 'text'
-        , value: 'value'
-        }
-      ]
-    }
 
     const result = transform(mdast)
 
-    expect(result).toStrictEqual(ast)
+    expect(result).toStrictEqual(rb.root([
+      rb.text('value')
+    ]))
   })
 })
 
 describe('MDAST.Emphasis', () => {
   it('return AST.Emphasis', () => {
-    const mdast = root([
-      emphasis([])
+    const mdast = mb.root([
+      mb.emphasis([])
     ])
-    const ast: AST.Root = {
-      type: 'root'
-    , children: [
-        {
-          type: 'emphasis'
-        , children: []
-        }
-      ]
-    }
 
     const result = transform(mdast)
 
-    expect(result).toStrictEqual(ast)
+    expect(result).toStrictEqual(rb.root([
+      rb.emphasis([])
+    ]))
   })
 })
 
 describe('MDAST.Strong', () => {
   it('return AST.Strong', () => {
-    const mdast = root([
-      strong([])
+    const mdast = mb.root([
+      mb.strong([])
     ])
-    const ast: AST.Root = {
-      type: 'root'
-    , children: [
-        {
-          type: 'strong'
-        , children: []
-        }
-      ]
-    }
 
     const result = transform(mdast)
 
-    expect(result).toStrictEqual(ast)
+    expect(result).toStrictEqual(rb.root([
+      rb.strong([])
+    ]))
   })
 })
 
 describe('MDAST.Delete', () => {
   it('return AST.Delete', () => {
-    const mdast = root([
-      del([])
+    const mdast = mb.root([
+      mb.del([])
     ])
-    const ast: AST.Root = {
-      type: 'root'
-    , children: [
-        {
-          type: 'delete'
-        , children: []
-        }
-      ]
-    }
 
     const result = transform(mdast)
 
-    expect(result).toStrictEqual(ast)
+    expect(result).toStrictEqual(rb.root([
+      rb.del([])
+    ]))
   })
 })
 
 describe('MDAST.InlineCode', () => {
   it('return AST.InlineCode', () => {
-    const mdast = root([
-      inlineCode('value')
+    const mdast = mb.root([
+      mb.inlineCode('value')
     ])
-    const ast: AST.Root = {
-      type: 'root'
-    , children: [
-        {
-          type: 'inlineCode'
-        , value: 'value'
-        }
-      ]
-    }
 
     const result = transform(mdast)
 
-    expect(result).toStrictEqual(ast)
+    expect(result).toStrictEqual(rb.root([
+      rb.inlineCode('value')
+    ]))
   })
 })
 
 describe('MDAST.Break', () => {
   it('return AST.Break', () => {
-    const mdast = root([
-      brk()
+    const mdast = mb.root([
+      mb.brk()
     ])
-    const ast: AST.Root = {
-      type: 'root'
-    , children: [{ type: 'break' }]
-    }
 
     const result = transform(mdast)
 
-    expect(result).toStrictEqual(ast)
+    expect(result).toStrictEqual(rb.root([
+      rb.brk()
+    ]))
   })
 })
 
 describe('MDAST.Link', () => {
   it('return AST.Link', () => {
-    const mdast = root([
-      link('url', [], { title: 'title' })
+    const mdast = mb.root([
+      mb.link('url', [], { title: 'title' })
     ])
-    const ast: AST.Root = {
-      type: 'root'
-    , children: [
-        {
-          type: 'link'
-        , children: []
-        , url: 'url'
-        , title: 'title'
-        }
-      ]
-    }
 
     const result = transform(mdast)
 
-    expect(result).toStrictEqual(ast)
+    expect(result).toStrictEqual(rb.root([
+      rb.link('url', [], { title: 'title' })
+    ]))
   })
 })
 
 describe('MDAST.Image', () => {
   it('return AST.Image', () => {
-    const mdast = root([
-      image('url', { title: 'title', alt: 'alt' })
+    const mdast = mb.root([
+      mb.image('url', { title: 'title', alt: 'alt' })
     ])
-    const ast: AST.Root = {
-      type: 'root'
-    , children: [
-        {
-          type: 'image'
-        , url: 'url'
-        , alt: 'alt'
-        , title: 'title'
-        }
-      ]
-    }
 
     const result = transform(mdast)
 
-    expect(result).toStrictEqual(ast)
+    expect(result).toStrictEqual(rb.root([
+      rb.image('url', { title: 'title', alt: 'alt' })
+    ]))
   })
 })
 
 describe('MDAST.LinkReference', () => {
   it('return AST.Link', () => {
-    const mdast = root([
-      paragraph([
-        linkRef('identifier', 'shortcut', [])
+    const mdast = mb.root([
+      mb.paragraph([
+        mb.linkRef('identifier', 'shortcut', [])
       ])
-    , definition('identifier', 'url', { title: 'title', label: 'label' })
+    , mb.definition('identifier', 'url', { title: 'title', label: 'label' })
     ])
-    const astLink: AST.Link = {
-      type: 'link'
-    , children: []
-    , url: 'url'
-    , title: 'title'
-    }
-    const astParagraph: AST.Paragraph = {
-      type: 'paragraph'
-    , children: [astLink]
-    }
-    const ast: AST.Root = {
-      type: 'root'
-    , children: [astParagraph]
-    }
 
     const result = transform(mdast)
 
-    expect(result).toStrictEqual(ast)
+    expect(result).toStrictEqual(rb.root([
+      rb.paragraph([
+        rb.link('url', [], { title: 'title' })
+      ])
+    ]))
   })
 })
 
 describe('MDAST.ImageReference', () => {
   it('return AST.Image', () => {
-    const mdast = root([
-      paragraph([
-        imageRef('identifier', 'shortcut', { alt: 'alt', label: 'label' })
+    const mdast = mb.root([
+      mb.paragraph([
+        mb.imageRef('identifier', 'shortcut', { alt: 'alt', label: 'label' })
       ])
-    , definition('identifier', 'url', { title: 'title', label: 'label' })
+    , mb.definition('identifier', 'url', { title: 'title', label: 'label' })
     ])
-    const astLink: AST.Image = {
-      type: 'image'
-    , url: 'url'
-    , title: 'title'
-    , alt: 'alt'
-    }
-    const astParagraph: AST.Paragraph = {
-      type: 'paragraph'
-    , children: [astLink]
-    }
-    const ast: AST.Root = {
-      type: 'root'
-    , children: [astParagraph]
-    }
 
     const result = transform(mdast)
 
-    expect(result).toStrictEqual(ast)
+    expect(result).toStrictEqual(rb.root([
+      rb.paragraph([
+        rb.image('url', { title: 'title', alt: 'alt' })
+      ])
+    ]))
   })
 })
 
 describe('MDAST.Footnote', () => {
   it('return AST.Footnote', () => {
-    const mdast = root([
-      footnote([])
+    const mdast = mb.root([
+      mb.footnote([])
     ])
-    const ast: AST.Root = {
-      type: 'root'
-    , children: [
-        {
-          type: 'footnote'
-        , children: []
-        }
-      ]
-    }
 
     const result = transform(mdast)
 
-    expect(result).toStrictEqual(ast)
+    expect(result).toStrictEqual(rb.root([
+      rb.footnote([])
+    ]))
   })
 })
 
 describe('MDAST.FootnoteReference', () => {
   it('return AST.Footnote', () => {
-    const mdast = root([
-      footnoteRef('identifier', { label: 'label' })
-    , footnoteDef('identifier', [], { label: 'label' })
+    const mdast = mb.root([
+      mb.footnoteRef('identifier', { label: 'label' })
+    , mb.footnoteDef('identifier', [], { label: 'label' })
     ])
-    const ast: AST.Root = {
-      type: 'root'
-    , children: [
-        {
-          type: 'footnote'
-        , children: []
-        }
-      ]
-    }
 
     const result = transform(mdast)
 
-    expect(result).toStrictEqual(ast)
+    expect(result).toStrictEqual(rb.root([
+      rb.footnote([])
+    ]))
   })
 })
