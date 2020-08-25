@@ -5,6 +5,10 @@ export function is<T extends Node>(node: Node, type: string): node is T {
   return node.type === type
 }
 
+export function isParent(node: Node): node is AST.Parent {
+  return 'children' in node
+}
+
 export function isContent(node: Node): node is AST.Content {
   return isTopLevelContent(node)
       || isListContent(node)

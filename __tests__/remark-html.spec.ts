@@ -1,5 +1,5 @@
 import { parse } from '@src/parse'
-import { root, html, paragraph, text } from '@test/builder'
+import { root, html, paragraph, text } from '@test/mdast-builder'
 
 describe('reamrk-html', () => {
   describe('comment', () => {
