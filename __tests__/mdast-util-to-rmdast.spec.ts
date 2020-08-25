@@ -1,6 +1,6 @@
 import * as MDAST from 'mdast'
 import * as AST from '@src/ast'
-import { transform } from '@src/transformer'
+import { transform } from '@src/mdast-util-to-rmdast'
 import {
   blockquote
 , brk
