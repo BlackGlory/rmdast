@@ -1,7 +1,7 @@
 import * as AST from '@src/ast'
 import { isParent, isComponent } from '@src/is'
 
-export function find(node: AST.Node, predicate: (node: AST.Node) => boolean): AST.Node | undefined {
+export function find<T extends AST.Node>(node: AST.Node, predicate: (node: AST.Node) => boolean): T | undefined {
   try {
     findThenThrow(node, predicate)
   } catch (result) {
