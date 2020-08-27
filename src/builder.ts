@@ -37,7 +37,7 @@ export function blockquote(children: AST.Blockquote['children']): AST.Blockquote
 
 export function list(
   children: AST.List['children']
-, { ordered, start, spread }: Pick<AST.List, 'ordered' | 'start' | 'spread'> = {}
+, { ordered = null, start = null, spread = null }: Partial<Pick<AST.List, 'ordered' | 'start' | 'spread'>>
 ): AST.List {
   return {
     type: 'list'
@@ -50,7 +50,7 @@ export function list(
 
 export function listItem(
   children: AST.ListItem['children']
-, { checked, spread }: Pick<AST.ListItem, 'checked' | 'spread'> = {}
+, { checked = null, spread = null }: Partial<Pick<AST.ListItem, 'checked' | 'spread'>>
 ): AST.ListItem {
   return {
     type: 'listItem'
@@ -62,7 +62,7 @@ export function listItem(
 
 export function table(
   children: AST.Table['children']
-, { align }: Pick<AST.Table, 'align'> = {}
+, { align = null }: Partial<Pick<AST.Table, 'align'>>
 ): AST.Table {
   return {
     type: 'table'
@@ -102,7 +102,7 @@ export function component(
 
 export function code(
   value: string
-, { lang, meta }: Pick<AST.Code, 'lang' | 'meta'> = {}
+, { lang = null, meta = null }: Partial<Pick<AST.Code, 'lang' | 'meta'>>
 ): AST.Code {
   return {
     type: 'code'
@@ -156,7 +156,7 @@ export function brk(): AST.Break {
 export function link(
   url: AST.Link['url']
 , children: AST.Link['children']
-, { title }: Pick<AST.Link, 'title'> = {}
+, { title = null }: Partial<Pick<AST.Link, 'title'>>
 ): AST.Link {
   return {
     type: 'link'
@@ -168,7 +168,7 @@ export function link(
 
 export function image(
   url: AST.Image['url']
-, { title, alt }: Pick<AST.Image, 'title' | 'alt'> = {}
+, { title = null, alt = null }: Partial<Pick<AST.Image, 'title' | 'alt'>>
 ): AST.Image {
   return {
     type: 'image'

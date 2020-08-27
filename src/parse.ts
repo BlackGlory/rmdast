@@ -1,13 +1,15 @@
 import * as MDAST from 'mdast'
+import * as AST from '@src/ast'
 import unified = require('unified')
 import markdown = require('remark-parse')
 import footnotes = require('remark-footnotes')
-import { html } from './remark-html'
+import { html } from '@src/remark-html'
+import { transform } from '@src/mdast-util-to-rmdast'
 
 export function parse(
   text: string
 , plugins: Array<Parameters<unified.Processor<unified.Settings>['use']>> = []
-): MDAST.Root {
+): AST.Root {
   let processor = unified()
     .use(markdown)
 
@@ -21,5 +23,7 @@ export function parse(
     .use(footnotes, { inlineNotes: true })
     .use(html)
 
-  return processor.parse(text) as MDAST.Root
+  const mdast = processor.parse(text) as MDAST.Root
+  const ast = transform(mdast)
+  return ast
 }

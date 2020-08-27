@@ -1,5 +1,8 @@
-import { parse } from '@src/parse'
 import { root, html, paragraph, text } from '@test/mdast-builder'
+import { html as remarkHTML } from '@src/remark-html'
+import unified = require('unified')
+import markdown = require('remark-parse')
+import * as MDAST from 'mdast'
 
 describe('reamrk-html', () => {
   describe('comment', () => {
@@ -253,3 +256,10 @@ describe('reamrk-html', () => {
     })
   })
 })
+
+function parse(text: string): MDAST.Root {
+  return unified()
+    .use(markdown)
+    .use(remarkHTML)
+    .parse(text) as MDAST.Root
+}

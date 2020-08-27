@@ -74,20 +74,20 @@ export interface Blockquote extends Node, ParentOf<BlockContent[]> {
 
 export interface List extends Node, ParentOf<ListContent[]> {
   type: 'list'
-  ordered?: boolean
-  start?: number
-  spread?: boolean
+  ordered: boolean | null
+  start: number | null
+  spread: boolean | null
 }
 
 export interface ListItem extends Node, ParentOf<BlockContent[]> {
   type: 'listItem'
-  checked?: boolean
-  spread?: boolean
+  checked: boolean | null
+  spread: boolean | null
 }
 
 export interface Table extends Node, ParentOf<TableContent[]> {
   type: 'table'
-  align?: Array<'left' | 'right' | 'center' | null> // null?
+  align: Array<'left' | 'right' | 'center' | null> | null // null?
 }
 
 export interface TableRow extends Node, ParentOf<RowContent[]> {
@@ -108,8 +108,8 @@ export interface Component extends Node, ParentOf<Array<Text | Component>> {
 export interface Code extends Node {
   type: 'code'
   value: string
-  lang?: string
-  meta?: string
+  lang: string | null
+  meta: string | null
 }
 
 export interface Text extends Node {
@@ -141,22 +141,22 @@ export interface Break extends Node {
 export interface Link extends Node, ParentOf<StaticPhrasingContent[]> {
   type: 'link'
   url: string
-  title?: string
+  title: string | null
 }
 
 export interface Image extends Node {
   type: 'image'
   url: string
-  title?: string
-  alt?: string
+  title: string | null
+  alt: string | null
 }
 
 /*
 export interface TopLevelImage extends Node {
   type: 'topLevelImage'
   url: string
-  title?: string
-  alt?: string
+  title: string | null
+  alt: string | null
 }
 */
 

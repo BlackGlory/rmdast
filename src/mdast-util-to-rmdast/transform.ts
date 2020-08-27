@@ -98,8 +98,8 @@ function transformFrontmatterContent(node: MDAST.FrontmatterContent, root: MDAST
 function transformListItem(node: MDAST.ListItem, root: MDAST.Root): AST.ListItem {
   return {
     type: 'listItem'
-  , checked: node.checked
-  , spread: node.spread
+  , checked: node.checked ?? null
+  , spread: node.spread ?? null
   , children: map(node.children, x => transformBlockContent(x, root))
   }
 }
@@ -122,7 +122,7 @@ function transformLink(node: MDAST.Link, root: MDAST.Root): AST.Link {
   return {
     type: 'link'
   , url: node.url
-  , title: node.title
+  , title: node.title ?? null
   , children: map(node.children, x => transformStaticPhrasingContent(x, root))
   }
 }
@@ -132,7 +132,7 @@ function transformLinkReference(node: MDAST.LinkReference, root: MDAST.Root): AS
   return {
     type: 'link'
   , url: definition?.url ?? ''
-  , title: definition?.title
+  , title: definition?.title ?? null
   , children: map(node.children, x => transformStaticPhrasingContent(x, root))
   }
 }
@@ -168,9 +168,9 @@ function transformBlockquote(node: MDAST.Blockquote, root: MDAST.Root): AST.Bloc
 function transformList(node: MDAST.List, root: MDAST.Root): AST.List {
   return {
     type: 'list'
-  , ordered: node.ordered
-  , spread: node.spread
-  , start: node.start
+  , ordered: node.ordered ?? null
+  , spread: node.spread ?? null
+  , start: node.start ?? null
   , children: map(node.children, x => transformListContent(x, root))
   }
 }
@@ -178,7 +178,7 @@ function transformList(node: MDAST.List, root: MDAST.Root): AST.List {
 function transformTable(node: MDAST.Table, root: MDAST.Root): AST.Table {
   return {
     type: 'table'
-  , align: node.align
+  , align: node.align ?? null
   , children: map(node.children, x => transformTableContent(x, root))
   }
 }
@@ -186,8 +186,8 @@ function transformTable(node: MDAST.Table, root: MDAST.Root): AST.Table {
 function transformCode(node: MDAST.Code, root: MDAST.Root): AST.Code {
   return {
     type: 'code'
-  , lang: node.lang
-  , meta: node.meta
+  , lang: node.lang ?? null
+  , meta: node.meta ?? null
   , value: node.value
   }
 }
@@ -244,9 +244,9 @@ function transformBreak(node: MDAST.Break, root: MDAST.Root): AST.Break {
 function transformImage(node: MDAST.Image, root: MDAST.Root): AST.Image {
   return {
     type: 'image'
-  , alt: node.alt
-  , title: node.title
   , url: node.url
+  , alt: node.alt ?? null
+  , title: node.title ?? null
   }
 }
 
@@ -255,8 +255,8 @@ function transformImageReference(node: MDAST.ImageReference, root: MDAST.Root): 
   return {
     type: 'image'
   , url: definition?.url ?? ''
-  , alt: node.alt
-  , title: definition?.title
+  , alt: node.alt ?? null
+  , title: definition?.title ?? null
   }
 }
 
