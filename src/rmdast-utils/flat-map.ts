@@ -7,7 +7,7 @@ export function flatMap(node: AST.Node, fn: (node: AST.Node) => AST.Node[]): AST
   const newNodes = fn(node)
   return newNodes.map(node => produce(node, node => {
     if (isParent(node) && !isComponent(node)) {
-      node.children = original(node)!.children.flatMap(x => flatMap(x, fn))
+      node.children = node.children.flatMap(x => flatMap(original(x)!, fn))
     }
   }))
 }
