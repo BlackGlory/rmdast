@@ -36,20 +36,17 @@ function transformTagNode(node: TreeConstructor.TagNode, text: string): AST.Comp
 
   function getInnerRange(node: TreeConstructor.TagNode): [start: number, end: number] {
     if (isSelfClosing(node)) {
-      // A Self-Closing node in hyntax does not have 'close'
-      // See also https://github.com/mykolaharmash/hyntax/issues/31
-      //          https://github.com/mykolaharmash/hyntax/issues/32
       const start = node.content.openEnd.endPosition + 1
       const end = text.length
       return [start, end]
     } else {
       const start = node.content.openEnd.endPosition + 1
-      const end = node.content.close.startPosition
+      const end = node.content.close!.startPosition
       return [start, end]
     }
 
     function isSelfClosing(node: TreeConstructor.TagNode): boolean {
-      return !node.content.close
+      return !('close' in node.content)
     }
   }
 
