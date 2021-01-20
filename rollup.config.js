@@ -1,26 +1,50 @@
 import typescript from '@rollup/plugin-typescript'
 import commonjs from '@rollup/plugin-commonjs'
 import resolve from '@rollup/plugin-node-resolve'
+import json from '@rollup/plugin-json'
 import { terser } from 'rollup-plugin-terser'
+import analyze from 'rollup-plugin-analyzer'
+import replace from '@rollup/plugin-replace'
+
+const UMD_NAME = 'Rmdast'
+
+export default [
+  ...createOptions({
+    directory: 'es2015'
+  , target: 'ES2015'
+  })
+, ...createOptions({
+    directory: 'es2018'
+  , target: 'ES2018'
+  })
+]
 
 function createOptions({ directory, target }) {
+  const commonPlugins = [
+    replace({
+      'Object.defineProperty(exports, "__esModule", { value: true });': ''
+    , delimiters: ['\n', '\n']
+    })
+  , resolve({ browser: true })
+  , commonjs()
+  , json()
+  , typescript({ target })
+  ]
+
   return [
     {
       input: 'src/index.ts'
     , output: createOutput('index')
     , plugins: [
-        typescript({ target })
-      , resolve()
-      , commonjs()
+        ...commonPlugins
+      , analyze({ summaryOnly: true })
       ]
     }
   , {
       input: 'src/index.ts'
     , output: createMinification('index')
     , plugins: [
-        typescript({ target })
-      , resolve()
-      , commonjs()
+        ...commonPlugins
       , terser()
       ]
     }
@@ -36,7 +60,7 @@ function createOptions({ directory, target }) {
     , {
         file: `dist/${directory}/${name}.umd.js`
       , format: 'umd'
-      , name: 'ExtraPromise'
+      , name: UMD_NAME
       , sourcemap: true
       }
     ]
@@ -52,20 +76,9 @@ function createOptions({ directory, target }) {
     , {
         file: `dist/${directory}/${name}.umd.min.js`
       , format: 'umd'
-      , name: 'ExtraPromise'
+      , name: UMD_NAME
       , sourcemap: true
       }
     ]
   }
 }
-
-export default [
-  ...createOptions({
-    directory: 'es2015'
-  , target: 'ES2015'
-  })
-, ...createOptions({
-    directory: 'es2018'
-  , target: 'ES2018'
-  })
-]
