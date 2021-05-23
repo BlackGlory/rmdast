@@ -19,7 +19,7 @@ Cons
 
 ## How does it work?
 
-1. Parse: Text => MDAST
+1. Modified remark-parse: Text => MDAST
 2. Transpile: MDAST => RMDAST
 3. Transpile(manually): RMDAST => JSX/HTML/Terminal...
 
