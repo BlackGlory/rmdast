@@ -1,5 +1,5 @@
 import { Eat, Tokenizer } from './types'
-import { Node } from 'unist'
+import { Node, Literal } from 'unist'
 import { tokenize, Tokenizer as HTMLTokenizer } from 'hyntax'
 import {
   getBeforeFirstStartTagTokens
@@ -31,7 +31,7 @@ export const blockTokenizer: Tokenizer = function (eat: Eat, text: string, silen
 
     const subText = text.slice(0, endPosition)
     const add = eat(subText)
-    const node = add({ type: 'html', value: subText })
+    const node = add({ type: 'html', value: subText } as Literal)
     return node
   }
 }
