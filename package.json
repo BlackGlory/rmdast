@@ -37,6 +37,8 @@
     }
   },
   "devDependencies": {
+    "@babel/core": "^7.14.6",
+    "@babel/preset-env": "^7.14.7",
     "@commitlint/cli": "^12.1.4",
     "@commitlint/config-conventional": "^12.1.4",
     "@rollup/plugin-commonjs": "^19.0.1",
@@ -49,9 +51,11 @@
     "@types/node": "^16.3.2",
     "@typescript-eslint/eslint-plugin": "^4.28.3",
     "@typescript-eslint/parser": "^4.28.3",
+    "babel-jest": "^27.0.6",
     "eslint": "^7.30.0",
     "husky": "^4.3.8",
     "jest": "^27.0.6",
+    "micromark-util-types": "^1.0.0",
     "npm-run-all": "^4.1.5",
     "rimraf": "^3.0.2",
     "rollup": "^2.53.2",
@@ -68,11 +72,17 @@
     "hyntax": "^1.1.9",
     "immer": "^9.0.5",
     "mdast-util-definitions": "^3.0.1",
+    "mdast-util-from-markdown": "^1.0.0",
+    "micromark-factory-space": "^1.0.0",
+    "micromark-util-character": "^1.0.0",
+    "micromark-util-html-tag-name": "^1.0.0",
+    "micromark-util-symbol": "^1.0.0",
     "remark-footnotes": "^2.0.0",
     "remark-parse": "^8.0.3",
     "ts-is-present": "^1.2.1",
     "unified": "^9.2.0",
     "unist-util-is": "^4.0.4",
+    "unist-util-stringify-position": "^3.0.0",
     "unist-util-visit": "^2.0.3"
   }
 }
