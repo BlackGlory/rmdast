@@ -1,6 +1,6 @@
 import { Node } from 'unist'
 import { FootnoteDefinition } from 'mdast'
-import visit = require('unist-util-visit')
+import visit from 'unist-util-visit'
 
 type IdToDef = Map<string, FootnoteDefinition>
 

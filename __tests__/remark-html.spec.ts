@@ -1,7 +1,7 @@
 import { root, html, paragraph, text } from '@test/mdast-builder'
 import { html as remarkHTML } from '@src/remark-html'
-import unified = require('unified')
-import markdown = require('remark-parse')
+import unified from 'unified'
+import markdown from 'remark-parse'
 import * as MDAST from 'mdast'
 
 describe('reamrk-html', () => {

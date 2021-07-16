@@ -4,7 +4,7 @@ import { tokenize } from 'hyntax'
 import {
   getBeforeFirstStartTagTokens
 , getFirstStartTagToItsCloseTokens
-} from './shared'
+} from './utils'
 
 export const inlineTokenizer: Tokenizer = function (eat: Eat, text: string, silent: boolean): boolean | Node | void {
   const { tokens } = tokenize(text)

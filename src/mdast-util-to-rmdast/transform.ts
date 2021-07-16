@@ -4,7 +4,7 @@ import * as AST from '@src/ast'
 import { isDefined } from 'ts-is-present'
 import { getFootnoteDefinition } from './get-footnote-definition'
 import { getDefinition } from './get-definition'
-import is = require('unist-util-is')
+import is from 'unist-util-is'
 import { transformHTML } from './transform-html'
 
 export { UnknownHTMLError } from './transform-html'

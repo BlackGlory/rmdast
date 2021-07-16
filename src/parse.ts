@@ -1,8 +1,8 @@
 import * as MDAST from 'mdast'
 import * as AST from '@src/ast'
-import unified = require('unified')
-import markdown = require('remark-parse')
-import footnotes = require('remark-footnotes')
+import unified from 'unified'
+import markdown from 'remark-parse'
+import footnotes from 'remark-footnotes'
 import { html } from '@src/remark-html'
 import { transform } from '@src/mdast-util-to-rmdast'
 
