@@ -1,4 +1,4 @@
-import { Node, Root, Text, Heading } from '@src/ast'
+import { Node, Root, Text, Heading } from '@src/rmdast-1.0'
 import { isHeading, isText } from '@src/is'
 import { find } from './find'
 import { flatMap } from './flat-map'

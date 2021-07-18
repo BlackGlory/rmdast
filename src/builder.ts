@@ -1,20 +1,20 @@
-import * as AST from '@src/ast'
+import * as RMDAST from '@src/rmdast-1.0'
 
-export function root(children: AST.Root['children']): AST.Root {
+export function root(children: RMDAST.Root['children']): RMDAST.Root {
   return {
     type: 'root'
   , children
   }
 }
 
-export function paragraph(children: AST.Paragraph['children']): AST.Paragraph {
+export function paragraph(children: RMDAST.Paragraph['children']): RMDAST.Paragraph {
   return {
     type: 'paragraph'
   , children
   }
 }
 
-export function heading(depth: AST.Heading['depth'], children: AST.Heading['children']): AST.Heading {
+export function heading(depth: RMDAST.Heading['depth'], children: RMDAST.Heading['children']): RMDAST.Heading {
   return {
     type: 'heading'
   , depth
@@ -22,13 +22,13 @@ export function heading(depth: AST.Heading['depth'], children: AST.Heading['chil
   }
 }
 
-export function thematicBreak(): AST.ThematicBreak {
+export function thematicBreak(): RMDAST.ThematicBreak {
   return {
     type: 'thematicBreak'
   }
 }
 
-export function blockquote(children: AST.Blockquote['children']): AST.Blockquote {
+export function blockquote(children: RMDAST.Blockquote['children']): RMDAST.Blockquote {
   return {
     type: 'blockquote'
   , children
@@ -36,9 +36,9 @@ export function blockquote(children: AST.Blockquote['children']): AST.Blockquote
 }
 
 export function list(
-  children: AST.List['children']
-, { ordered = null, start = null, spread = null }: Partial<Pick<AST.List, 'ordered' | 'start' | 'spread'>>
-): AST.List {
+  children: RMDAST.List['children']
+, { ordered = null, start = null, spread = null }: Partial<Pick<RMDAST.List, 'ordered' | 'start' | 'spread'>>
+): RMDAST.List {
   return {
     type: 'list'
   , children
@@ -49,9 +49,9 @@ export function list(
 }
 
 export function listItem(
-  children: AST.ListItem['children']
-, { checked = null, spread = null }: Partial<Pick<AST.ListItem, 'checked' | 'spread'>>
-): AST.ListItem {
+  children: RMDAST.ListItem['children']
+, { checked = null, spread = null }: Partial<Pick<RMDAST.ListItem, 'checked' | 'spread'>>
+): RMDAST.ListItem {
   return {
     type: 'listItem'
   , children
@@ -61,9 +61,9 @@ export function listItem(
 }
 
 export function table(
-  children: AST.Table['children']
-, { align = null }: Partial<Pick<AST.Table, 'align'>>
-): AST.Table {
+  children: RMDAST.Table['children']
+, { align = null }: Partial<Pick<RMDAST.Table, 'align'>>
+): RMDAST.Table {
   return {
     type: 'table'
   , children
@@ -71,14 +71,14 @@ export function table(
   }
 }
 
-export function tableRow(children: AST.TableRow['children']): AST.TableRow {
+export function tableRow(children: RMDAST.TableRow['children']): RMDAST.TableRow {
   return {
     type: 'tableRow'
   , children
   }
 }
 
-export function tableCell(children: AST.TableCell['children']): AST.TableCell {
+export function tableCell(children: RMDAST.TableCell['children']): RMDAST.TableCell {
   return {
     type: 'tableCell'
   , children
@@ -86,11 +86,11 @@ export function tableCell(children: AST.TableCell['children']): AST.TableCell {
 }
 
 export function component(
-  name: AST.Component['name']
-, attributes: AST.Component['attributes']
-, value: AST.Component['value']
-, children: AST.Component['children']
-): AST.Component {
+  name: RMDAST.Component['name']
+, attributes: RMDAST.Component['attributes']
+, value: RMDAST.Component['value']
+, children: RMDAST.Component['children']
+): RMDAST.Component {
   return {
     type: 'component'
   , name
@@ -102,8 +102,8 @@ export function component(
 
 export function code(
   value: string
-, { lang = null, meta = null }: Partial<Pick<AST.Code, 'lang' | 'meta'>>
-): AST.Code {
+, { lang = null, meta = null }: Partial<Pick<RMDAST.Code, 'lang' | 'meta'>>
+): RMDAST.Code {
   return {
     type: 'code'
   , value
@@ -112,52 +112,52 @@ export function code(
   }
 }
 
-export function text(value: string): AST.Text {
+export function text(value: string): RMDAST.Text {
   return {
     type: 'text'
   , value
   }
 }
 
-export function emphasis(children: AST.Emphasis['children']): AST.Emphasis {
+export function emphasis(children: RMDAST.Emphasis['children']): RMDAST.Emphasis {
   return {
     type: 'emphasis'
   , children
   }
 }
 
-export function strong(children: AST.Strong['children']): AST.Strong {
+export function strong(children: RMDAST.Strong['children']): RMDAST.Strong {
   return {
     type: 'strong'
   , children
   }
 }
 
-export function del(children: AST.Delete['children']): AST.Delete {
+export function del(children: RMDAST.Delete['children']): RMDAST.Delete {
   return {
     type: 'delete'
   , children
   }
 }
 
-export function inlineCode(value: AST.InlineCode['value']): AST.InlineCode {
+export function inlineCode(value: RMDAST.InlineCode['value']): RMDAST.InlineCode {
   return {
     type: 'inlineCode'
   , value
   }
 }
 
-export function brk(): AST.Break {
+export function brk(): RMDAST.Break {
   return {
     type: 'break'
   }
 }
 
 export function link(
-  url: AST.Link['url']
-, children: AST.Link['children']
-, { title = null }: Partial<Pick<AST.Link, 'title'>>
-): AST.Link {
+  url: RMDAST.Link['url']
+, children: RMDAST.Link['children']
+, { title = null }: Partial<Pick<RMDAST.Link, 'title'>>
+): RMDAST.Link {
   return {
     type: 'link'
   , url
@@ -167,9 +167,9 @@ export function link(
 }
 
 export function image(
-  url: AST.Image['url']
-, { title = null, alt = null }: Partial<Pick<AST.Image, 'title' | 'alt'>>
-): AST.Image {
+  url: RMDAST.Image['url']
+, { title = null, alt = null }: Partial<Pick<RMDAST.Image, 'title' | 'alt'>>
+): RMDAST.Image {
   return {
     type: 'image'
   , url
@@ -178,7 +178,7 @@ export function image(
   }
 }
 
-export function footnote(children: AST.Footnote['children']): AST.Footnote {
+export function footnote(children: RMDAST.Footnote['children']): RMDAST.Footnote {
   return {
     type: 'footnote'
   , children

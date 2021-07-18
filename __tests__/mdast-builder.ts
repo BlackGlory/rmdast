@@ -1,4 +1,4 @@
-import * as MDAST from 'mdast'
+import * as MDAST from '@src/mdast-3.0'
 
 export function root(children: MDAST.Root['children']): MDAST.Root {
   return {

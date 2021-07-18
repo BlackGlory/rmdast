@@ -1,6 +1,6 @@
-import { Node } from 'unist'
-import getDefinitions from 'mdast-util-definitions'
+import { Node } from '@src/mdast-3.0'
+import { definitions } from 'mdast-util-definitions'
 
 export function getDefinition(node: Node, identifier: string) {
-  return getDefinitions(node)(identifier)
+  return definitions(node)(identifier)
 }

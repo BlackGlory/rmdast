@@ -1,8 +1,7 @@
-import { Node } from 'unist'
-import { FootnoteDefinition } from 'mdast'
-import visit from 'unist-util-visit'
+import { Node, FootnoteDefinition } from '@src/mdast-3.0'
+import { visit } from 'unist-util-visit'
 
-type IdToDef = Map<string, FootnoteDefinition>
+type IdentifierToDefinition = Map<string, FootnoteDefinition>
 
 export function getFootnoteDefinition(node: Node, identifier: string): FootnoteDefinition | null {
   const map = gather(node)
@@ -10,8 +9,8 @@ export function getFootnoteDefinition(node: Node, identifier: string): FootnoteD
   return map.get(id) ?? null
 }
 
-function gather(node: Node): IdToDef {
-  const map: IdToDef = new Map()
+function gather(node: Node): IdentifierToDefinition {
+  const map: IdentifierToDefinition = new Map()
   visit(node, 'footnoteDefinition', visitor)
   return map
 

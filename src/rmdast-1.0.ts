@@ -1,4 +1,3 @@
-// Content Categories
 export interface Node {
   type: string
 }
@@ -87,7 +86,7 @@ export interface ListItem extends Node, ParentOf<BlockContent[]> {
 
 export interface Table extends Node, ParentOf<TableContent[]> {
   type: 'table'
-  align: Array<'left' | 'right' | 'center' | null> | null // null?
+  align: Array<'left' | 'right' | 'center' | null> | null
 }
 
 export interface TableRow extends Node, ParentOf<RowContent[]> {

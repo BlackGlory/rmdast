@@ -1,9 +1,9 @@
-import * as AST from '@src/ast'
+import * as RMDAST from '@src/rmdast-1.0'
 import { isParent, isComponent } from '@src/is'
 import { produce, original } from 'immer'
 import 'core-js/es/array/flat-map'
 
-export function flatMap(node: AST.Node, fn: (node: AST.Node) => AST.Node[]): AST.Node[] {
+export function flatMap(node: RMDAST.Node, fn: (node: RMDAST.Node) => RMDAST.Node[]): RMDAST.Node[] {
   const newNodes = fn(node)
   return newNodes.map(node => produce(node, node => {
     if (isParent(node) && !isComponent(node)) {
