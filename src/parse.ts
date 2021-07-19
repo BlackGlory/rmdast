@@ -1,6 +1,7 @@
 import * as RMDAST from '@src/rmdast-utils/rmdast-2.0'
 import * as MDAST from '@src/mdast-utils/mdast-4.0'
 import { transform } from '@src/transform-mdast-to-rmdast'
+import { postprocess } from '@src/rmdast-utils/postprocess'
 import { fromMarkdown } from 'mdast-util-from-markdown'
 import { gfmFromMarkdown } from 'mdast-util-gfm'
 import { gfm } from 'micromark-extension-gfm'
@@ -22,6 +23,6 @@ export function parse(text: string): RMDAST.Root {
     , directiveFromMarkdown
     ]
   }) as MDAST.Root
-  const rmdast = transform(mdast)
+  const rmdast = postprocess(transform(mdast))
   return rmdast
 }

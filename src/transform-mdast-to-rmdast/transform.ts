@@ -1,8 +1,8 @@
 import * as MDAST from '@src/mdast-utils/mdast-4.0'
 import * as RMDAST from '@src/rmdast-utils/rmdast-2.0'
 import * as MDAST_IS from '@src/mdast-utils/is'
-import { getFootnoteDefinition } from './get-footnote-definition'
-import { getDefinition } from './get-definition'
+import { findFootnoteDefinition } from './find-footnote-definition'
+import { findDefinition } from './find-definition'
 import { CustomError } from '@blackglory/errors'
 import { isntUndefined } from '@blackglory/types'
 
@@ -218,7 +218,7 @@ function transformImage(node: MDAST.Image, root: MDAST.Root): RMDAST.Image {
 }
 
 function transformLinkReference(node: MDAST.LinkReference, root: MDAST.Root): RMDAST.Link {
-  const definition = getDefinition(root, node.identifier)
+  const definition = findDefinition(root, node.identifier)
   return {
     type: 'link'
   , url: definition?.url ?? ''
@@ -228,7 +228,7 @@ function transformLinkReference(node: MDAST.LinkReference, root: MDAST.Root): RM
 }
 
 function transformImageReference(node: MDAST.ImageReference, root: MDAST.Root): RMDAST.Image {
-  const definition = getDefinition(root, node.identifier)
+  const definition = findDefinition(root, node.identifier)
   return {
     type: 'image'
   , url: definition?.url ?? ''
@@ -284,7 +284,7 @@ function transformFootnoteReference(
   node: MDAST.FootnoteReference
 , root: MDAST.Root
 ): RMDAST.Footnote {
-  const definition = getFootnoteDefinition(root, node.identifier)
+  const definition = findFootnoteDefinition(root, node.identifier)
   return {
     type: 'footnote'
   , children: map(definition?.children ?? [], x => transformFlowContent(x, root))
