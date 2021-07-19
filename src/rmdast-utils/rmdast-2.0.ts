@@ -10,30 +10,27 @@ export interface ParentOf<T extends Node[]> extends Parent {
   children: T
 }
 
-export type RootContent =
-| BlockContent
-| ListContent
-| PhrasingContent
-| TableContent
-| RowContent
-| Gallery
-
 export type BlockContent =
 | Blockquote
 | Code
 | Heading
 | List
+| ListContent
 | ThematicBreak
 | Paragraph
 | Table
+| TableContent
+| RowContent
 | LeafDirective
 | ContainerDirective
+| Gallery
+| Image
 
-export type PhrasingContent =
+export type InlineContent =
 | Link
 | Break
 | Emphasis
-| Image
+| InlineImage
 | InlineCode
 | Strong
 | Text
@@ -45,15 +42,15 @@ export type ListContent = ListItem
 export type TableContent = TableRow
 export type RowContent = TableCell
 
-export interface Root extends Node, ParentOf<RootContent[]> {
+export interface Root extends Node, ParentOf<BlockContent[]> {
   type: 'root'
 }
 
-export interface Paragraph extends Node, ParentOf<PhrasingContent[]> {
+export interface Paragraph extends Node, ParentOf<InlineContent[]> {
   type: 'paragraph'
 }
 
-export interface Heading extends Node, ParentOf<PhrasingContent[]> {
+export interface Heading extends Node, ParentOf<InlineContent[]> {
   type: 'heading'
   depth: 1 | 2 | 3 | 4 | 5 | 6
 }
@@ -91,11 +88,11 @@ export interface Text extends Node {
   value: string
 }
 
-export interface Emphasis extends Node, ParentOf<PhrasingContent[]> {
+export interface Emphasis extends Node, ParentOf<InlineContent[]> {
   type: 'emphasis'
 }
 
-export interface Strong extends Node, ParentOf<PhrasingContent[]> {
+export interface Strong extends Node, ParentOf<InlineContent[]> {
   type: 'strong'
 }
 
@@ -108,7 +105,7 @@ export interface Break extends Node {
   type: 'break'
 }
 
-export interface Link extends Node, ParentOf<PhrasingContent[]> {
+export interface Link extends Node, ParentOf<InlineContent[]> {
   type: 'link'
   url: string
   title: string | null
@@ -116,6 +113,13 @@ export interface Link extends Node, ParentOf<PhrasingContent[]> {
 
 export interface Image extends Node {
   type: 'image'
+  url: string
+  title: string | null
+  alt: string | null
+}
+
+export interface InlineImage extends Node {
+  type: 'inlineImage'
   url: string
   title: string | null
   alt: string | null
@@ -130,25 +134,25 @@ export interface TableRow extends Node, ParentOf<RowContent[]> {
   type: 'tableRow'
 }
 
-export interface TableCell extends Node, ParentOf<PhrasingContent[]> {
+export interface TableCell extends Node, ParentOf<InlineContent[]> {
   type: 'tableCell'
 }
 
-export interface Delete extends Node, ParentOf<PhrasingContent[]> {
+export interface Delete extends Node, ParentOf<InlineContent[]> {
   type: 'delete'
 }
 
-export interface Footnote extends Node, ParentOf<PhrasingContent[] | BlockContent[]> {
+export interface Footnote extends Node, ParentOf<InlineContent[] | BlockContent[]> {
   type: 'footnote'
 }
 
-export interface TextDirective extends Node, ParentOf<PhrasingContent[]> {
+export interface TextDirective extends Node, ParentOf<InlineContent[]> {
   type: 'textDirective'
   name: string
   attributes: Record<string, string>
 }
 
-export interface LeafDirective extends Node, ParentOf<PhrasingContent[]> {
+export interface LeafDirective extends Node, ParentOf<InlineContent[]> {
   type: 'leafDirective'
   name: string
   attributes: Record<string, string>

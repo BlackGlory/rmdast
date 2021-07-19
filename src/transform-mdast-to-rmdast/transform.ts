@@ -1,6 +1,7 @@
 import * as MDAST from '@src/mdast-utils/mdast-4.0'
 import * as RMDAST from '@src/rmdast-utils/rmdast-2.0'
 import * as MDAST_IS from '@src/mdast-utils/is'
+import * as RMDAST_IS from '@src/rmdast-utils/is'
 import { findFootnoteDefinition } from './find-footnote-definition'
 import { findDefinition } from './find-definition'
 import { CustomError } from '@blackglory/errors'
@@ -11,14 +12,14 @@ export class UnknownNodeError extends CustomError {}
 export function transformRoot(root: MDAST.Root): RMDAST.Root {
   return {
     type: 'root'
-  , children: map(root.children, x => transformMdastContent(x, root))
+  , children: map(root.children, x => transformMdastContent(x, root)).filter(RMDAST_IS.isBlockContent)
   }
 }
 
 function transformMdastContent(
   node: MDAST.MdastContent
 , root: MDAST.Root
-): RMDAST.RootContent | undefined {
+): RMDAST.BlockContent | RMDAST.InlineContent | undefined {
   if (MDAST_IS.isFlowContent(node)) return transformFlowContent(node, root)
   if (MDAST_IS.isListContent(node)) return transformListContent(node, root)
   if (MDAST_IS.isPhrasingContent(node)) return transformPhrasingContent(node, root)
@@ -62,7 +63,7 @@ function transformListContent(node: MDAST.ListContent, root: MDAST.Root): RMDAST
 function transformPhrasingContent(
   node: MDAST.PhrasingContent
 , root: MDAST.Root
-): RMDAST.PhrasingContent | undefined {
+): RMDAST.InlineContent | undefined {
   if (MDAST_IS.isLink(node)) return transformLink(node, root)
   if (MDAST_IS.isLinkReference(node)) return transformLinkReference(node, root)
   if (MDAST_IS.isStaticPhrasingContent(node)) return transformStaticPhrasingContent(node, root)
@@ -73,7 +74,7 @@ function transformPhrasingContent(
 function transformStaticPhrasingContent(
   node: MDAST.StaticPhrasingContent
 , root: MDAST.Root
-): RMDAST.PhrasingContent | undefined {
+): RMDAST.InlineContent | undefined {
   if (MDAST_IS.isBreak(node)) return transformBreak(node, root)
   if (MDAST_IS.isEmphasis(node)) return transformEmphasis(node, root)
   if (MDAST_IS.isHTML(node)) return transformHTML(node, root)
@@ -208,9 +209,9 @@ function transformLink(node: MDAST.Link, root: MDAST.Root): RMDAST.Link {
   }
 }
 
-function transformImage(node: MDAST.Image, root: MDAST.Root): RMDAST.Image {
+function transformImage(node: MDAST.Image, root: MDAST.Root): RMDAST.InlineImage {
   return {
-    type: 'image'
+    type: 'inlineImage'
   , url: node.url
   , alt: node.alt ?? null
   , title: node.title ?? null
@@ -227,10 +228,10 @@ function transformLinkReference(node: MDAST.LinkReference, root: MDAST.Root): RM
   }
 }
 
-function transformImageReference(node: MDAST.ImageReference, root: MDAST.Root): RMDAST.Image {
+function transformImageReference(node: MDAST.ImageReference, root: MDAST.Root): RMDAST.InlineImage {
   const definition = findDefinition(root, node.identifier)
   return {
-    type: 'image'
+    type: 'inlineImage'
   , url: definition?.url ?? ''
   , alt: node.alt ?? null
   , title: definition?.title ?? null

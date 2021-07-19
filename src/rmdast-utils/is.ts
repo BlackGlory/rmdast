@@ -8,42 +8,38 @@ export function isParent(node: RMDAST.Node): node is RMDAST.Node & RMDAST.Parent
   return 'children' in node
 }
 
-export function isRootContent(node: RMDAST.Node): node is RMDAST.RootContent {
-  return isBlockContent(node)
-      || isListContent(node)
-      || isPhrasingContent(node)
-      || isTableContent(node)
-      || isRowContent(node)
-      || isGallery(node)
-}
-
 export function isBlockContent(node: RMDAST.Node): node is RMDAST.BlockContent {
   return isBlockquote(node)
       || isCode(node)
       || isHeading(node)
       || isList(node)
+      || isListContent(node)
       || isThematicBreak(node)
       || isParagraph(node)
       || isTable(node)
+      || isTableContent(node)
+      || isRowContent(node)
       || isLeafDirective(node)
       || isContainerDirective(node)
+      || isGallery(node)
+      || isImage(node)
 }
 
-export function isListContent(node: RMDAST.Node): node is RMDAST.ListContent {
-  return isListItem(node)
-}
-
-export function isPhrasingContent(node: RMDAST.Node): node is RMDAST.PhrasingContent {
+export function isInlineContent(node: RMDAST.Node): node is RMDAST.InlineContent {
   return isLink(node)
       || isBreak(node)
       || isEmphasis(node)
-      || isImage(node)
+      || isInlineImage(node)
       || isInlineCode(node)
       || isStrong(node)
       || isText(node)
       || isDelete(node)
       || isFootnote(node)
       || isTextDirective(node)
+}
+
+export function isListContent(node: RMDAST.Node): node is RMDAST.ListContent {
+  return isListItem(node)
 }
 
 export function isTableContent(node: RMDAST.Node): node is RMDAST.TableContent {
@@ -132,6 +128,10 @@ export function isLink(node: RMDAST.Node): node is RMDAST.Link {
 
 export function isImage(node: RMDAST.Node): node is RMDAST.Image {
   return is<RMDAST.Image>(node, 'image')
+}
+
+export function isInlineImage(node: RMDAST.Node): node is RMDAST.InlineImage {
+  return is<RMDAST.InlineImage>(node, 'inlineImage')
 }
 
 export function isFootnote(node: RMDAST.Node): node is RMDAST.Footnote {

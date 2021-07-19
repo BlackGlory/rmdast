@@ -131,6 +131,18 @@ export function image(
   }
 }
 
+export function inlineImage(
+  url: RMDAST.InlineImage['url']
+, { title = null, alt = null }: Partial<Pick<RMDAST.InlineImage, 'title' | 'alt'>>
+): RMDAST.InlineImage {
+  return {
+    type: 'inlineImage'
+  , url
+  , title
+  , alt
+  }
+}
+
 export function table(
   children: RMDAST.Table['children']
 , { align = null }: Partial<Pick<RMDAST.Table, 'align'>>

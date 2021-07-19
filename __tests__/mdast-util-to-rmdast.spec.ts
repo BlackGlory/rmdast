@@ -155,13 +155,17 @@ describe('MDAST.Definition', () => {
 describe('MDAST.Text', () => {
   it('return RMDAST.Text', () => {
     const mdast = M.root([
-      M.text('value')
+      M.paragraph([
+        M.text('value')
+      ])
     ])
 
     const result = transform(mdast)
 
     expect(result).toStrictEqual(R.root([
-      R.text('value')
+      R.paragraph([
+        R.text('value')
+      ])
     ]))
   })
 })
@@ -169,13 +173,17 @@ describe('MDAST.Text', () => {
 describe('MDAST.Emphasis', () => {
   it('return RMDAST.Emphasis', () => {
     const mdast = M.root([
-      M.emphasis([])
+      M.paragraph([
+        M.emphasis([])
+      ])
     ])
 
     const result = transform(mdast)
 
     expect(result).toStrictEqual(R.root([
-      R.emphasis([])
+      R.paragraph([
+        R.emphasis([])
+      ])
     ]))
   })
 })
@@ -183,13 +191,17 @@ describe('MDAST.Emphasis', () => {
 describe('MDAST.Strong', () => {
   it('return RMDAST.Strong', () => {
     const mdast = M.root([
-      M.strong([])
+      M.paragraph([
+        M.strong([])
+      ])
     ])
 
     const result = transform(mdast)
 
     expect(result).toStrictEqual(R.root([
-      R.strong([])
+      R.paragraph([
+        R.strong([])
+      ])
     ]))
   })
 })
@@ -197,13 +209,17 @@ describe('MDAST.Strong', () => {
 describe('MDAST.InlineCode', () => {
   it('return RMDAST.InlineCode', () => {
     const mdast = M.root([
-      M.inlineCode('value')
+      M.paragraph([
+        M.inlineCode('value')
+      ])
     ])
 
     const result = transform(mdast)
 
     expect(result).toStrictEqual(R.root([
-      R.inlineCode('value')
+      R.paragraph([
+        R.inlineCode('value')
+      ])
     ]))
   })
 })
@@ -211,13 +227,17 @@ describe('MDAST.InlineCode', () => {
 describe('MDAST.Break', () => {
   it('return RMDAST.Break', () => {
     const mdast = M.root([
-      M.brk()
+      M.paragraph([
+        M.brk()
+      ])
     ])
 
     const result = transform(mdast)
 
     expect(result).toStrictEqual(R.root([
-      R.brk()
+      R.paragraph([
+        R.brk()
+      ])
     ]))
   })
 })
@@ -225,27 +245,35 @@ describe('MDAST.Break', () => {
 describe('MDAST.Link', () => {
   it('return RMDAST.Link', () => {
     const mdast = M.root([
-      M.link('url', [], { title: 'title' })
+      M.paragraph([
+        M.link('url', [], { title: 'title' })
+      ])
     ])
 
     const result = transform(mdast)
 
     expect(result).toStrictEqual(R.root([
-      R.link('url', [], { title: 'title' })
+      R.paragraph([
+        R.link('url', [], { title: 'title' })
+      ])
     ]))
   })
 })
 
 describe('MDAST.Image', () => {
-  it('return RMDAST.Image', () => {
+  it('return RMDAST.InlineImage', () => {
     const mdast = M.root([
-      M.image('url', { title: 'title', alt: 'alt' })
+      M.paragraph([
+        M.image('url', { title: 'title', alt: 'alt' })
+      ])
     ])
 
     const result = transform(mdast)
 
     expect(result).toStrictEqual(R.root([
-      R.image('url', { title: 'title', alt: 'alt' })
+      R.paragraph([
+        R.inlineImage('url', { title: 'title', alt: 'alt' })
+      ])
     ]))
   })
 })
@@ -270,7 +298,7 @@ describe('MDAST.LinkReference', () => {
 })
 
 describe('MDAST.ImageReference', () => {
-  it('return RMDAST.Image', () => {
+  it('return RMDAST.InlineImage', () => {
     const mdast = M.root([
       M.paragraph([
         M.imageReference('identifier', 'shortcut', { alt: 'alt', label: 'label' })
@@ -282,7 +310,7 @@ describe('MDAST.ImageReference', () => {
 
     expect(result).toStrictEqual(R.root([
       R.paragraph([
-        R.image('url', { title: 'title', alt: 'alt' })
+        R.inlineImage('url', { title: 'title', alt: 'alt' })
       ])
     ]))
   })
@@ -333,13 +361,17 @@ describe('MDAST.TableCell', () => {
 describe('MDAST.Delete', () => {
   it('return RMDAST.Delete', () => {
     const mdast = M.root([
-      M.del([])
+      M.paragraph([
+        M.del([])
+      ])
     ])
 
     const result = transform(mdast)
 
     expect(result).toStrictEqual(R.root([
-      R.del([])
+      R.paragraph([
+        R.del([])
+      ])
     ]))
   })
 })
@@ -347,13 +379,17 @@ describe('MDAST.Delete', () => {
 describe('MDAST.Footnote', () => {
   it('return RMDAST.Footnote', () => {
     const mdast = M.root([
-      M.footnote([])
+      M.paragraph([
+        M.footnote([])
+      ])
     ])
 
     const result = transform(mdast)
 
     expect(result).toStrictEqual(R.root([
-      R.footnote([])
+      R.paragraph([
+        R.footnote([])
+      ])
     ]))
   })
 })
@@ -373,14 +409,18 @@ describe('MDAST.FootnoteDefinition', () => {
 describe('MDAST.FootnoteReference', () => {
   it('return RMDAST.Footnote', () => {
     const mdast = M.root([
-      M.footnoteReference('identifier', { label: 'label' })
+      M.paragraph([
+        M.footnoteReference('identifier', { label: 'label' })
+      ])
     , M.footnoteDefinition('identifier', [], { label: 'label' })
     ])
 
     const result = transform(mdast)
 
     expect(result).toStrictEqual(R.root([
-      R.footnote([])
+      R.paragraph([
+        R.footnote([])
+      ])
     ]))
   })
 })
@@ -388,13 +428,17 @@ describe('MDAST.FootnoteReference', () => {
 describe('MDAST.TextDirective', () => {
   it('return RMDAST.TextDirective', () => {
     const mdast = M.root([
-      M.textDirective('name', [], { attributes: { key: 'value' }})
+      M.paragraph([
+        M.textDirective('name', [], { attributes: { key: 'value' }})
+      ])
     ])
 
     const result = transform(mdast)
 
     expect(result).toStrictEqual(R.root([
-      R.textDirective('name', [], { attributes: { key: 'value' }})
+      R.paragraph([
+        R.textDirective('name', [], { attributes: { key: 'value' }})
+      ])
     ]))
   })
 })
