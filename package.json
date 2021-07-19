@@ -68,7 +68,6 @@
     "@blackglory/errors": "^1.1.2",
     "@blackglory/types": "^0.4.7",
     "@types/unist": "^2.0.6",
-    "core-js": "^3.15.2",
     "immer": "^9.0.5",
     "iterable-operator": "^0.14.2",
     "mdast-util-directive": "^2.0.0",
