@@ -220,3 +220,10 @@ export function containerDirective(
   , children
   }
 }
+
+export function gallery(children: RMDAST.Gallery['children']): RMDAST.Gallery {
+  return {
+    type: 'gallery'
+  , children
+  }
+}

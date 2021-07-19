@@ -1,7 +1,12 @@
 import * as RMDAST from '@src/rmdast-utils/rmdast-2.0'
 import * as MDAST from '@src/mdast-utils/mdast-4.0'
 import { transform } from '@src/transform-mdast-to-rmdast'
-import { postprocess } from '@src/rmdast-utils/postprocess'
+import {
+  concatContinuousText
+, removeEmptyParagraph
+, transformImageOnlyListToGallery
+, transofrmInlineImageToImage
+} from '@src/rmdast-utils/postprocess'
 import { fromMarkdown } from 'mdast-util-from-markdown'
 import { gfmFromMarkdown } from 'mdast-util-gfm'
 import { gfm } from 'micromark-extension-gfm'
@@ -25,4 +30,16 @@ export function parse(text: string): RMDAST.Root {
   }) as MDAST.Root
   const rmdast = postprocess(transform(mdast))
   return rmdast
+}
+
+function postprocess(root: RMDAST.Root): RMDAST.Root {
+  return (
+    transformImageOnlyListToGallery(
+      transofrmInlineImageToImage(
+        removeEmptyParagraph(
+          concatContinuousText(root)
+        )
+      )
+    )
+  )
 }

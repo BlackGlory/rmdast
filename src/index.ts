@@ -1,2 +1,3 @@
-export { is } from './rmdast-utils/is'
+export * from './rmdast-utils/rmdast-2.0'
+export * from './rmdast-utils/is'
 export { parse } from './parse'
