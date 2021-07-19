@@ -1,6 +1,7 @@
 import * as RMDAST from './rmdast-2.0'
 import { isParent } from './is'
 import { produce, original } from 'immer'
+import { map, flatten, toArray } from 'iterable-operator'
 
 export function flatMap(
   node: RMDAST.Node
@@ -9,11 +10,14 @@ export function flatMap(
   const newNodes = fn(node)
   return newNodes.map(node => produce(node, node => {
     if (isParent(node)) {
-      const newChildNodes: RMDAST.Node[] = []
-      for (const childNode of node.children) {
-        newChildNodes.push(...flatMap(original(childNode)!, fn))
-      }
-      node.children = newChildNodes
+      node.children = toArray(
+        flatten(
+          map(
+            node.children
+          , node => flatMap(original(node)!, fn)
+          )
+        )
+      )
     }
   }))
 }
