@@ -1,35 +1,37 @@
-import { Node, Root, Text, Heading } from '@src/rmdast-1.0'
-import { isHeading, isText } from '@src/is'
+import * as RMDAST from './rmdast-2.0'
+import { isHeading, isText } from './is'
 import { find } from './find'
 import { flatMap } from './flat-map'
 
-interface Title extends Heading {
-  children: Text[]
-}
-
-export function splitTitleBody(root: Root): { title: string, body: Root } {
+export function splitTitleBody(root: RMDAST.Root): { title: string, body: RMDAST.Root } {
   const titleNode = getTitleNode(root)
-  const title = titleNode.children.map(x => x.value).join('')
-  return {
-    title
-  , body: getBody(root, titleNode)
-  }
+  const title = titleNode.children.filter(isText).map(x => x.value).join('')
+  const body = getBody(root, titleNode)
+
+  return { title, body }
 }
 
-function getBody(root: Root, titleNode: Title): Root {
-  return flatMap(root, node => node === titleNode ? [] : [node])[0] as Root
+function getBody(root: RMDAST.Root, titleNode: RMDAST.Heading): RMDAST.Root {
+  return flatMap(
+    root
+  , node => node === titleNode
+          ? []
+          : [node]
+  )[0] as RMDAST.Root
 }
 
-function getTitleNode(node: Node): Title {
-  const heading = find<Title>(node, node =>
-     isHeading(node)
-  && node.depth === 1
-  && node.children.length > 0
-  && node.children.every(isText)
+function getTitleNode(node: RMDAST.Node): RMDAST.Heading {
+  const heading = find<RMDAST.Heading>(
+    node
+  , node => isHeading(node)
+         && node.depth === 1
+         && node.children.length > 0
+         && node.children.every(isText)
   )
+
   if (heading) {
     return heading
   } else {
-    throw new Error('Title does not exist')
+    throw new Error('There is no title')
   }
 }

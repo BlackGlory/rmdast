@@ -71,8 +71,13 @@
     "core-js": "^3.15.2",
     "immer": "^9.0.5",
     "mdast-util-definitions": "^5.0.0",
+    "mdast-util-directive": "^2.0.0",
+    "mdast-util-footnote": "^1.0.0",
     "mdast-util-from-markdown": "^1.0.0",
-    "unist-util-is": "^5.1.0",
+    "mdast-util-gfm": "^1.0.0",
+    "micromark-extension-directive": "^2.0.0",
+    "micromark-extension-footnote": "^1.0.0",
+    "micromark-extension-gfm": "^1.0.0",
     "unist-util-visit": "^3.1.0"
   }
 }

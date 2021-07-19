@@ -1,4 +1,4 @@
-import * as MDAST from '@src/mdast-3.0'
+import * as MDAST from './mdast-4.0'
 
 export function root(children: MDAST.Root['children']): MDAST.Root {
   return {
@@ -58,31 +58,6 @@ export function listItem(
   }
 }
 
-export function table(
-  children: MDAST.Table['children']
-, { align }: Pick<MDAST.Table, 'align'> = {}
-): MDAST.Table {
-  return {
-    type: 'table'
-  , align
-  , children
-  }
-}
-
-export function tableRow(children: MDAST.TableRow['children']): MDAST.TableRow {
-  return {
-    type: 'tableRow'
-  , children
-  }
-}
-
-export function tableCell(children: MDAST.TableCell['children']): MDAST.TableCell {
-  return {
-    type: 'tableCell'
-  , children
-  }
-}
-
 export function html(value: MDAST.HTML['value']): MDAST.HTML {
   return {
     type: 'html'
@@ -102,13 +77,6 @@ export function code(
   }
 }
 
-export function yaml(value: MDAST.YAML['value']): MDAST.YAML {
-  return {
-    type: 'yaml'
-  , value
-  }
-}
-
 export function definition(
   identifier: MDAST.Definition['identifier']
 , url: MDAST.Definition['url']
@@ -119,19 +87,6 @@ export function definition(
   , identifier
   , url
   , title
-  , label
-  }
-}
-
-export function footnoteDef(
-  identifier: MDAST.FootnoteDefinition['identifier']
-, children: MDAST.FootnoteDefinition['children']
-, { label }: Pick<MDAST.FootnoteDefinition, 'label'> = {}
-): MDAST.FootnoteDefinition {
-  return {
-    type: 'footnoteDefinition'
-  , children
-  , identifier
   , label
   }
 }
@@ -153,13 +108,6 @@ export function emphasis(children: MDAST.Emphasis['children']): MDAST.Emphasis {
 export function strong(children: MDAST.Strong['children']): MDAST.Strong {
   return {
     type: 'strong'
-  , children
-  }
-}
-
-export function del(children: MDAST.Delete['children']): MDAST.Delete {
-  return {
-    type: 'delete'
   , children
   }
 }
@@ -200,7 +148,7 @@ export function image(
   }
 }
 
-export function linkRef(
+export function linkReference(
   identifier: MDAST.LinkReference['identifier']
 , referenceType: MDAST.LinkReference['referenceType']
 , children: MDAST.LinkReference['children']
@@ -213,7 +161,7 @@ export function linkRef(
   }
 }
 
-export function imageRef(
+export function imageReference(
   identifier: MDAST.ImageReference['identifier']
 , referenceType: MDAST.ImageReference['referenceType']
 , { alt, label }: Pick<MDAST.ImageReference, 'alt' | 'label'> = {}
@@ -227,6 +175,38 @@ export function imageRef(
   }
 }
 
+export function table(
+  children: MDAST.Table['children']
+, { align }: Pick<MDAST.Table, 'align'> = {}
+): MDAST.Table {
+  return {
+    type: 'table'
+  , align
+  , children
+  }
+}
+
+export function tableRow(children: MDAST.TableRow['children']): MDAST.TableRow {
+  return {
+    type: 'tableRow'
+  , children
+  }
+}
+
+export function tableCell(children: MDAST.TableCell['children']): MDAST.TableCell {
+  return {
+    type: 'tableCell'
+  , children
+  }
+}
+
+export function del(children: MDAST.Delete['children']): MDAST.Delete {
+  return {
+    type: 'delete'
+  , children
+  }
+}
+
 export function footnote(children: MDAST.Footnote['children']): MDAST.Footnote {
   return {
     type: 'footnote'
@@ -234,7 +214,20 @@ export function footnote(children: MDAST.Footnote['children']): MDAST.Footnote {
   }
 }
 
-export function footnoteRef(
+export function footnoteDefinition(
+  identifier: MDAST.FootnoteDefinition['identifier']
+, children: MDAST.FootnoteDefinition['children']
+, { label }: Pick<MDAST.FootnoteDefinition, 'label'> = {}
+): MDAST.FootnoteDefinition {
+  return {
+    type: 'footnoteDefinition'
+  , children
+  , identifier
+  , label
+  }
+}
+
+export function footnoteReference(
   identifier: MDAST.FootnoteReference['identifier']
 , { label }: Pick<MDAST.FootnoteReference, 'label'> = {}
 ): MDAST.FootnoteReference {
@@ -242,5 +235,44 @@ export function footnoteRef(
     type: 'footnoteReference'
   , identifier
   , label
+  }
+}
+
+export function textDirective(
+  name: MDAST.TextDirective['name']
+, children: MDAST.TextDirective['children']
+, { attributes }: Pick<MDAST.TextDirective, 'attributes'> = {}
+): MDAST.TextDirective {
+  return {
+    type: 'textDirective'
+  , name
+  , children
+  , attributes
+  }
+}
+
+export function leafDirective(
+  name: MDAST.LeafDirective['name']
+, children: MDAST.LeafDirective['children']
+, { attributes }: Pick<MDAST.LeafDirective, 'attributes'> = {}
+): MDAST.LeafDirective {
+  return {
+    type: 'leafDirective'
+  , name
+  , children
+  , attributes
+  }
+}
+
+export function containerDirective(
+  name: MDAST.ContainerDirective['name']
+, children: MDAST.ContainerDirective['children']
+, { attributes }: Pick<MDAST.ContainerDirective, 'attributes'> = {}
+): MDAST.ContainerDirective {
+  return {
+    type: 'containerDirective'
+  , name
+  , children
+  , attributes
   }
 }

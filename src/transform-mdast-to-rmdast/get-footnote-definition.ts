@@ -1,4 +1,4 @@
-import { Node, FootnoteDefinition } from '@src/mdast-3.0'
+import { Node, FootnoteDefinition } from '@src/mdast-utils/mdast-4.0'
 import { visit } from 'unist-util-visit'
 
 type IdentifierToDefinition = Map<string, FootnoteDefinition>

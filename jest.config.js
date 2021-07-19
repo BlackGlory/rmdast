@@ -16,6 +16,12 @@ const esModules = [
 , 'unist-util-visit-parents'
 , 'unist-util-is'
 , 'mdast-util-definitions'
+, 'mdast-util-gfm'
+, 'ccount'
+, 'mdast-util-find-and-replace'
+, 'escape-string-regexp'
+, 'mdast-util-to-markdown'
+, 'markdown-table'
 ].join('|')
 
 module.exports = {

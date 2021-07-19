@@ -19,7 +19,6 @@ export type Content =
 
 export type TopLevelContent =
 | BlockContent
-// | TopLevelImage
 
 export type BlockContent =
 | Paragraph
@@ -149,15 +148,6 @@ export interface Image extends Node {
   title: string | null
   alt: string | null
 }
-
-/*
-export interface TopLevelImage extends Node {
-  type: 'topLevelImage'
-  url: string
-  title: string | null
-  alt: string | null
-}
-*/
 
 export interface Footnote extends Node, ParentOf<PhrasingContent[] | BlockContent[]> {
   type: 'footnote'

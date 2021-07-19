@@ -1,6 +1,6 @@
 import { find } from '@src/rmdast-utils/find'
-import { isText, isComponent } from '@src/is'
-import { paragraph, emphasis, text, component } from '@src/builder'
+import { isText, isStrong } from '@src/rmdast-utils/is'
+import { paragraph, emphasis, text } from '@src/rmdast-utils/builder'
 
 describe('find', () => {
   it('is preorder', () => {
@@ -38,24 +38,6 @@ describe('find', () => {
     expect(result).toEqual(['deep', 'shallow'])
   })
 
-  it('bypass Component.children', () => {
-    const ast =
-      paragraph([
-        component('message', {}, 'inside component', [
-          text('inside component')
-        ])
-      , emphasis([
-          text('inside emphasis')
-        ])
-      ])
-
-    const result = find(ast, isText)
-
-    expect(result).toStrictEqual(
-      text('inside emphasis')
-    )
-  })
-
   describe('found', () => {
     it('return found target', () => {
       const ast =
@@ -82,7 +64,7 @@ describe('find', () => {
           ])
         ])
 
-      const result = find(ast, isComponent)
+      const result = find(ast, isStrong)
 
       expect(result).toBeUndefined()
     })

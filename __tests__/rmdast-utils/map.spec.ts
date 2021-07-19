@@ -1,7 +1,6 @@
 import { map } from '@src/rmdast-utils/map'
-import { isText, isEmphasis, isComponent } from '@src/is'
-import { paragraph, emphasis, strong, text, component } from '@src/builder'
-import { produce } from 'immer'
+import { isText, isEmphasis } from '@src/rmdast-utils/is'
+import { paragraph, emphasis, strong, text } from '@src/rmdast-utils/builder'
 
 describe('map', () => {
   it('is preorder', () => {
@@ -39,42 +38,16 @@ describe('map', () => {
     expect(result).toEqual(['deep', 'shallow'])
   })
 
-  it('bypass Component.children', () => {
-    const ast =
-      paragraph([
-        emphasis([
-          text('inside emphasis')
-        ])
-      , component('message', {}, 'inside component', [
-          text('inside component')
-        ])
-      ])
-
-    const result: string[] = []
-    map(ast, node => {
-      if (isText(node)) result.push(node.value)
-      return node
-    })
-
-    expect(result).toStrictEqual(['inside emphasis'])
-  })
-
   it('create a new tree', () => {
     const ast =
       paragraph([
         emphasis([
           text('inside emphasis')
         ])
-      , component('message', {}, 'inside component', [
-          text('inside component')
-        ])
       ])
 
     const result = map(ast, node => {
       if (isEmphasis(node)) return strong(node.children)
-      if (isComponent(node)) return produce(node, node => {
-        node.attributes['title'] = 'Message'
-      })
       if (isText(node)) return text('inside strong')
       return node
     })
@@ -85,14 +58,6 @@ describe('map', () => {
         strong([
           text('inside strong')
         ])
-      , component(
-          'message'
-        , { title: 'Message' }
-        , 'inside component'
-        , [
-          text('inside component')
-          ]
-        )
       ])
     )
   })

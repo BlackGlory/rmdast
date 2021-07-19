@@ -1,9 +1,9 @@
-import { transform } from '@src/mdast-util-to-rmdast'
-import * as M from '@test/mdast-builder'
-import * as R from '@src/builder'
+import { transform } from '@src/transform-mdast-to-rmdast'
+import * as M from '@src/mdast-utils/builder'
+import * as R from '@src/rmdast-utils/builder'
 
 describe('MDAST.Root', () => {
-  it('return AST.Root', () => {
+  it('return RMDAST.Root', () => {
     const mdast = M.root([])
 
     const result = transform(mdast)
@@ -13,7 +13,7 @@ describe('MDAST.Root', () => {
 })
 
 describe('MDAST.Paragraph', () => {
-  it('return AST.Paragraph', () => {
+  it('return RMDAST.Paragraph', () => {
     const mdast = M.root([
       M.paragraph([])
     ])
@@ -27,7 +27,7 @@ describe('MDAST.Paragraph', () => {
 })
 
 describe('MDAST.Heading', () => {
-  it('return AST.Heading', () => {
+  it('return RMDAST.Heading', () => {
     const mdast = M.root([
       M.heading(1, [])
     ])
@@ -41,7 +41,7 @@ describe('MDAST.Heading', () => {
 })
 
 describe('MDAST.ThematicBreak', () => {
-  it('return AST.ThematicBreak', () => {
+  it('return RMDAST.ThematicBreak', () => {
     const mdast = M.root([
       M.thematicBreak()
     ])
@@ -55,7 +55,7 @@ describe('MDAST.ThematicBreak', () => {
 })
 
 describe('MDAST.Blockquote', () => {
-  it('return AST.Blockquote', () => {
+  it('return RMDAST.Blockquote', () => {
     const mdast = M.root([
       M.blockquote([])
     ])
@@ -69,7 +69,7 @@ describe('MDAST.Blockquote', () => {
 })
 
 describe('MDAST.List', () => {
-  it('return AST.List', () => {
+  it('return RMDAST.List', () => {
     const mdast = M.root([
       M.list([], { ordered: true, start: 1, spread: true })
     ])
@@ -83,7 +83,7 @@ describe('MDAST.List', () => {
 })
 
 describe('MDAST.ListItem', () => {
-  it('return AST.ListItem', () => {
+  it('return RMDAST.ListItem', () => {
     const mdast = M.root([
       M.listItem([], { checked: true, spread: true })
     ])
@@ -92,48 +92,6 @@ describe('MDAST.ListItem', () => {
 
     expect(result).toStrictEqual(R.root([
       R.listItem([], { checked: true, spread: true })
-    ]))
-  })
-})
-
-describe('MDAST.Table', () => {
-  it('return AST.Table', () => {
-    const mdast = M.root([
-      M.table([], { align: ['left'] })
-    ])
-
-    const result = transform(mdast)
-
-    expect(result).toStrictEqual(R.root([
-      R.table([], { align: ['left'] })
-    ]))
-  })
-})
-
-describe('MDAST.TableRow', () => {
-  it('return AST.TableRow', () => {
-    const mdast = M.root([
-      M.tableRow([])
-    ])
-
-    const result = transform(mdast)
-
-    expect(result).toStrictEqual(R.root([
-      R.tableRow([])
-    ]))
-  })
-})
-
-describe('TableCell', () => {
-  it('return AST.TableCell', () => {
-    const mdast = M.root([
-      M.tableCell([])
-    ])
-
-    const result = transform(mdast)
-
-    expect(result).toStrictEqual(R.root([
-      R.tableCell([])
     ]))
   })
 })
@@ -169,7 +127,7 @@ describe('MDAST.HTML', () => {
 })
 
 describe('MDAST.Code', () => {
-  it('return AST.Code', () => {
+  it('return RMDAST.Code', () => {
     const mdast = M.root([
       M.code('value', { lang: 'lang', meta: 'meta' })
     ])
@@ -179,18 +137,6 @@ describe('MDAST.Code', () => {
     expect(result).toStrictEqual(R.root([
       R.code('value', { lang: 'lang', meta: 'meta' })
     ]))
-  })
-})
-
-describe('MDAST.YAML', () => {
-  it('return undefined', () => {
-    const mdast = M.root([
-      M.yaml('value')
-    ])
-
-    const result = transform(mdast)
-
-    expect(result).toStrictEqual(R.root([]))
   })
 })
 
@@ -207,7 +153,7 @@ describe('MDAST.Definition', () => {
 })
 
 describe('MDAST.Text', () => {
-  it('return AST.Text', () => {
+  it('return RMDAST.Text', () => {
     const mdast = M.root([
       M.text('value')
     ])
@@ -221,7 +167,7 @@ describe('MDAST.Text', () => {
 })
 
 describe('MDAST.Emphasis', () => {
-  it('return AST.Emphasis', () => {
+  it('return RMDAST.Emphasis', () => {
     const mdast = M.root([
       M.emphasis([])
     ])
@@ -235,7 +181,7 @@ describe('MDAST.Emphasis', () => {
 })
 
 describe('MDAST.Strong', () => {
-  it('return AST.Strong', () => {
+  it('return RMDAST.Strong', () => {
     const mdast = M.root([
       M.strong([])
     ])
@@ -248,22 +194,8 @@ describe('MDAST.Strong', () => {
   })
 })
 
-describe('MDAST.Delete', () => {
-  it('return AST.Delete', () => {
-    const mdast = M.root([
-      M.del([])
-    ])
-
-    const result = transform(mdast)
-
-    expect(result).toStrictEqual(R.root([
-      R.del([])
-    ]))
-  })
-})
-
 describe('MDAST.InlineCode', () => {
-  it('return AST.InlineCode', () => {
+  it('return RMDAST.InlineCode', () => {
     const mdast = M.root([
       M.inlineCode('value')
     ])
@@ -277,7 +209,7 @@ describe('MDAST.InlineCode', () => {
 })
 
 describe('MDAST.Break', () => {
-  it('return AST.Break', () => {
+  it('return RMDAST.Break', () => {
     const mdast = M.root([
       M.brk()
     ])
@@ -291,7 +223,7 @@ describe('MDAST.Break', () => {
 })
 
 describe('MDAST.Link', () => {
-  it('return AST.Link', () => {
+  it('return RMDAST.Link', () => {
     const mdast = M.root([
       M.link('url', [], { title: 'title' })
     ])
@@ -305,7 +237,7 @@ describe('MDAST.Link', () => {
 })
 
 describe('MDAST.Image', () => {
-  it('return AST.Image', () => {
+  it('return RMDAST.Image', () => {
     const mdast = M.root([
       M.image('url', { title: 'title', alt: 'alt' })
     ])
@@ -319,10 +251,10 @@ describe('MDAST.Image', () => {
 })
 
 describe('MDAST.LinkReference', () => {
-  it('return AST.Link', () => {
+  it('return RMDAST.Link', () => {
     const mdast = M.root([
       M.paragraph([
-        M.linkRef('identifier', 'shortcut', [])
+        M.linkReference('identifier', 'shortcut', [])
       ])
     , M.definition('identifier', 'url', { title: 'title', label: 'label' })
     ])
@@ -338,10 +270,10 @@ describe('MDAST.LinkReference', () => {
 })
 
 describe('MDAST.ImageReference', () => {
-  it('return AST.Image', () => {
+  it('return RMDAST.Image', () => {
     const mdast = M.root([
       M.paragraph([
-        M.imageRef('identifier', 'shortcut', { alt: 'alt', label: 'label' })
+        M.imageReference('identifier', 'shortcut', { alt: 'alt', label: 'label' })
       ])
     , M.definition('identifier', 'url', { title: 'title', label: 'label' })
     ])
@@ -356,8 +288,64 @@ describe('MDAST.ImageReference', () => {
   })
 })
 
+describe('MDAST.Table', () => {
+  it('return RMDAST.Table', () => {
+    const mdast = M.root([
+      M.table([], { align: ['left'] })
+    ])
+
+    const result = transform(mdast)
+
+    expect(result).toStrictEqual(R.root([
+      R.table([], { align: ['left'] })
+    ]))
+  })
+})
+
+describe('MDAST.TableRow', () => {
+  it('return RMDAST.TableRow', () => {
+    const mdast = M.root([
+      M.tableRow([])
+    ])
+
+    const result = transform(mdast)
+
+    expect(result).toStrictEqual(R.root([
+      R.tableRow([])
+    ]))
+  })
+})
+
+describe('MDAST.TableCell', () => {
+  it('return RMDAST.TableCell', () => {
+    const mdast = M.root([
+      M.tableCell([])
+    ])
+
+    const result = transform(mdast)
+
+    expect(result).toStrictEqual(R.root([
+      R.tableCell([])
+    ]))
+  })
+})
+
+describe('MDAST.Delete', () => {
+  it('return RMDAST.Delete', () => {
+    const mdast = M.root([
+      M.del([])
+    ])
+
+    const result = transform(mdast)
+
+    expect(result).toStrictEqual(R.root([
+      R.del([])
+    ]))
+  })
+})
+
 describe('MDAST.Footnote', () => {
-  it('return AST.Footnote', () => {
+  it('return RMDAST.Footnote', () => {
     const mdast = M.root([
       M.footnote([])
     ])
@@ -370,17 +358,71 @@ describe('MDAST.Footnote', () => {
   })
 })
 
-describe('MDAST.FootnoteReference', () => {
-  it('return AST.Footnote', () => {
+describe('MDAST.FootnoteDefinition', () => {
+  it('return undefined', () => {
     const mdast = M.root([
-      M.footnoteRef('identifier', { label: 'label' })
-    , M.footnoteDef('identifier', [], { label: 'label' })
+      M.footnoteDefinition('identifier', [])
+    ])
+
+    const result = transform(mdast)
+
+    expect(result).toStrictEqual(R.root([]))
+  })
+})
+
+describe('MDAST.FootnoteReference', () => {
+  it('return RMDAST.Footnote', () => {
+    const mdast = M.root([
+      M.footnoteReference('identifier', { label: 'label' })
+    , M.footnoteDefinition('identifier', [], { label: 'label' })
     ])
 
     const result = transform(mdast)
 
     expect(result).toStrictEqual(R.root([
       R.footnote([])
+    ]))
+  })
+})
+
+describe('MDAST.TextDirective', () => {
+  it('return RMDAST.TextDirective', () => {
+    const mdast = M.root([
+      M.textDirective('name', [], { attributes: { key: 'value' }})
+    ])
+
+    const result = transform(mdast)
+
+    expect(result).toStrictEqual(R.root([
+      R.textDirective('name', [], { attributes: { key: 'value' }})
+    ]))
+  })
+})
+
+describe('MDAST.LeafDirective', () => {
+  it('return RMDAST.LeafDirective', () => {
+    const mdast = M.root([
+      M.leafDirective('name', [], { attributes: { key: 'value' }})
+    ])
+
+    const result = transform(mdast)
+
+    expect(result).toStrictEqual(R.root([
+      R.leafDirective('name', [], { attributes: { key: 'value' }})
+    ]))
+  })
+})
+
+describe('MDAST.ContainerDirective', () => {
+  it('return RMDAST.ContainerDirective', () => {
+    const mdast = M.root([
+      M.containerDirective('name', [], { attributes: { key: 'value' }})
+    ])
+
+    const result = transform(mdast)
+
+    expect(result).toStrictEqual(R.root([
+      R.containerDirective('name', [], { attributes: { key: 'value' }})
     ]))
   })
 })

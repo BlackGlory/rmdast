@@ -1,4 +1,4 @@
-import * as RMDAST from '@src/rmdast-1.0'
+import * as RMDAST from './rmdast-2.0'
 
 export function root(children: RMDAST.Root['children']): RMDAST.Root {
   return {
@@ -54,48 +54,8 @@ export function listItem(
 ): RMDAST.ListItem {
   return {
     type: 'listItem'
-  , children
-  , checked
   , spread
-  }
-}
-
-export function table(
-  children: RMDAST.Table['children']
-, { align = null }: Partial<Pick<RMDAST.Table, 'align'>>
-): RMDAST.Table {
-  return {
-    type: 'table'
-  , children
-  , align
-  }
-}
-
-export function tableRow(children: RMDAST.TableRow['children']): RMDAST.TableRow {
-  return {
-    type: 'tableRow'
-  , children
-  }
-}
-
-export function tableCell(children: RMDAST.TableCell['children']): RMDAST.TableCell {
-  return {
-    type: 'tableCell'
-  , children
-  }
-}
-
-export function component(
-  name: RMDAST.Component['name']
-, attributes: RMDAST.Component['attributes']
-, value: RMDAST.Component['value']
-, children: RMDAST.Component['children']
-): RMDAST.Component {
-  return {
-    type: 'component'
-  , name
-  , attributes
-  , value
+  , checked
   , children
   }
 }
@@ -129,13 +89,6 @@ export function emphasis(children: RMDAST.Emphasis['children']): RMDAST.Emphasis
 export function strong(children: RMDAST.Strong['children']): RMDAST.Strong {
   return {
     type: 'strong'
-  , children
-  }
-}
-
-export function del(children: RMDAST.Delete['children']): RMDAST.Delete {
-  return {
-    type: 'delete'
   , children
   }
 }
@@ -178,9 +131,80 @@ export function image(
   }
 }
 
+export function table(
+  children: RMDAST.Table['children']
+, { align = null }: Partial<Pick<RMDAST.Table, 'align'>>
+): RMDAST.Table {
+  return {
+    type: 'table'
+  , children
+  , align
+  }
+}
+
+export function tableRow(children: RMDAST.TableRow['children']): RMDAST.TableRow {
+  return {
+    type: 'tableRow'
+  , children
+  }
+}
+
+export function tableCell(children: RMDAST.TableCell['children']): RMDAST.TableCell {
+  return {
+    type: 'tableCell'
+  , children
+  }
+}
+
+export function del(children: RMDAST.Delete['children']): RMDAST.Delete {
+  return {
+    type: 'delete'
+  , children
+  }
+}
+
 export function footnote(children: RMDAST.Footnote['children']): RMDAST.Footnote {
   return {
     type: 'footnote'
+  , children
+  }
+}
+
+export function textDirective(
+  name: RMDAST.TextDirective['name']
+, children: RMDAST.TextDirective['children']
+, { attributes = {} }: Partial<Pick<RMDAST.TextDirective, 'attributes'>>
+): RMDAST.TextDirective {
+  return {
+    type: 'textDirective'
+  , name
+  , attributes
+  , children
+  }
+}
+
+export function leafDirective(
+  name: RMDAST.LeafDirective['name']
+, children: RMDAST.LeafDirective['children']
+, { attributes = {} }: Partial<Pick<RMDAST.LeafDirective, 'attributes'>>
+): RMDAST.LeafDirective {
+  return {
+    type: 'leafDirective'
+  , name
+  , attributes
+  , children
+  }
+}
+
+export function containerDirective(
+  name: RMDAST.ContainerDirective['name']
+, children: RMDAST.ContainerDirective['children']
+, { attributes = {} }: Partial<Pick<RMDAST.ContainerDirective, 'attributes'>>
+): RMDAST.ContainerDirective {
+  return {
+    type: 'containerDirective'
+  , name
+  , attributes
   , children
   }
 }
