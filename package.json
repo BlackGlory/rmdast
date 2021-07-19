@@ -77,7 +77,6 @@
     "mdast-util-gfm": "^1.0.0",
     "micromark-extension-directive": "^2.0.0",
     "micromark-extension-footnote": "^1.0.0",
-    "micromark-extension-gfm": "^1.0.0",
-    "unist-util-visit": "^3.1.0"
+    "micromark-extension-gfm": "^1.0.0"
   }
 }

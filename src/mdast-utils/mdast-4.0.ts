@@ -4,7 +4,7 @@ export { Node } from 'unist'
 
 // Nodes
 
-interface Parent extends UnistParent {
+export interface Parent extends UnistParent {
   children: MdastContent[]
 }
 

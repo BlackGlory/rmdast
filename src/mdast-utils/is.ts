@@ -4,6 +4,10 @@ function is<T extends MDAST.Node>(node: MDAST.Node, type: string): node is T {
   return node.type === type
 }
 
+export function isParent(node: MDAST.Node): node is MDAST.Parent {
+  return 'children' in node
+}
+
 export function isMdastContent(node: MDAST.Node): node is MDAST.MdastContent {
   return isFlowContent(node)
       || isListContent(node)
