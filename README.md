@@ -2,44 +2,284 @@
 
 **R**enderable **M**ark**d**own **A**bstract **S**yntax **T**ree.
 
-An easy to render version of [mdast](https://github.com/syntax-tree/mdast).
+rmdast v2 is an easy-to-render version of [mdast v4],
+the new AST is designed to render nodes directly from AST to any platform, e.g. React.
+So you can precisely control the translation results through recursive descent analysis.
 
-The new AST is designed to render nodes directly from mdast to any platform,
-e.g. React.
+[mdast v4]: https://github.com/syntax-tree/mdast/tree/4.0.0
 
-## Pros and Cons
+## Install
 
-Pros
-- Supports extending MDAST with Web Components syntax, thus avoiding direct extensions at the AST level.
-- By manually rendering AST, you have full control over the rendering of AST.
+```sh
+npm install --save rmdast
+# or
+yarn add rmdast
+```
 
-Cons
-- Due to the source-to-source compilation of MDAST, it can only support the original MDAST specification.
-- Since you need to render the AST yourself, some additional coding is required.
+## Usage
 
-## How does it work?
+```ts
+import { parse } from 'rmdast'
+import { dedent } from 'extra-tags'
 
-1. Modified remark-parse: Text => MDAST
-2. Transpile: MDAST => RMDAST
-3. Transpile(manually): RMDAST => JSX/HTML/Terminal...
+const markdown = dedent`
+  # Gallery
 
-## Difference from mdast
+  - ![](a)
+  - ![](b)
+  - ![](c)
+`
 
-`ImageReference` are converted to `Image`.
+const rmdast = parse(markdown)
+// {
+//   "type": "root",
+//   "children": [
+//     {
+//       "type": "heading",
+//       "depth": 1,
+//       "children": [
+//         {
+//           "type": "text",
+//           "value": "Gallery"
+//         }
+//       ]
+//     },
+//     {
+//       "type": "gallery",
+//       "children": [
+//         {
+//           "type": "image",
+//           "url": "a",
+//           "title": null,
+//           "alt": ""
+//         },
+//         {
+//           "type": "image",
+//           "url": "b",
+//           "title": null,
+//           "alt": ""
+//         },
+//         {
+//           "type": "image",
+//           "url": "c",
+//           "title": null,
+//           "alt": ""
+//         }
+//       ]
+//     }
+//   ]
+// }
+```
 
-`LinkReference` are converted to `Link`.
+### AST
 
-`FootnoteReference` are converted to `Footnote`.
+```ts
+interface Node {
+  type: string
+}
 
-The type of `Footnote.children` is changed to `Array<PhrasingContent | BlockContent>`.
+interface Parent {
+  children: Node[]
+}
 
-The type of `Literal.value` is changed to `string`.
+interface ParentOf<T extends Node[]> extends Parent {
+  children: T
+}
+
+type BlockContent =
+| Blockquote
+| Code
+| Heading
+| List
+| ListContent
+| ThematicBreak
+| Paragraph
+| Table
+| TableContent
+| RowContent
+| LeafDirective
+| ContainerDirective
+| Gallery
+| Image
+
+type InlineContent =
+| Link
+| Break
+| Emphasis
+| InlineImage
+| InlineCode
+| Strong
+| Text
+| Delete
+| Footnote
+| TextDirective
+
+type ListContent = ListItem
+type TableContent = TableRow
+type RowContent = TableCell
+
+interface Root extends Node, ParentOf<BlockContent[]> {
+  type: 'root'
+}
+
+interface Paragraph extends Node, ParentOf<InlineContent[]> {
+  type: 'paragraph'
+}
+
+interface Heading extends Node, ParentOf<InlineContent[]> {
+  type: 'heading'
+  depth: 1 | 2 | 3 | 4 | 5 | 6
+}
+
+interface ThematicBreak extends Node {
+  type: 'thematicBreak'
+}
+
+interface Blockquote extends Node, ParentOf<BlockContent[]> {
+  type: 'blockquote'
+}
+
+interface List extends Node, ParentOf<ListContent[]> {
+  type: 'list'
+  ordered: boolean | null
+  start: number | null
+  spread: boolean | null
+}
+
+interface ListItem extends Node, ParentOf<BlockContent[]> {
+  type: 'listItem'
+  spread: boolean | null
+  checked: boolean | null
+}
+
+interface Code extends Node {
+  type: 'code'
+  value: string
+  lang: string | null
+  meta: string | null
+}
+
+interface Text extends Node {
+  type: 'text'
+  value: string
+}
+
+interface Emphasis extends Node, ParentOf<InlineContent[]> {
+  type: 'emphasis'
+}
+
+interface Strong extends Node, ParentOf<InlineContent[]> {
+  type: 'strong'
+}
+
+interface InlineCode extends Node {
+  type: 'inlineCode'
+  value: string
+}
+
+interface Break extends Node {
+  type: 'break'
+}
+
+interface Link extends Node, ParentOf<InlineContent[]> {
+  type: 'link'
+  url: string
+  title: string | null
+}
+
+interface Image extends Node {
+  type: 'image'
+  url: string
+  title: string | null
+  alt: string | null
+}
+
+interface InlineImage extends Node {
+  type: 'inlineImage'
+  url: string
+  title: string | null
+  alt: string | null
+}
+
+interface Table extends Node, ParentOf<TableContent[]> {
+  type: 'table'
+  align: Array<'left' | 'right' | 'center' | null> | null
+}
+
+interface TableRow extends Node, ParentOf<RowContent[]> {
+  type: 'tableRow'
+}
+
+interface TableCell extends Node, ParentOf<InlineContent[]> {
+  type: 'tableCell'
+}
+
+interface Delete extends Node, ParentOf<InlineContent[]> {
+  type: 'delete'
+}
+
+interface Footnote extends Node, ParentOf<InlineContent[] | BlockContent[]> {
+  type: 'footnote'
+}
+
+interface TextDirective extends Node, ParentOf<InlineContent[]> {
+  type: 'textDirective'
+  name: string
+  attributes: Record<string, string>
+}
+
+interface LeafDirective extends Node, ParentOf<InlineContent[]> {
+  type: 'leafDirective'
+  name: string
+  attributes: Record<string, string>
+}
+
+interface ContainerDirective extends Node, ParentOf<BlockContent[]> {
+  type: 'containerDirective'
+  name: string
+  attributes: Record<string, string>
+}
+
+interface Gallery extends Node, ParentOf<Image[]>{
+  type: 'gallery'
+}
+```
+
+### Difference from mdast v4
+
+All reference nodes will be converted to no reference nodes:
+- `ImageReference` are converted to `Image`.
+- `LinkReference` are converted to `Link`.
+- `FootnoteReference` are converted to `Footnote`.
+
+The type of `Footnote.children` is changed to `InlineContent[] | BlockContent[]`.
+
+The `Image` nodes are now divided into two types: `InlineImage` and `Image`.
+
+The `Paragraph` only containing `InlineImage` now be parsed as `Image`.
+
+The top-level `ListItem` with `Image` now be parsed as `Gallery`.
+
+The following nodes are not supported:
+- `YAML`
 
 The following node types are removed:
-- `YAML`
+- `HTML`
 - `Definition`
 - `FootnoteDefinition`
 
 The following node properties are removed:
 - `data`
 - `position`
+
+## API
+
+### parse
+
+```ts
+function parse(text: string): RMDAST.Root
+```
+
+### is
+
+Each rmdast node has a corresponding `is` function.
