@@ -48,101 +48,101 @@ export function isRowContent(node: RMDAST.Node): node is RMDAST.RowContent {
 }
 
 export function isGallery(node: RMDAST.Node): node is RMDAST.Gallery {
-  return is<RMDAST.Gallery>(node, 'gallery')
+  return is(node, 'gallery')
 }
 
 export function isRoot(node: RMDAST.Node): node is RMDAST.Root {
-  return is<RMDAST.Root>(node, 'root')
+  return is(node, 'root')
 }
 
 export function isParagraph(node: RMDAST.Node): node is RMDAST.Paragraph {
-  return is<RMDAST.Paragraph>(node, 'paragraph')
+  return is(node, 'paragraph')
 }
 
 export function isHeading(node: RMDAST.Node): node is RMDAST.Heading {
-  return is<RMDAST.Heading>(node, 'heading')
+  return is(node, 'heading')
 }
 
 export function isThematicBreak(node: RMDAST.Node): node is RMDAST.ThematicBreak {
-  return is<RMDAST.ThematicBreak>(node, 'thematicBreak')
+  return is(node, 'thematicBreak')
 }
 
 export function isBlockquote(node: RMDAST.Node): node is RMDAST.Blockquote {
-  return is<RMDAST.Blockquote>(node, 'blockquote')
+  return is(node, 'blockquote')
 }
 
 export function isList(node: RMDAST.Node): node is RMDAST.List {
-  return is<RMDAST.List>(node, 'list')
+  return is(node, 'list')
 }
 
 export function isListItem(node: RMDAST.Node): node is RMDAST.ListItem {
-  return is<RMDAST.ListItem>(node, 'listItem')
+  return is(node, 'listItem')
 }
 
 export function isTable(node: RMDAST.Node): node is RMDAST.Table {
-  return is<RMDAST.Table>(node, 'table')
+  return is(node, 'table')
 }
 
 export function isTableRow(node: RMDAST.Node): node is RMDAST.TableRow {
-  return is<RMDAST.TableRow>(node, 'tableRow')
+  return is(node, 'tableRow')
 }
 
 export function isTableCell(node: RMDAST.Node): node is RMDAST.TableCell {
-  return is<RMDAST.TableCell>(node, 'tableCell')
+  return is(node, 'tableCell')
 }
 
 export function isCode(node: RMDAST.Node): node is RMDAST.Code {
-  return is<RMDAST.Code>(node, 'code')
+  return is(node, 'code')
 }
 
 export function isText(node: RMDAST.Node): node is RMDAST.Text {
-  return is<RMDAST.Text>(node, 'text')
+  return is(node, 'text')
 }
 
 export function isEmphasis(node: RMDAST.Node): node is RMDAST.Emphasis {
-  return is<RMDAST.Emphasis>(node, 'emphasis')
+  return is(node, 'emphasis')
 }
 
 export function isStrong(node: RMDAST.Node): node is RMDAST.Strong {
-  return is<RMDAST.Strong>(node, 'strong')
+  return is(node, 'strong')
 }
 
 export function isDelete(node: RMDAST.Node): node is RMDAST.Delete {
-  return is<RMDAST.Delete>(node, 'delete')
+  return is(node, 'delete')
 }
 
 export function isInlineCode(node: RMDAST.Node): node is RMDAST.InlineCode {
-  return is<RMDAST.InlineCode>(node, 'inlineCode')
+  return is(node, 'inlineCode')
 }
 
 export function isBreak(node: RMDAST.Node): node is RMDAST.Break {
-  return is<RMDAST.Break>(node, 'break')
+  return is(node, 'break')
 }
 
 export function isLink(node: RMDAST.Node): node is RMDAST.Link {
-  return is<RMDAST.Link>(node, 'link')
+  return is(node, 'link')
 }
 
 export function isImage(node: RMDAST.Node): node is RMDAST.Image {
-  return is<RMDAST.Image>(node, 'image')
+  return is(node, 'image')
 }
 
 export function isInlineImage(node: RMDAST.Node): node is RMDAST.InlineImage {
-  return is<RMDAST.InlineImage>(node, 'inlineImage')
+  return is(node, 'inlineImage')
 }
 
 export function isFootnote(node: RMDAST.Node): node is RMDAST.Footnote {
-  return is<RMDAST.Footnote>(node, 'footnote')
+  return is(node, 'footnote')
 }
 
 export function isTextDirective(node: RMDAST.Node): node is RMDAST.TextDirective {
-  return is<RMDAST.TextDirective>(node, 'textDirective')
+  return is(node, 'textDirective')
 }
 
 export function isLeafDirective(node: RMDAST.Node): node is RMDAST.LeafDirective {
-  return is<RMDAST.LeafDirective>(node, 'leafDirective')
+  return is(node, 'leafDirective')
 }
 
 export function isContainerDirective(node: RMDAST.Node): node is RMDAST.ContainerDirective {
-  return is<RMDAST.ContainerDirective>(node, 'containerDirective')
+  return is(node, 'containerDirective')
 }

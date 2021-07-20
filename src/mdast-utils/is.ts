@@ -69,113 +69,113 @@ export function isRowContent(node: MDAST.Node): node is MDAST.RowContent {
 }
 
 export function isParagraph(node: MDAST.Node): node is MDAST.Paragraph {
-  return is<MDAST.Paragraph>(node, 'paragraph')
+  return is(node, 'paragraph')
 }
 
 export function isHeading(node: MDAST.Node): node is MDAST.Heading {
-  return is<MDAST.Heading>(node, 'heading')
+  return is(node, 'heading')
 }
 
 export function isThematicBreak(node: MDAST.Node): node is MDAST.ThematicBreak {
-  return is<MDAST.ThematicBreak>(node, 'thematicBreak')
+  return is(node, 'thematicBreak')
 }
 
 export function isBlockquote(node: MDAST.Node): node is MDAST.Blockquote {
-  return is<MDAST.Blockquote>(node, 'blockquote')
+  return is(node, 'blockquote')
 }
 
 export function isList(node: MDAST.Node): node is MDAST.List {
-  return is<MDAST.List>(node, 'list')
+  return is(node, 'list')
 }
 
 export function isListItem(node: MDAST.Node): node is MDAST.ListItem {
-  return is<MDAST.ListItem>(node, 'listItem')
+  return is(node, 'listItem')
 }
 
 export function isHTML(node: MDAST.Node): node is MDAST.HTML {
-  return is<MDAST.HTML>(node, 'html')
+  return is(node, 'html')
 }
 
 export function isCode(node: MDAST.Node): node is MDAST.Code {
-  return is<MDAST.Code>(node, 'code')
+  return is(node, 'code')
 }
 
 export function isDefinition(node: MDAST.Node): node is MDAST.Definition {
-  return is<MDAST.Definition>(node, 'definition')
+  return is(node, 'definition')
 }
 
 export function isText(node: MDAST.Node): node is MDAST.Text {
-  return is<MDAST.Text>(node, 'text')
+  return is(node, 'text')
 }
 
 export function isEmphasis(node: MDAST.Node): node is MDAST.Emphasis {
-  return is<MDAST.Emphasis>(node, 'emphasis')
+  return is(node, 'emphasis')
 }
 
 export function isStrong(node: MDAST.Node): node is MDAST.Strong {
-  return is<MDAST.Strong>(node, 'strong')
+  return is(node, 'strong')
 }
 
 export function isInlineCode(node: MDAST.Node): node is MDAST.InlineCode {
-  return is<MDAST.InlineCode>(node, 'inlineCode')
+  return is(node, 'inlineCode')
 }
 
 export function isBreak(node: MDAST.Node): node is MDAST.Break {
-  return is<MDAST.Break>(node, 'break')
+  return is(node, 'break')
 }
 
 export function isLink(node: MDAST.Node): node is MDAST.Link {
-  return is<MDAST.Link>(node, 'link')
+  return is(node, 'link')
 }
 
 export function isImage(node: MDAST.Node): node is MDAST.Image {
-  return is<MDAST.Image>(node, 'image')
+  return is(node, 'image')
 }
 
 export function isLinkReference(node: MDAST.Node): node is MDAST.LinkReference {
-  return is<MDAST.LinkReference>(node, 'linkReference')
+  return is(node, 'linkReference')
 }
 
 export function isImageReference(node: MDAST.Node): node is MDAST.ImageReference {
-  return is<MDAST.ImageReference>(node, 'imageReference')
+  return is(node, 'imageReference')
 }
 
 export function isTable(node: MDAST.Node): node is MDAST.Table {
-  return is<MDAST.Table>(node, 'table')
+  return is(node, 'table')
 }
 
 export function isTableRow(node: MDAST.Node): node is MDAST.TableRow {
-  return is<MDAST.TableRow>(node, 'tableRow')
+  return is(node, 'tableRow')
 }
 
 export function isTableCell(node: MDAST.Node): node is MDAST.TableCell {
-  return is<MDAST.TableCell>(node, 'tableCell')
+  return is(node, 'tableCell')
 }
 
 export function isDelete(node: MDAST.Node): node is MDAST.Delete {
-  return is<MDAST.Delete>(node, 'delete')
+  return is(node, 'delete')
 }
 
 export function isFootnote(node: MDAST.Node): node is MDAST.Footnote {
-  return is<MDAST.Footnote>(node, 'footnote')
+  return is(node, 'footnote')
 }
 
 export function isFootnoteDefinition(node: MDAST.Node): node is MDAST.FootnoteDefinition {
-  return is<MDAST.FootnoteDefinition>(node, 'footnoteDefinition')
+  return is(node, 'footnoteDefinition')
 }
 
 export function isFootnoteReference(node: MDAST.Node): node is MDAST.FootnoteReference {
-  return is<MDAST.FootnoteReference>(node, 'footnoteReference')
+  return is(node, 'footnoteReference')
 }
 
 export function isTextDirective(node: MDAST.Node): node is MDAST.TextDirective {
-  return is<MDAST.TextDirective>(node, 'textDirective')
+  return is(node, 'textDirective')
 }
 
 export function isLeafDirective(node: MDAST.Node): node is MDAST.LeafDirective {
-  return is<MDAST.LeafDirective>(node, 'leafDirective')
+  return is(node, 'leafDirective')
 }
 
 export function isContainerDirective(node: MDAST.Node): node is MDAST.ContainerDirective {
-  return is<MDAST.ContainerDirective>(node, 'containerDirective')
+  return is(node, 'containerDirective')
 }
