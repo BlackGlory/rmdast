@@ -245,7 +245,7 @@ interface Gallery extends Node, ParentOf<Image[]>{
 }
 ```
 
-### Difference from mdast v4
+### The difference between rmdast v2 and mdast v4
 
 All reference nodes will be converted to no reference nodes:
 - `ImageReference` are converted to `Image`.
@@ -271,6 +271,34 @@ The following node types are removed:
 The following node properties are removed:
 - `data`
 - `position`
+
+#### Why is there a `Gallery` node?
+It is a common requirement to display multiple images with one component, but the syntax of Markdown determines that each image is independent, and it is difficult to link them together at the AST level.
+
+To solve this problem, RMDAST specifically adds this node type.
+
+##### Can't this be done through directive?
+Yes, but not elegant.
+
+The following Markdown text generates redundant text nodes(`\n`):
+```markdown
+:::gallery
+![](a)
+![](b)
+![](c)
+:::
+```
+
+The following Markdown text has redundant blank lines:
+```markdown
+:::gallery
+![](a)
+
+![](b)
+
+![](c)
+:::
+```
 
 ## API
 
