@@ -37,7 +37,7 @@ export function blockquote(children: RMDAST.Blockquote['children']): RMDAST.Bloc
 
 export function list(
   children: RMDAST.List['children']
-, { ordered = null, start = null, spread = null }: Partial<Pick<RMDAST.List, 'ordered' | 'start' | 'spread'>>
+, { ordered = null, start = null, spread = null }: Partial<Pick<RMDAST.List, 'ordered' | 'start' | 'spread'>> = {}
 ): RMDAST.List {
   return {
     type: 'list'
@@ -50,7 +50,7 @@ export function list(
 
 export function listItem(
   children: RMDAST.ListItem['children']
-, { checked = null, spread = null }: Partial<Pick<RMDAST.ListItem, 'checked' | 'spread'>>
+, { checked = null, spread = null }: Partial<Pick<RMDAST.ListItem, 'checked' | 'spread'>> = {}
 ): RMDAST.ListItem {
   return {
     type: 'listItem'
@@ -62,7 +62,7 @@ export function listItem(
 
 export function code(
   value: string
-, { lang = null, meta = null }: Partial<Pick<RMDAST.Code, 'lang' | 'meta'>>
+, { lang = null, meta = null }: Partial<Pick<RMDAST.Code, 'lang' | 'meta'>> = {}
 ): RMDAST.Code {
   return {
     type: 'code'
@@ -109,7 +109,7 @@ export function brk(): RMDAST.Break {
 export function link(
   url: RMDAST.Link['url']
 , children: RMDAST.Link['children']
-, { title = null }: Partial<Pick<RMDAST.Link, 'title'>>
+, { title = null }: Partial<Pick<RMDAST.Link, 'title'>> = {}
 ): RMDAST.Link {
   return {
     type: 'link'
@@ -121,7 +121,7 @@ export function link(
 
 export function image(
   url: RMDAST.Image['url']
-, { title = null, alt = null }: Partial<Pick<RMDAST.Image, 'title' | 'alt'>>
+, { title = null, alt = null }: Partial<Pick<RMDAST.Image, 'title' | 'alt'>> = {}
 ): RMDAST.Image {
   return {
     type: 'image'
@@ -133,7 +133,7 @@ export function image(
 
 export function inlineImage(
   url: RMDAST.InlineImage['url']
-, { title = null, alt = null }: Partial<Pick<RMDAST.InlineImage, 'title' | 'alt'>>
+, { title = null, alt = null }: Partial<Pick<RMDAST.InlineImage, 'title' | 'alt'>> = {}
 ): RMDAST.InlineImage {
   return {
     type: 'inlineImage'
@@ -185,7 +185,7 @@ export function footnote(children: RMDAST.Footnote['children']): RMDAST.Footnote
 export function textDirective(
   name: RMDAST.TextDirective['name']
 , children: RMDAST.TextDirective['children']
-, { attributes = {} }: Partial<Pick<RMDAST.TextDirective, 'attributes'>>
+, { attributes = {} }: Partial<Pick<RMDAST.TextDirective, 'attributes'>> = {}
 ): RMDAST.TextDirective {
   return {
     type: 'textDirective'
@@ -198,7 +198,7 @@ export function textDirective(
 export function leafDirective(
   name: RMDAST.LeafDirective['name']
 , children: RMDAST.LeafDirective['children']
-, { attributes = {} }: Partial<Pick<RMDAST.LeafDirective, 'attributes'>>
+, { attributes = {} }: Partial<Pick<RMDAST.LeafDirective, 'attributes'>> = {}
 ): RMDAST.LeafDirective {
   return {
     type: 'leafDirective'
@@ -211,7 +211,7 @@ export function leafDirective(
 export function containerDirective(
   name: RMDAST.ContainerDirective['name']
 , children: RMDAST.ContainerDirective['children']
-, { attributes = {} }: Partial<Pick<RMDAST.ContainerDirective, 'attributes'>>
+, { attributes = {} }: Partial<Pick<RMDAST.ContainerDirective, 'attributes'>> = {}
 ): RMDAST.ContainerDirective {
   return {
     type: 'containerDirective'
