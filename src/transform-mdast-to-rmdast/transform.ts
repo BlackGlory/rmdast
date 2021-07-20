@@ -19,7 +19,7 @@ export function transformRoot(root: MDAST.Root): RMDAST.Root {
 function transformMdastContent(
   node: MDAST.MdastContent
 , root: MDAST.Root
-): RMDAST.BlockContent | RMDAST.InlineContent | undefined {
+): RMDAST.BlockContent | RMDAST.InlineContent | RMDAST.ListContent | RMDAST.TableContent | RMDAST.RowContent | undefined {
   if (MDAST_IS.isFlowContent(node)) return transformFlowContent(node, root)
   if (MDAST_IS.isListContent(node)) return transformListContent(node, root)
   if (MDAST_IS.isPhrasingContent(node)) return transformPhrasingContent(node, root)

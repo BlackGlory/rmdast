@@ -85,13 +85,17 @@ describe('MDAST.List', () => {
 describe('MDAST.ListItem', () => {
   it('return RMDAST.ListItem', () => {
     const mdast = M.root([
-      M.listItem([], { checked: true, spread: true })
+      M.list([
+        M.listItem([], { checked: true, spread: true })
+      ])
     ])
 
     const result = transform(mdast)
 
     expect(result).toStrictEqual(R.root([
-      R.listItem([], { checked: true, spread: true })
+      R.list([
+        R.listItem([], { checked: true, spread: true })
+      ], {})
     ]))
   })
 })
@@ -333,13 +337,17 @@ describe('MDAST.Table', () => {
 describe('MDAST.TableRow', () => {
   it('return RMDAST.TableRow', () => {
     const mdast = M.root([
-      M.tableRow([])
+      M.table([
+        M.tableRow([])
+      ])
     ])
 
     const result = transform(mdast)
 
     expect(result).toStrictEqual(R.root([
-      R.tableRow([])
+      R.table([
+        R.tableRow([])
+      ], {})
     ]))
   })
 })
@@ -347,13 +355,21 @@ describe('MDAST.TableRow', () => {
 describe('MDAST.TableCell', () => {
   it('return RMDAST.TableCell', () => {
     const mdast = M.root([
-      M.tableCell([])
+      M.table([
+        M.tableRow([
+          M.tableCell([])
+        ])
+      ])
     ])
 
     const result = transform(mdast)
 
     expect(result).toStrictEqual(R.root([
-      R.tableCell([])
+      R.table([
+        R.tableRow([
+          R.tableCell([])
+        ])
+      ], {})
     ]))
   })
 })

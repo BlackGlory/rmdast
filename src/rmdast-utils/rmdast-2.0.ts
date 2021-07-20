@@ -15,12 +15,9 @@ export type BlockContent =
 | Code
 | Heading
 | List
-| ListContent
 | ThematicBreak
 | Paragraph
 | Table
-| TableContent
-| RowContent
 | LeafDirective
 | ContainerDirective
 | Gallery
