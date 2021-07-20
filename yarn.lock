@@ -3180,6 +3180,13 @@ extglob@^2.0.4:
     snapdragon "^0.8.1"
     to-regex "^3.0.1"
 
+extra-tags@^0.2.2:
+  version "0.2.2"
+  resolved "https://registry.yarnpkg.com/extra-tags/-/extra-tags-0.2.2.tgz#bbb6f546520a6e31ee5389ffdec27fa0de10a55b"
+  integrity sha512-aWsBrb9hH/vqvbvlR+w9FfJTowDT3+2m/1mzlKasSmLhHbUdEShsSpl9rILneeG0FemfgNohZkyfEtc/02y9eg==
+  dependencies:
+    justypes "^0.1.5"
+
 fast-deep-equal@^3.1.1, fast-deep-equal@^3.1.3:
   version "3.1.3"
   resolved "https://registry.yarnpkg.com/fast-deep-equal/-/fast-deep-equal-3.1.3.tgz#3a7d56b559d6cbc3eb512325244e619a65c6c525"

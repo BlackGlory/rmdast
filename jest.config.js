@@ -22,6 +22,9 @@ const esModules = [
 , 'escape-string-regexp'
 , 'mdast-util-to-markdown'
 , 'markdown-table'
+, 'mdast-util-footnote'
+, 'mdast-util-directive'
+, 'stringify-entities'
 ].join('|')
 
 module.exports = {
