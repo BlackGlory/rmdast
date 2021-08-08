@@ -252,13 +252,15 @@ All reference nodes will be converted to no reference nodes:
 - `LinkReference` are converted to `Link`.
 - `FootnoteReference` are converted to `Footnote`.
 
-The type of `Footnote.children` is changed to `InlineContent[] | BlockContent[]`.
+The `Footnote` nodes have been renamed to `InlineFootnote`.
 
 The `Image` nodes are now divided into two types: `InlineImage` and `Image`.
 
 The `Paragraph` only containing `InlineImage` now be parsed as `Image`.
 
 The top-level `ListItem` with `Image` now be parsed as `Gallery`.
+
+The `children` of `Table` node has been removed, `header` and `body` have been added.
 
 The following nodes are not supported:
 - `YAML`
@@ -267,6 +269,9 @@ The following node types are removed:
 - `HTML`
 - `Definition`
 - `FootnoteDefinition`
+- `ListContent`
+- `TableContent`
+- `RowContent`
 
 The following node properties are removed:
 - `data`
