@@ -320,56 +320,31 @@ describe('MDAST.ImageReference', () => {
   })
 })
 
-describe('MDAST.Table', () => {
-  it('return RMDAST.Table', () => {
-    const mdast = M.root([
-      M.table([], { align: ['left'] })
-    ])
-
-    const result = transform(mdast)
-
-    expect(result).toStrictEqual(R.root([
-      R.table([], { align: ['left'] })
-    ]))
-  })
-})
-
-describe('MDAST.TableRow', () => {
-  it('return RMDAST.TableRow', () => {
-    const mdast = M.root([
-      M.table([
-        M.tableRow([])
-      ])
-    ])
-
-    const result = transform(mdast)
-
-    expect(result).toStrictEqual(R.root([
-      R.table([
-        R.tableRow([])
-      ], {})
-    ]))
-  })
-})
-
-describe('MDAST.TableCell', () => {
-  it('return RMDAST.TableCell', () => {
+describe('MDAST.Table, MDAST.TableRow, MDAST.TableCell', () => {
+  it('return RMDAST.Table, RMDAST.TableRow, RMDAST.TableCell', () => {
     const mdast = M.root([
       M.table([
         M.tableRow([
-          M.tableCell([])
+          M.tableCell([M.text('header')])
         ])
-      ])
+      , M.tableRow([
+          M.tableCell([M.text('body')])
+        ])
+      ], { align: ['left'] })
     ])
 
     const result = transform(mdast)
 
     expect(result).toStrictEqual(R.root([
-      R.table([
+      R.table(
         R.tableRow([
-          R.tableCell([])
+          R.tableCell([R.text('header')])
         ])
-      ], {})
+      , [R.tableRow([
+          R.tableCell([R.text('body')])
+        ])]
+      , { align: ['left'] }
+      )
     ]))
   })
 })

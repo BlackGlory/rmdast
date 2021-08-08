@@ -36,18 +36,6 @@ export function isInlineContent(node: RMDAST.Node): node is RMDAST.InlineContent
       || isTextDirective(node)
 }
 
-export function isListContent(node: RMDAST.Node): node is RMDAST.ListContent {
-  return isListItem(node)
-}
-
-export function isTableContent(node: RMDAST.Node): node is RMDAST.TableContent {
-  return isTableRow(node)
-}
-
-export function isRowContent(node: RMDAST.Node): node is RMDAST.RowContent {
-  return isTableCell(node)
-}
-
 export function isGallery(node: RMDAST.Node): node is RMDAST.Gallery {
   return is(node, 'gallery')
 }

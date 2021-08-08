@@ -36,10 +36,6 @@ export type InlineContent =
 | InlineFootnote
 | TextDirective
 
-export type ListContent = ListItem
-export type TableContent = TableRow
-export type RowContent = TableCell
-
 export interface Root extends Node, ParentOf<BlockContent[]> {
   type: 'root'
 }
@@ -61,7 +57,7 @@ export interface Blockquote extends Node, ParentOf<BlockContent[]> {
   type: 'blockquote'
 }
 
-export interface List extends Node, ParentOf<ListContent[]> {
+export interface List extends Node, ParentOf<ListItem[]> {
   type: 'list'
   ordered: boolean | null
   start: number | null
@@ -123,12 +119,14 @@ export interface InlineImage extends Node {
   alt: string | null
 }
 
-export interface Table extends Node, ParentOf<TableContent[]> {
+export interface Table extends Node {
   type: 'table'
   align: Array<'left' | 'right' | 'center' | null> | null
+  header: TableRow
+  body: TableRow[]
 }
 
-export interface TableRow extends Node, ParentOf<RowContent[]> {
+export interface TableRow extends Node, ParentOf<TableCell[]> {
   type: 'tableRow'
 }
 

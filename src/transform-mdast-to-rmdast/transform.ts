@@ -19,7 +19,7 @@ export function transformRoot(root: MDAST.Root): RMDAST.Root {
 function transformMdastContent(
   node: MDAST.MdastContent
 , root: MDAST.Root
-): RMDAST.BlockContent | RMDAST.InlineContent | RMDAST.ListContent | RMDAST.TableContent | RMDAST.RowContent | undefined {
+): RMDAST.BlockContent | RMDAST.InlineContent | RMDAST.ListItem | RMDAST.TableRow | RMDAST.TableCell | undefined {
   if (MDAST_IS.isFlowContent(node)) return transformFlowContent(node, root)
   if (MDAST_IS.isListContent(node)) return transformListContent(node, root)
   if (MDAST_IS.isPhrasingContent(node)) return transformPhrasingContent(node, root)
@@ -55,7 +55,7 @@ function transformContent(
   throw new UnknownNodeError()
 }
 
-function transformListContent(node: MDAST.ListContent, root: MDAST.Root): RMDAST.ListContent {
+function transformListContent(node: MDAST.ListContent, root: MDAST.Root): RMDAST.ListItem {
   if (MDAST_IS.isListItem(node)) return transformListItem(node, root)
   throw new UnknownNodeError()
 }
@@ -92,12 +92,12 @@ function transformStaticPhrasingContent(
 function transformTableContent(
   node: MDAST.TableContent
 , root: MDAST.Root
-): RMDAST.TableContent {
+): RMDAST.TableRow {
   if (MDAST_IS.isTableRow(node)) return transformTableRow(node, root)
   throw new UnknownNodeError()
 }
 
-function transformRowContent(node: MDAST.RowContent, root: MDAST.Root): RMDAST.RowContent {
+function transformRowContent(node: MDAST.RowContent, root: MDAST.Root): RMDAST.TableCell {
   if (MDAST_IS.isTableCell(node)) return transformTableCell(node, root)
   throw new UnknownNodeError()
 }
@@ -239,10 +239,14 @@ function transformImageReference(node: MDAST.ImageReference, root: MDAST.Root): 
 }
 
 function transformTable(node: MDAST.Table, root: MDAST.Root): RMDAST.Table {
+  const header = transformTableRow(node.children[0], root)
+  const body = map(node.children.slice(1), x => transformTableRow(x, root)) 
+
   return {
     type: 'table'
   , align: node.align ?? null
-  , children: map(node.children, x => transformTableContent(x, root))
+  , header
+  , body
   }
 }
 

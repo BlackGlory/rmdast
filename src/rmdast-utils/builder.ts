@@ -144,13 +144,15 @@ export function inlineImage(
 }
 
 export function table(
-  children: RMDAST.Table['children']
+  header: RMDAST.Table['header']
+, body: RMDAST.Table['body']
 , { align = null }: Partial<Pick<RMDAST.Table, 'align'>>
 ): RMDAST.Table {
   return {
     type: 'table'
-  , children
   , align
+  , header
+  , body
   }
 }
 

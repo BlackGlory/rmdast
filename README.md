@@ -112,10 +112,6 @@ type InlineContent =
 | InlineFootnote
 | TextDirective
 
-type ListContent = ListItem
-type TableContent = TableRow
-type RowContent = TableCell
-
 interface Root extends Node, ParentOf<BlockContent[]> {
   type: 'root'
 }
@@ -137,7 +133,7 @@ interface Blockquote extends Node, ParentOf<BlockContent[]> {
   type: 'blockquote'
 }
 
-interface List extends Node, ParentOf<ListContent[]> {
+interface List extends Node, ParentOf<ListItem[]> {
   type: 'list'
   ordered: boolean | null
   start: number | null
@@ -199,12 +195,14 @@ interface InlineImage extends Node {
   alt: string | null
 }
 
-interface Table extends Node, ParentOf<TableContent[]> {
+interface Table extends Node {
   type: 'table'
   align: Array<'left' | 'right' | 'center' | null> | null
+  header: TableRow
+  body: TableRow[]
 }
 
-interface TableRow extends Node, ParentOf<RowContent[]> {
+interface TableRow extends Node, ParentOf<TableCell[]> {
   type: 'tableRow'
 }
 
