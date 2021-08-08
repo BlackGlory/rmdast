@@ -267,9 +267,9 @@ function transformDelete(node: MDAST.Delete, root: MDAST.Root): RMDAST.Delete {
   }
 }
 
-function transformFootnote(node: MDAST.Footnote, root: MDAST.Root): RMDAST.Footnote {
+function transformFootnote(node: MDAST.Footnote, root: MDAST.Root): RMDAST.InlineFootnote {
   return {
-    type: 'footnote'
+    type: 'inlineFootnote'
   , children: map(node.children, x => transformPhrasingContent(x, root))
   }
 }

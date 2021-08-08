@@ -404,7 +404,7 @@ describe('MDAST.Footnote', () => {
 
     expect(result).toStrictEqual(R.root([
       R.paragraph([
-        R.footnote([])
+        R.inlineFootnote([])
       ])
     ]))
   })

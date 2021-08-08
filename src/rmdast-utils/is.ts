@@ -32,6 +32,7 @@ export function isInlineContent(node: RMDAST.Node): node is RMDAST.InlineContent
       || isText(node)
       || isDelete(node)
       || isFootnote(node)
+      || isInlineFootnote(node)
       || isTextDirective(node)
 }
 
@@ -133,6 +134,10 @@ export function isInlineImage(node: RMDAST.Node): node is RMDAST.InlineImage {
 
 export function isFootnote(node: RMDAST.Node): node is RMDAST.Footnote {
   return is(node, 'footnote')
+}
+
+export function isInlineFootnote(node: RMDAST.Node): node is RMDAST.InlineFootnote {
+  return is(node, 'inlineFootnote')
 }
 
 export function isTextDirective(node: RMDAST.Node): node is RMDAST.TextDirective {

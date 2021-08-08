@@ -109,6 +109,7 @@ type InlineContent =
 | Text
 | Delete
 | Footnote
+| InlineFootnote
 | TextDirective
 
 type ListContent = ListItem
@@ -215,8 +216,12 @@ interface Delete extends Node, ParentOf<InlineContent[]> {
   type: 'delete'
 }
 
-interface Footnote extends Node, ParentOf<InlineContent[] | BlockContent[]> {
+interface Footnote extends Node, ParentOf<BlockContent[]> {
   type: 'footnote'
+}
+
+interface InlineFootnote extends Node, ParentOf<InlineContent[]> {
+  type: 'inlineFootnote'
 }
 
 interface TextDirective extends Node, ParentOf<InlineContent[]> {

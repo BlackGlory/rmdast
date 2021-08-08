@@ -33,6 +33,7 @@ export type InlineContent =
 | Text
 | Delete
 | Footnote
+| InlineFootnote
 | TextDirective
 
 export type ListContent = ListItem
@@ -139,8 +140,12 @@ export interface Delete extends Node, ParentOf<InlineContent[]> {
   type: 'delete'
 }
 
-export interface Footnote extends Node, ParentOf<InlineContent[] | BlockContent[]> {
+export interface Footnote extends Node, ParentOf<BlockContent[]> {
   type: 'footnote'
+}
+
+export interface InlineFootnote extends Node, ParentOf<InlineContent[]> {
+  type: 'inlineFootnote'
 }
 
 export interface TextDirective extends Node, ParentOf<InlineContent[]> {

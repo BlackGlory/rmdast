@@ -182,6 +182,15 @@ export function footnote(children: RMDAST.Footnote['children']): RMDAST.Footnote
   }
 }
 
+export function inlineFootnote(
+  children: RMDAST.InlineFootnote['children']
+): RMDAST.InlineFootnote {
+  return {
+    type: 'inlineFootnote'
+  , children
+  }
+}
+
 export function textDirective(
   name: RMDAST.TextDirective['name']
 , children: RMDAST.TextDirective['children']
