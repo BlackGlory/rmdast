@@ -9,7 +9,10 @@ export function find<T extends RMDAST.Node>(
 ): T | undefined {
   if (predicate(node)) return node as T
   if (isParent(node)) {
-    const result = findInIterable(traverseDescendantNodes(node), node => predicate(node))
+    const result = findInIterable(
+      traverseDescendantNodes(node)
+    , node => predicate(node)
+    )
     if (result) return result as T
   }
   return undefined

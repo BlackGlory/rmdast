@@ -1,4 +1,5 @@
 export * from './find'
+export * from './find-all'
 export * from './flat-map'
 export * from './map'
 export * from './split-title-body'
