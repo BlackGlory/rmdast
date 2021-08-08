@@ -121,7 +121,6 @@ export interface InlineImage extends Node {
 
 export interface Table extends Node {
   type: 'table'
-  align: Array<'left' | 'right' | 'center' | null> | null
   header: TableRow
   body: TableRow[]
 }

@@ -197,7 +197,6 @@ interface InlineImage extends Node {
 
 interface Table extends Node {
   type: 'table'
-  align: Array<'left' | 'right' | 'center' | null> | null
   header: TableRow
   body: TableRow[]
 }
@@ -260,7 +259,7 @@ The `Paragraph` only containing `InlineImage` now be parsed as `Image`.
 
 The top-level `ListItem` with `Image` now be parsed as `Gallery`.
 
-The `children` of `Table` node has been removed, `header` and `body` have been added.
+The `children` and `align` of `Table` node have been removed, `header` and `body` have been added.
 
 The following nodes are not supported:
 - `YAML`

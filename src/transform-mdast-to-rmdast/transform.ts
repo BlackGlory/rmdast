@@ -244,7 +244,6 @@ function transformTable(node: MDAST.Table, root: MDAST.Root): RMDAST.Table {
 
   return {
     type: 'table'
-  , align: node.align ?? null
   , header
   , body
   }

@@ -330,7 +330,7 @@ describe('MDAST.Table, MDAST.TableRow, MDAST.TableCell', () => {
       , M.tableRow([
           M.tableCell([M.text('body')])
         ])
-      ], { align: ['left'] })
+      ])
     ])
 
     const result = transform(mdast)
@@ -340,10 +340,11 @@ describe('MDAST.Table, MDAST.TableRow, MDAST.TableCell', () => {
         R.tableRow([
           R.tableCell([R.text('header')])
         ])
-      , [R.tableRow([
-          R.tableCell([R.text('body')])
-        ])]
-      , { align: ['left'] }
+      , [
+          R.tableRow([
+            R.tableCell([R.text('body')])
+          ])
+        ]
       )
     ]))
   })
