@@ -145,12 +145,12 @@ export function inlineImage(
 
 export function table(
   header: RMDAST.Table['header']
-, body: RMDAST.Table['body']
+, children: RMDAST.Table['children']
 ): RMDAST.Table {
   return {
     type: 'table'
   , header
-  , body
+  , children
   }
 }
 

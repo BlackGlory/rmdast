@@ -119,10 +119,10 @@ export interface InlineImage extends Node {
   alt: string | null
 }
 
-export interface Table extends Node {
+export interface Table extends Node, ParentOf<TableRow[]> {
   type: 'table'
   header: TableRow
-  body: TableRow[]
+  children: TableRow[]
 }
 
 export interface TableRow extends Node, ParentOf<TableCell[]> {

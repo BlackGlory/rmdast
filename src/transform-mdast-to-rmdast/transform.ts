@@ -240,12 +240,12 @@ function transformImageReference(node: MDAST.ImageReference, root: MDAST.Root): 
 
 function transformTable(node: MDAST.Table, root: MDAST.Root): RMDAST.Table {
   const header = transformTableRow(node.children[0], root)
-  const body = map(node.children.slice(1), x => transformTableRow(x, root)) 
+  const children = map(node.children.slice(1), x => transformTableRow(x, root)) 
 
   return {
     type: 'table'
   , header
-  , body
+  , children
   }
 }
 
