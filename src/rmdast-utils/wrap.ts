@@ -19,7 +19,7 @@ export type WrappedNode<
       parent: null
       previousSibling: null
       nextSibling: null
-      children: Array<WrappedNode<AST.BlockContent, AST.BlockContent, AST.Root>>
+      children: Array<WrappedNode<AST.RootContent, AST.RootContent, AST.Root>>
     }>
 : Node extends AST.Paragraph
   ? Mixin<Node, {

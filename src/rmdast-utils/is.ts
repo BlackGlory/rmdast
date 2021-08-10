@@ -1,11 +1,19 @@
 import * as RMDAST from './rmdast-2.0'
 
-export function is<T extends RMDAST.Node>(node: RMDAST.Node, type: string): node is T {
+export function is<T extends RMDAST.Node>(
+  node: RMDAST.Node
+, type: string
+): node is T {
   return node.type === type
 }
 
 export function isParent(node: RMDAST.Node): node is RMDAST.Node & RMDAST.Parent {
   return 'children' in node
+}
+
+export function isRootContent(node: RMDAST.RootContent): node is RMDAST.RootContent {
+  return isBlockContent(node)
+      || isGallery(node)
 }
 
 export function isBlockContent(node: RMDAST.Node): node is RMDAST.BlockContent {
@@ -18,11 +26,10 @@ export function isBlockContent(node: RMDAST.Node): node is RMDAST.BlockContent {
       || isTable(node)
       || isLeafDirective(node)
       || isContainerDirective(node)
-      || isGallery(node)
       || isImage(node)
 }
 
-export function isInlineContent(node: RMDAST.Node): node is RMDAST.InlineContent {
+export function isInlineChild(node: RMDAST.Node): node is RMDAST.InlineContent {
   return isLink(node)
       || isBreak(node)
       || isEmphasis(node)

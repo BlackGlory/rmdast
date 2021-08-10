@@ -10,6 +10,10 @@ export interface ParentOf<T extends Node[]> extends Parent {
   children: T
 }
 
+export type RootContent =
+| BlockContent
+| Gallery
+
 export type BlockContent =
 | Blockquote
 | Code
@@ -17,11 +21,10 @@ export type BlockContent =
 | List
 | ThematicBreak
 | Paragraph
+| Image
 | Table
 | LeafDirective
 | ContainerDirective
-| Gallery
-| Image
 
 export type InlineContent =
 | Link
@@ -36,7 +39,7 @@ export type InlineContent =
 | InlineFootnote
 | TextDirective
 
-export interface Root extends Node, ParentOf<BlockContent[]> {
+export interface Root extends Node, ParentOf<RootContent[]> {
   type: 'root'
 }
 

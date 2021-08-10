@@ -86,6 +86,10 @@ interface ParentOf<T extends Node[]> extends Parent {
   children: T
 }
 
+type RootContent =
+| BlockContent
+| Gallery
+
 type BlockContent =
 | Blockquote
 | Code
@@ -93,11 +97,10 @@ type BlockContent =
 | List
 | ThematicBreak
 | Paragraph
+| Image
 | Table
 | LeafDirective
 | ContainerDirective
-| Gallery
-| Image
 
 type InlineContent =
 | Link
@@ -112,7 +115,7 @@ type InlineContent =
 | InlineFootnote
 | TextDirective
 
-interface Root extends Node, ParentOf<BlockContent[]> {
+interface Root extends Node, ParentOf<RootContent[]> {
   type: 'root'
 }
 
@@ -276,7 +279,7 @@ The following node properties are removed:
 - `data`
 - `position`
 
-#### Why is there a `Gallery` node?
+#### Why is there a `Gallery` node type?
 It is a common requirement to display multiple images with one component, but the syntax of Markdown determines that each image is independent, and it is difficult to link them together at the AST level.
 
 To solve this problem, RMDAST specifically adds this node type.
