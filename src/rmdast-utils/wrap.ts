@@ -26,21 +26,21 @@ export type WrappedNode<
       parent: NullOrWrappedNode<Parent>
       previousSibling: NullOrWrappedNode<Sibling>
       nextSibling: NullOrWrappedNode<Sibling>
-      children: Array<WrappedNode<AST.InlineContent, AST.InlineContent, AST.Paragraph>>
+      children: Array<WrappedNode<AST.UniversalInlineContent, AST.UniversalInlineContent, AST.Paragraph>>
     }>
 : Node extends AST.Heading
   ? Mixin<Node, {
       parent: NullOrWrappedNode<Parent>
       previousSibling: NullOrWrappedNode<Sibling>
       nextSibling: NullOrWrappedNode<Sibling>
-      children: Array<WrappedNode<AST.InlineContent, AST.InlineContent, AST.Heading>>
+      children: Array<WrappedNode<AST.UniversalInlineContent, AST.UniversalInlineContent, AST.Heading>>
     }>
 : Node extends AST.Blockquote
   ? Mixin<Node, {
       parent: NullOrWrappedNode<Parent>
       previousSibling: NullOrWrappedNode<Sibling>
       nextSibling: NullOrWrappedNode<Sibling>
-      children: Array<WrappedNode<AST.BlockContent, AST.BlockContent, AST.Blockquote>>
+      children: Array<WrappedNode<AST.UniversalBlockContent, AST.UniversalBlockContent, AST.Blockquote>>
     }>
 : Node extends AST.List
   ? Mixin<Node, {
@@ -54,28 +54,28 @@ export type WrappedNode<
       parent: NullOrWrappedNode<Parent>
       previousSibling: NullOrWrappedNode<Sibling>
       nextSibling: NullOrWrappedNode<Sibling>
-      children: Array<WrappedNode<AST.BlockContent, AST.BlockContent, AST.ListItem>>
+      children: Array<WrappedNode<AST.UniversalBlockContent, AST.UniversalBlockContent, AST.ListItem>>
     }>
 : Node extends AST.Emphasis
   ? Mixin<Node, {
       parent: NullOrWrappedNode<Parent>
       previousSibling: NullOrWrappedNode<Sibling>
       nextSibling: NullOrWrappedNode<Sibling>
-      children: Array<WrappedNode<AST.InlineContent, AST.InlineContent, AST.Emphasis>>
+      children: Array<WrappedNode<AST.UniversalInlineContent, AST.UniversalInlineContent, AST.Emphasis>>
     }>
 : Node extends AST.Strong
   ? Mixin<Node, {
       parent: NullOrWrappedNode<Parent>
       previousSibling: NullOrWrappedNode<Sibling>
       nextSibling: NullOrWrappedNode<Sibling>
-      children: Array<WrappedNode<AST.InlineContent, AST.InlineContent, AST.Strong>>
+      children: Array<WrappedNode<AST.UniversalInlineContent, AST.UniversalInlineContent, AST.Strong>>
     }>
 : Node extends AST.Link
   ? Mixin<Node, {
       parent: NullOrWrappedNode<Parent>
       previousSibling: NullOrWrappedNode<Sibling>
       nextSibling: NullOrWrappedNode<Sibling>
-      children: Array<WrappedNode<AST.InlineContent, AST.InlineContent, AST.Link>>
+      children: Array<WrappedNode<AST.UniversalInlineContent, AST.UniversalInlineContent, AST.Link>>
     }>
 : Node extends AST.Table
   ? Mixin<Node, {
@@ -97,14 +97,14 @@ export type WrappedNode<
       parent: NullOrWrappedNode<Parent>
       previousSibling: NullOrWrappedNode<Sibling>
       nextSibling: NullOrWrappedNode<Sibling>
-      children: Array<WrappedNode<AST.InlineContent, AST.InlineContent, AST.TableCell>>
+      children: Array<WrappedNode<AST.UniversalInlineContent, AST.UniversalInlineContent, AST.TableCell>>
     }>
 : Node extends AST.Delete
   ? Mixin<Node, {
       parent: NullOrWrappedNode<Parent>
       previousSibling: NullOrWrappedNode<Sibling>
       nextSibling: NullOrWrappedNode<Sibling>
-      children: Array<WrappedNode<AST.InlineContent, AST.InlineContent, AST.Delete>>
+      children: Array<WrappedNode<AST.UniversalInlineContent, AST.UniversalInlineContent, AST.Delete>>
     }>
 : Node extends AST.Footnote
   ? Mixin<Node, {
@@ -112,7 +112,7 @@ export type WrappedNode<
       previousSibling: NullOrWrappedNode<Sibling>
       nextSibling: NullOrWrappedNode<Sibling>
       children: Array<
-        WrappedNode<AST.BlockContent, AST.BlockContent, AST.Footnote>
+        WrappedNode<AST.UniversalBlockContent, AST.UniversalBlockContent, AST.Footnote>
       >
     }>
 : Node extends AST.InlineFootnote
@@ -121,7 +121,7 @@ export type WrappedNode<
       previousSibling: NullOrWrappedNode<Sibling>
       nextSibling: NullOrWrappedNode<Sibling>
       children: Array<
-        WrappedNode<AST.InlineContent, AST.InlineContent, AST.InlineFootnote>
+        WrappedNode<AST.UniversalInlineContent, AST.UniversalInlineContent, AST.InlineFootnote>
       >
     }>
 : Node extends AST.TextDirective
@@ -130,7 +130,7 @@ export type WrappedNode<
       previousSibling: NullOrWrappedNode<Sibling>
       nextSibling: NullOrWrappedNode<Sibling>
       children: Array<
-        WrappedNode<AST.InlineContent, AST.InlineContent, AST.TextDirective>
+        WrappedNode<AST.UniversalInlineContent, AST.UniversalInlineContent, AST.TextDirective>
       >
     }>
 : Node extends AST.LeafDirective
@@ -139,7 +139,7 @@ export type WrappedNode<
       previousSibling: NullOrWrappedNode<Sibling>
       nextSibling: NullOrWrappedNode<Sibling>
       children: Array<
-        WrappedNode<AST.InlineContent, AST.InlineContent, AST.LeafDirective>
+        WrappedNode<AST.UniversalInlineContent, AST.UniversalInlineContent, AST.LeafDirective>
       >
     }>
 : Node extends AST.ContainerDirective
@@ -148,7 +148,7 @@ export type WrappedNode<
       previousSibling: NullOrWrappedNode<Sibling>
       nextSibling: NullOrWrappedNode<Sibling>
       children: Array<
-        WrappedNode<AST.BlockContent, AST.BlockContent, AST.ContainerDirective>
+        WrappedNode<AST.UniversalBlockContent, AST.UniversalBlockContent, AST.ContainerDirective>
       >
     }>
 : Node extends AST.Gallery

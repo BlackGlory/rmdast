@@ -12,14 +12,14 @@ export class UnknownNodeError extends CustomError {}
 export function transformRoot(root: MDAST.Root): RMDAST.Root {
   return {
     type: 'root'
-  , children: map(root.children, x => transformMdastContent(x, root)).filter(RMDAST_IS.isBlockContent)
+  , children: map(root.children, x => transformMdastContent(x, root)).filter(RMDAST_IS.isUniversalBlockContent)
   }
 }
 
 function transformMdastContent(
   node: MDAST.MdastContent
 , root: MDAST.Root
-): RMDAST.BlockContent | RMDAST.InlineContent | RMDAST.ListItem | RMDAST.TableRow | RMDAST.TableCell | undefined {
+): RMDAST.UniversalBlockContent | RMDAST.UniversalInlineContent | RMDAST.ListItem | RMDAST.TableRow | RMDAST.TableCell | undefined {
   if (MDAST_IS.isFlowContent(node)) return transformFlowContent(node, root)
   if (MDAST_IS.isListContent(node)) return transformListContent(node, root)
   if (MDAST_IS.isPhrasingContent(node)) return transformPhrasingContent(node, root)
@@ -31,7 +31,7 @@ function transformMdastContent(
 function transformFlowContent(
   node: MDAST.FlowContent
 , root: MDAST.Root
-): RMDAST.BlockContent | undefined {
+): RMDAST.UniversalBlockContent | undefined {
   if (MDAST_IS.isBlockquote(node)) return transformBlockquote(node, root)
   if (MDAST_IS.isCode(node)) return transformCode(node, root)
   if (MDAST_IS.isHeading(node)) return transformHeading(node, root)
@@ -49,7 +49,7 @@ function transformFlowContent(
 function transformContent(
   node: MDAST.Content
 , root: MDAST.Root
-): RMDAST.BlockContent | undefined {
+): RMDAST.UniversalBlockContent | undefined {
   if (MDAST_IS.isDefinition(node)) return transformDefinition(node, root)
   if (MDAST_IS.isParagraph(node)) return transformParagraph(node, root)
   throw new UnknownNodeError()
@@ -63,7 +63,7 @@ function transformListContent(node: MDAST.ListContent, root: MDAST.Root): RMDAST
 function transformPhrasingContent(
   node: MDAST.PhrasingContent
 , root: MDAST.Root
-): RMDAST.InlineContent | undefined {
+): RMDAST.UniversalInlineContent | undefined {
   if (MDAST_IS.isLink(node)) return transformLink(node, root)
   if (MDAST_IS.isLinkReference(node)) return transformLinkReference(node, root)
   if (MDAST_IS.isStaticPhrasingContent(node)) return transformStaticPhrasingContent(node, root)
@@ -74,7 +74,7 @@ function transformPhrasingContent(
 function transformStaticPhrasingContent(
   node: MDAST.StaticPhrasingContent
 , root: MDAST.Root
-): RMDAST.InlineContent | undefined {
+): RMDAST.UniversalInlineContent | undefined {
   if (MDAST_IS.isBreak(node)) return transformBreak(node, root)
   if (MDAST_IS.isEmphasis(node)) return transformEmphasis(node, root)
   if (MDAST_IS.isHTML(node)) return transformHTML(node, root)

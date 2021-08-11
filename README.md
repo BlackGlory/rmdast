@@ -86,30 +86,60 @@ interface ParentOf<T extends Node[]> extends Parent {
   children: T
 }
 
-type RootContent =
-| BlockContent
+type BlockNode =
+| Root
+| Paragraph
+| Heading
+| ThematicBreak
+| Blockquote
+| List
+| ListItem
+| Code
+| Image
+| Table
+| TableRow
+| TableCell
+| LeafDirective
+| ContainerDirective
 | Gallery
 
-type BlockContent =
-| Blockquote
-| Code
-| Heading
-| List
-| ThematicBreak
+type InlineNode =
+| Text
+| Emphasis
+| Strong
+| InlineCode
+| Break
+| Link
+| InlineImage
+| Delete
+| Footnote
+| InlineFootnote
+| TextDirective
+
+type RootContent =
+| UniversalBlockContent
+| Gallery
+
+type UniversalBlockContent =
 | Paragraph
+| Heading
+| ThematicBreak
+| Blockquote
+| List
+| Code
 | Image
 | Table
 | LeafDirective
 | ContainerDirective
 
-type InlineContent =
-| Link
-| Break
-| Emphasis
-| InlineImage
-| InlineCode
-| Strong
+type UniversalInlineContent =
 | Text
+| Emphasis
+| Strong
+| InlineCode
+| Break
+| Link
+| InlineImage
 | Delete
 | Footnote
 | InlineFootnote
@@ -119,11 +149,11 @@ interface Root extends Node, ParentOf<RootContent[]> {
   type: 'root'
 }
 
-interface Paragraph extends Node, ParentOf<InlineContent[]> {
+interface Paragraph extends Node, ParentOf<UniversalInlineContent[]> {
   type: 'paragraph'
 }
 
-interface Heading extends Node, ParentOf<InlineContent[]> {
+interface Heading extends Node, ParentOf<UniversalInlineContent[]> {
   type: 'heading'
   depth: 1 | 2 | 3 | 4 | 5 | 6
 }
@@ -132,7 +162,7 @@ interface ThematicBreak extends Node {
   type: 'thematicBreak'
 }
 
-interface Blockquote extends Node, ParentOf<BlockContent[]> {
+interface Blockquote extends Node, ParentOf<UniversalBlockContent[]> {
   type: 'blockquote'
 }
 
@@ -143,7 +173,7 @@ interface List extends Node, ParentOf<ListItem[]> {
   spread: boolean | null
 }
 
-interface ListItem extends Node, ParentOf<BlockContent[]> {
+interface ListItem extends Node, ParentOf<UniversalBlockContent[]> {
   type: 'listItem'
   spread: boolean | null
   checked: boolean | null
@@ -161,11 +191,11 @@ interface Text extends Node {
   value: string
 }
 
-interface Emphasis extends Node, ParentOf<InlineContent[]> {
+interface Emphasis extends Node, ParentOf<UniversalInlineContent[]> {
   type: 'emphasis'
 }
 
-interface Strong extends Node, ParentOf<InlineContent[]> {
+interface Strong extends Node, ParentOf<UniversalInlineContent[]> {
   type: 'strong'
 }
 
@@ -178,7 +208,7 @@ interface Break extends Node {
   type: 'break'
 }
 
-interface Link extends Node, ParentOf<InlineContent[]> {
+interface Link extends Node, ParentOf<UniversalInlineContent[]> {
   type: 'link'
   url: string
   title: string | null
@@ -208,35 +238,35 @@ interface TableRow extends Node, ParentOf<TableCell[]> {
   type: 'tableRow'
 }
 
-interface TableCell extends Node, ParentOf<InlineContent[]> {
+interface TableCell extends Node, ParentOf<UniversalInlineContent[]> {
   type: 'tableCell'
 }
 
-interface Delete extends Node, ParentOf<InlineContent[]> {
+interface Delete extends Node, ParentOf<UniversalInlineContent[]> {
   type: 'delete'
 }
 
-interface Footnote extends Node, ParentOf<BlockContent[]> {
+interface Footnote extends Node, ParentOf<UniversalBlockContent[]> {
   type: 'footnote'
 }
 
-interface InlineFootnote extends Node, ParentOf<InlineContent[]> {
+interface InlineFootnote extends Node, ParentOf<UniversalInlineContent[]> {
   type: 'inlineFootnote'
 }
 
-interface TextDirective extends Node, ParentOf<InlineContent[]> {
+interface TextDirective extends Node, ParentOf<UniversalInlineContent[]> {
   type: 'textDirective'
   name: string
   attributes: Record<string, string>
 }
 
-interface LeafDirective extends Node, ParentOf<InlineContent[]> {
+interface LeafDirective extends Node, ParentOf<UniversalInlineContent[]> {
   type: 'leafDirective'
   name: string
   attributes: Record<string, string>
 }
 
-interface ContainerDirective extends Node, ParentOf<BlockContent[]> {
+interface ContainerDirective extends Node, ParentOf<UniversalBlockContent[]> {
   type: 'containerDirective'
   name: string
   attributes: Record<string, string>
@@ -245,6 +275,7 @@ interface ContainerDirective extends Node, ParentOf<BlockContent[]> {
 interface Gallery extends Node, ParentOf<Image[]>{
   type: 'gallery'
 }
+
 ```
 
 ### The difference between rmdast v2 and mdast v4

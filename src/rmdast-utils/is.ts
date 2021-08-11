@@ -11,32 +11,68 @@ export function isParent(node: RMDAST.Node): node is RMDAST.Node & RMDAST.Parent
   return 'children' in node
 }
 
-export function isRootContent(node: RMDAST.RootContent): node is RMDAST.RootContent {
-  return isBlockContent(node)
+export function isBlockNode(node: RMDAST.Node): node is RMDAST.BlockNode {
+  return isRoot(node)
+      || isParagraph(node)
+      || isHeading(node)
+      || isThematicBreak(node)
+      || isBlockquote(node)
+      || isList(node)
+      || isListItem(node)
+      || isCode(node)
+      || isImage(node)
+      || isTable(node)
+      || isTableRow(node)
+      || isTableCell(node)
+      || isLeafDirective(node)
+      || isContainerDirective(node)
       || isGallery(node)
 }
 
-export function isBlockContent(node: RMDAST.Node): node is RMDAST.BlockContent {
-  return isBlockquote(node)
-      || isCode(node)
+export function isInlineNode(node: RMDAST.Node): node is RMDAST.InlineNode {
+  return isText(node)
+      || isEmphasis(node)
+      || isStrong(node)
+      || isInlineCode(node)
+      || isBreak(node)
+      || isLink(node)
+      || isInlineImage(node)
+      || isDelete(node)
+      || isFootnote(node)
+      || isInlineFootnote(node)
+      || isTextDirective(node)
+}
+
+export function isRootContent(node: RMDAST.Node): node is RMDAST.RootContent {
+  return isUniversalBlockContent(node)
+      || isGallery(node)
+}
+
+export function isUniversalBlockContent(
+  node: RMDAST.Node
+): node is RMDAST.UniversalBlockContent {
+  return isParagraph(node)
       || isHeading(node)
-      || isList(node)
       || isThematicBreak(node)
-      || isParagraph(node)
+      || isBlockquote(node)
+      || isList(node)
+      || isCode(node)
+      || isImage(node)
       || isTable(node)
       || isLeafDirective(node)
       || isContainerDirective(node)
-      || isImage(node)
 }
 
-export function isInlineChild(node: RMDAST.Node): node is RMDAST.InlineContent {
-  return isLink(node)
-      || isBreak(node)
+export function isUniversalInlineContent(
+  node: RMDAST.Node
+): node is RMDAST.UniversalInlineContent {
+  return isText(node)
       || isEmphasis(node)
-      || isInlineImage(node)
-      || isInlineCode(node)
       || isStrong(node)
-      || isText(node)
+      || isInlineCode(node)
+      || isBreak(node)
+      || isLink(node)
+      || isInlineImage(node)
       || isDelete(node)
       || isFootnote(node)
       || isInlineFootnote(node)
