@@ -5,7 +5,7 @@ import { isHeading, isText } from '@src/rmdast-utils/is'
 import { findAll, WrappedNode } from '@src/rmdast-utils'
 import { map, toArray } from 'iterable-operator'
 
-describe('createTableOfContents(root: AST.Root): AST.List', () => {
+describe('createTableOfContents(root: AST.Root): TableOfContents', () => {
   test('standard: single tree', () => {
     const ast = R.root([
       R.heading(1, [R.text('a')])
@@ -16,35 +16,45 @@ describe('createTableOfContents(root: AST.Root): AST.List', () => {
     ])
 
     const result = createTableOfContents(ast, {
-      createLinkURL
-    , createLinkText
+      createHeadingURL
+    , createHeadingText
     })
 
-    expect(result).toStrictEqual(
-      R.list([
-        R.listItem([
-          R.paragraph([R.link('#a', [R.text('a')])])
-        , R.list([
-            R.listItem([
-              R.paragraph([R.link('#a_b', [R.text('b')])])
-            , R.list([
-                R.listItem([
-                  R.paragraph([R.link('#a_b_c', [R.text('c')])])
-                ])
-              ])
-            ])
-          , R.listItem([
-              R.paragraph([R.link('#a_d', [R.text('d')])])
-            , R.list([
-                R.listItem([
-                  R.paragraph([R.link('#a_d_e', [R.text('e')])])
-                ])
-              ])
-            ])
-          ])
-        ])
-      ])
-    )
+    expect(result).toStrictEqual([
+      {
+        text: 'a'
+      , url: '#a'
+      , level: 1
+      , children: [
+          {
+            text: 'b'
+          , url: '#a_b'
+          , level: 2
+          , children: [
+              {
+                text: 'c'
+              , url: '#a_b_c'
+              , level: 3
+              , children: []
+              }
+            ]
+          }
+        , {
+            text: 'd'
+          , url: '#a_d'
+          , level: 2
+          , children: [
+              {
+                text: 'e'
+              , url: '#a_d_e'
+              , level: 3
+              , children: []
+              }
+            ]
+          }
+        ]
+      }
+    ])
   })
 
   test('standard: multiple tree', () => {
@@ -56,30 +66,38 @@ describe('createTableOfContents(root: AST.Root): AST.List', () => {
     ])
 
     const result = createTableOfContents(ast, {
-      createLinkURL
-    , createLinkText
+      createHeadingURL
+    , createHeadingText
     })
 
-    expect(result).toStrictEqual(
-      R.list([
-        R.listItem([
-          R.paragraph([R.link('#a', [R.text('a')])])
-        , R.list([
-            R.listItem([
-              R.paragraph([R.link('#a_b', [R.text('b')])])
-            ])
-          ])
-        ])
-      , R.listItem([
-          R.paragraph([R.link('#c', [R.text('c')])])
-        , R.list([
-            R.listItem([
-              R.paragraph([R.link('#c_d', [R.text('d')])])
-            ])
-          ])
-        ])
-      ])
-    )
+    expect(result).toStrictEqual([
+      {
+        text: 'a'
+      , url: '#a'
+      , level: 1
+      , children: [
+          {
+            text: 'b'
+          , url: '#a_b'
+          , level: 2
+          , children: []
+          }
+        ]
+      }
+    , {
+        text: 'c'
+      , url: '#c'
+      , level: 1
+      , children: [
+          {
+            text: 'd'
+          , url: '#c_d'
+          , level: 2
+          , children: []
+          }
+        ]
+      }
+    ])
   })
 
   test('edge: first heading isnt shallowest depth', () => {
@@ -91,30 +109,38 @@ describe('createTableOfContents(root: AST.Root): AST.List', () => {
     ])
 
     const result = createTableOfContents(ast, {
-      createLinkURL
-    , createLinkText
+      createHeadingURL
+    , createHeadingText
     })
 
-    expect(result).toStrictEqual(
-      R.list([
-        R.listItem([
-          R.paragraph([R.link('#a', [R.text('a')])])
-        , R.list([
-            R.listItem([
-              R.paragraph([R.link('#a_b', [R.text('b')])])
-            ])
-          ])
-        ])
-      , R.listItem([
-          R.paragraph([R.link('#c', [R.text('c')])])
-        , R.list([
-            R.listItem([
-              R.paragraph([R.link('#c_d', [R.text('d')])])
-            ])
-          ])
-        ])
-      ])
-    )
+    expect(result).toStrictEqual([
+      {
+        text: 'a'
+      , url: '#a'
+      , level: 1
+      , children: [
+          {
+            text: 'b'
+          , url: '#a_b'
+          , level: 2
+          , children: []
+          }
+        ]
+      }
+    , {
+        text: 'c'
+      , url: '#c'
+      , level: 1
+      , children: [
+          {
+            text: 'd'
+          , url: '#c_d'
+          , level: 2
+          , children: []
+          }
+        ]
+      }
+    ])
   })
 
   test('edge: heading depth crossing', () => {
@@ -125,29 +151,35 @@ describe('createTableOfContents(root: AST.Root): AST.List', () => {
     ])
 
     const result = createTableOfContents(ast, {
-      createLinkURL
-    , createLinkText
+      createHeadingURL
+    , createHeadingText
     })
 
-    expect(result).toStrictEqual(
-      R.list([
-        R.listItem([
-          R.paragraph([R.link('#a', [R.text('a')])])
-        , R.list([
-            R.listItem([
-              R.paragraph([R.link('#a_b', [R.text('b')])])
-            ])
-          , R.listItem([
-              R.paragraph([R.link('#a_c', [R.text('c')])])
-            ])
-          ])
-        ])
-      ])
-    )
+    expect(result).toStrictEqual([
+      {
+        text: 'a'
+      , url: '#a'
+      , level: 1
+      , children: [
+          {
+            text: 'b'
+          , url: '#a_b'
+          , level: 2
+          , children: []
+          }
+        , {
+            text: 'c'
+          , url: '#a_c'
+          , level: 2
+          , children: []
+          }
+        ]
+      }
+    ])
   })
 })
 
-function createLinkURL(heading: WrappedNode<AST.Heading>): string {
+function createHeadingURL(heading: WrappedNode<AST.Heading>): string {
   const results: string[] = []
 
   let lastHeadingDepth = Infinity
@@ -155,7 +187,7 @@ function createLinkURL(heading: WrappedNode<AST.Heading>): string {
   while (current !== null) {
     if (isHeading(current) && current.depth < lastHeadingDepth) {
       lastHeadingDepth = current.depth
-      results.unshift(createLinkText(current))
+      results.unshift(createHeadingText(current))
     }
 
     if (current.previousSibling) {
@@ -174,7 +206,7 @@ function createLinkURL(heading: WrappedNode<AST.Heading>): string {
   }
 }
 
-function createLinkText(heading: AST.Heading): string {
+function createHeadingText(heading: AST.Heading): string {
   const results: string[] = toArray(
     map(
       findAll<AST.Text>(heading, isText)

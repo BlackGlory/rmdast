@@ -2,32 +2,43 @@ import * as AST from './rmdast-2.0'
 import { isHeading } from './is'
 import { findAll } from './find-all'
 import { wrapAST, WrappedNode } from './wrap'
-import { list, listItem, paragraph, link, text } from './builder'
 
-type TableOfContents = Level[]
-type Level = [heading: WrappedNode<AST.Heading>, ...children: Level[]]
+export type TableOfContents = Heading[]
+
+export interface Heading {
+  text: string
+  url: string
+  level: 1 | 2 | 3 | 4 | 5 | 6
+  children: Heading[]  
+}
 
 export function createTableOfContents(
   root: AST.Root
-, { createLinkText, createLinkURL }: {
-    createLinkText: (heading: WrappedNode<AST.Heading>) => string
-  , createLinkURL: (heading: WrappedNode<AST.Heading>) => string
+, { createHeadingText, createHeadingURL }: {
+    createHeadingText: (heading: WrappedNode<AST.Heading>) => string
+  , createHeadingURL: (heading: WrappedNode<AST.Heading>) => string
   }
-): AST.List {
+): TableOfContents {
+  type InternalTableOfContents = InternalHeading[]
+  type InternalHeading = [
+    heading: WrappedNode<AST.Heading>
+  , ...children: InternalHeading[]
+  ]
+
   const ast = wrapAST(root)
 
-  const tableOfContents: TableOfContents = []
-  const stack: Level[] = []
-  for (const heading of findAll<WrappedNode<AST.Heading>>(ast, isHeading)) {
-    const level: Level = [heading]
+  const tableOfContents: InternalTableOfContents = []
+  const stack: InternalHeading[] = []
+  for (const headingNode of findAll<WrappedNode<AST.Heading>>(ast, isHeading)) {
+    const heading: InternalHeading = [headingNode]
 
     while (true) {
       if (stack.length === 0) {
-        tableOfContents.push(level)
+        tableOfContents.push(heading)
         break
       } else {
-        if (heading.depth > last(stack)[0].depth) {
-          last(stack).push(level)
+        if (headingNode.depth > last(stack)[0].depth) {
+          last(stack).push(heading)
           break
         } else {
           stack.pop()
@@ -35,36 +46,30 @@ export function createTableOfContents(
       }
     }
 
-    stack.push(level)
+    stack.push(heading)
   }
 
-  return translateTableOfContentsToRMDAST(tableOfContents)
+  return internalTableOfContentsToTableOfContents(tableOfContents)
 
-  function translateTableOfContentsToRMDAST(toc: TableOfContents): AST.List {
-    return list(toc.map(translateLevel))
+  function internalTableOfContentsToTableOfContents(
+    toc: InternalTableOfContents
+  ): TableOfContents {
+    return toc.map(x => internalHeadingToHeading(x, 1))
   }
 
-  function translateLevel(level: Level): AST.ListItem {
-    const [heading, ...children] = level
-
-    if (children.length === 0) {
-      return listItem([
-        translateHeading(heading)
-      ])
-    } else {
-      return listItem([
-        translateHeading(heading)
-      , list(children.map(translateLevel))
-      ])
+  function internalHeadingToHeading(
+    [heading, ...children]: InternalHeading
+  , level: 1 | 2 | 3 | 4 | 5 | 6
+  ): Heading {
+    return {
+      text: createHeadingText(heading)
+    , url: createHeadingURL(heading)
+    , level
+    , children: children.map(x => internalHeadingToHeading(
+        x
+      , level + 1 as Heading['level']
+      ))
     }
-  }
-
-  function translateHeading(heading: WrappedNode<AST.Heading>): AST.Paragraph {
-    return paragraph([
-      link(createLinkURL(heading), [
-        text(createLinkText(heading))
-      ])
-    ])
   }
 }
 
