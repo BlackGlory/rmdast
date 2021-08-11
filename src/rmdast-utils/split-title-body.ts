@@ -4,14 +4,14 @@ import { find } from './find'
 import { flatMap } from './flat-map'
 
 export function splitTitleBody(root: RMDAST.Root): { title: string, body: RMDAST.Root } {
-  const titleNode = getTitleNode(root)
+  const titleNode = findTitleNode(root)
   const title = titleNode.children.filter(isText).map(x => x.value).join('')
-  const body = getBody(root, titleNode)
+  const body = createBody(root, titleNode)
 
   return { title, body }
 }
 
-function getBody(root: RMDAST.Root, titleNode: RMDAST.Heading): RMDAST.Root {
+function createBody(root: RMDAST.Root, titleNode: RMDAST.Heading): RMDAST.Root {
   return flatMap(
     root
   , node => node === titleNode
@@ -20,7 +20,7 @@ function getBody(root: RMDAST.Root, titleNode: RMDAST.Heading): RMDAST.Root {
   )[0] as RMDAST.Root
 }
 
-function getTitleNode(node: RMDAST.Node): RMDAST.Heading {
+function findTitleNode(node: RMDAST.Node): RMDAST.Heading {
   const heading = find<RMDAST.Heading>(
     node
   , node => isHeading(node)
