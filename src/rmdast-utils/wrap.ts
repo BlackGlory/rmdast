@@ -202,10 +202,10 @@ export type WrappedNode<
     nextSibling: NullOrWrappedNode<Sibling>
   }>
 
-export function wrapAST(root: AST.Root): WrappedNode<AST.Root> {
-  const newRoot = cloneDeep(root)
-  wrapNode(newRoot)
-  return newRoot as WrappedNode<AST.Root>
+export function wrapAST<T extends AST.Node>(node: T): WrappedNode<T> {
+  const clone = cloneDeep(node)
+  wrapNode(clone)
+  return clone as WrappedNode<T>
 }
 
 function wrapNode<
