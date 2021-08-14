@@ -68,26 +68,13 @@ describe('MDAST.Blockquote', () => {
   })
 })
 
-describe('MDAST.List', () => {
-  it('return RMDAST.List', () => {
-    const mdast = M.root([
-      M.list([], { ordered: true, start: 1, spread: true })
-    ])
-
-    const result = transform(mdast)
-
-    expect(result).toStrictEqual(R.root([
-      R.list([], { ordered: true, start: 1, spread: true })
-    ]))
-  })
-})
-
-describe('MDAST.ListItem', () => {
-  it('return RMDAST.ListItem', () => {
+describe('MDAST.List, MDAST.ListItem', () => {
+  it('return RMDAST.List, RMDAST.ListItem', () => {
     const mdast = M.root([
       M.list([
         M.listItem([], { checked: true, spread: true })
-      ])
+      ], { ordered: true, start: 1, spread: true })
+
     ])
 
     const result = transform(mdast)
@@ -95,7 +82,7 @@ describe('MDAST.ListItem', () => {
     expect(result).toStrictEqual(R.root([
       R.list([
         R.listItem([], { checked: true, spread: true })
-      ], {})
+      ], { ordered: true, start: 1, spread: true })
     ]))
   })
 })
