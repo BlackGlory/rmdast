@@ -1,6 +1,6 @@
-import * as MDAST from './mdast-4.0'
-import { traverseDescendantNodes } from './traverse-descendant-node'
-import { isParent } from './is'
+import * as MDAST from './mdast-4.0.js'
+import { traverseDescendantNodes } from './traverse-descendant-node.js'
+import { isParent } from './is.js'
 import { find as findInIterable } from 'iterable-operator'
 
 export function find<T extends MDAST.Node>(

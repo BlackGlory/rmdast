@@ -1,7 +1,7 @@
-import * as AST from './rmdast-2.0'
-import { isHeading } from './is'
-import { findAll } from './find-all'
-import { wrapAST, WrappedNode } from './wrap'
+import * as AST from './rmdast-2.0.js'
+import { isHeading } from './is.js'
+import { findAll } from './find-all.js'
+import { wrapAST, WrappedNode } from './wrap.js'
 
 export type TableOfContents = Heading[]
 

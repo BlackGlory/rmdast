@@ -1,6 +1,6 @@
-import * as RMDAST from './rmdast-2.0'
-import { traverseDescendantNodes } from './traverse-descendant-nodes'
-import { isParent } from './is'
+import * as RMDAST from './rmdast-2.0.js'
+import { traverseDescendantNodes } from './traverse-descendant-nodes.js'
+import { isParent } from './is.js'
 import { find as findInIterable } from 'iterable-operator'
 
 export function find<T extends RMDAST.Node>(

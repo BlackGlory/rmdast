@@ -1,4 +1,4 @@
-import * as MDAST from './mdast-4.0'
+import * as MDAST from './mdast-4.0.js'
 
 function is<T extends MDAST.Node>(node: MDAST.Node, type: string): node is T {
   return node.type === type

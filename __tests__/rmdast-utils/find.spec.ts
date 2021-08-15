@@ -1,6 +1,6 @@
-import { find } from '@src/rmdast-utils/find'
-import { isText, isStrong } from '@src/rmdast-utils/is'
-import { paragraph, emphasis, text } from '@src/rmdast-utils/builder'
+import { find } from '@src/rmdast-utils/find.js'
+import { isText, isStrong } from '@src/rmdast-utils/is.js'
+import { paragraph, emphasis, text } from '@src/rmdast-utils/builder.js'
 
 describe('find', () => {
   it('is preorder', () => {

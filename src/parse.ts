@@ -1,12 +1,12 @@
-import * as RMDAST from '@src/rmdast-utils/rmdast-2.0'
-import * as MDAST from '@src/mdast-utils/mdast-4.0'
-import { transform } from '@src/transform-mdast-to-rmdast'
+import * as RMDAST from '@src/rmdast-utils/rmdast-2.0.js'
+import * as MDAST from '@src/mdast-utils/mdast-4.0.js'
+import { transform } from '@src/transform-mdast-to-rmdast/index.js'
 import {
   concatContinuousText
 , removeEmptyParagraph
 , transformImageOnlyListToGallery
 , transofrmInlineImageToImage
-} from '@src/rmdast-utils/postprocess'
+} from '@src/rmdast-utils/postprocess.js'
 import { fromMarkdown } from 'mdast-util-from-markdown'
 import { gfmFromMarkdown } from 'mdast-util-gfm'
 import { gfm } from 'micromark-extension-gfm'

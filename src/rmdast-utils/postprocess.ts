@@ -1,9 +1,9 @@
-import * as RMDAST from './rmdast-2.0'
-import { filter } from './filter'
-import { flatMap } from './flat-map'
-import { map } from './map'
-import { isParent, isParagraph, isList, isImage, isText, isInlineImage } from './is'
-import { text, image, gallery } from './builder'
+import * as RMDAST from './rmdast-2.0.js'
+import { filter } from './filter.js'
+import { flatMap } from './flat-map.js'
+import { map } from './map.js'
+import { isParent, isParagraph, isList, isImage, isText, isInlineImage } from './is.js'
+import { text, image, gallery } from './builder.js'
 
 export function transformImageOnlyListToGallery(root: RMDAST.Root): RMDAST.Root {
   const newChildren = root.children.map(node => {

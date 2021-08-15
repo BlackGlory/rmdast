@@ -1,6 +1,6 @@
-import * as MDAST from '@src/mdast-utils/mdast-4.0'
-import { isFootnoteDefinition } from '@src/mdast-utils/is'
-import { find } from '@src/mdast-utils/find'
+import * as MDAST from '@src/mdast-utils/mdast-4.0.js'
+import { isFootnoteDefinition } from '@src/mdast-utils/is.js'
+import { find } from '@src/mdast-utils/find.js'
 
 export function findFootnoteDefinition(
   node: MDAST.Node

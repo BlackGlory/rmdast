@@ -1,6 +1,6 @@
-import { map } from '@src/rmdast-utils/map'
-import { isText, isEmphasis } from '@src/rmdast-utils/is'
-import { paragraph, emphasis, strong, text } from '@src/rmdast-utils/builder'
+import { map } from '@src/rmdast-utils/map.js'
+import { isText, isEmphasis } from '@src/rmdast-utils/is.js'
+import { paragraph, emphasis, strong, text } from '@src/rmdast-utils/builder.js'
 
 describe('map', () => {
   it('is preorder', () => {

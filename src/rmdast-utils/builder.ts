@@ -1,4 +1,4 @@
-import * as RMDAST from './rmdast-2.0'
+import * as RMDAST from './rmdast-2.0.js'
 
 export function root(children: RMDAST.Root['children']): RMDAST.Root {
   return {

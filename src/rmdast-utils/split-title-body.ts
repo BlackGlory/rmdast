@@ -1,7 +1,7 @@
-import * as RMDAST from './rmdast-2.0'
-import { isHeading, isText } from './is'
-import { find } from './find'
-import { flatMap } from './flat-map'
+import * as RMDAST from './rmdast-2.0.js'
+import { isHeading, isText } from './is.js'
+import { find } from './find.js'
+import { flatMap } from './flat-map.js'
 
 export function splitTitleBody(root: RMDAST.Root): { title: string, body: RMDAST.Root } {
   const titleNode = findTitleNode(root)

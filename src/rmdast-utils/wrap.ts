@@ -1,6 +1,6 @@
-import * as AST from './rmdast-2.0'
+import * as AST from './rmdast-2.0.js'
 import { Mixin } from 'hotypes'
-import { isParent, isTable } from './is'
+import { isParent, isTable } from './is.js'
 import cloneDeep from 'lodash.clonedeep'
 import { isntUndefined } from '@blackglory/types'
 

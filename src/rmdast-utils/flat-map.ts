@@ -1,5 +1,5 @@
-import * as RMDAST from './rmdast-2.0'
-import { isParent } from './is'
+import * as RMDAST from './rmdast-2.0.js'
+import { isParent } from './is.js'
 import { produce, original } from 'immer'
 
 // 无法用cloneDeep替换immer, 因为immer能够在调用fn时将原始的node作为参数传给调用者,

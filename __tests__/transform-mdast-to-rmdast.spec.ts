@@ -1,6 +1,6 @@
-import { transform } from '@src/transform-mdast-to-rmdast'
-import * as M from '@src/mdast-utils/builder'
-import * as R from '@src/rmdast-utils/builder'
+import { transform } from '@src/transform-mdast-to-rmdast/index.js'
+import * as M from '@src/mdast-utils/builder.js'
+import * as R from '@src/rmdast-utils/builder.js'
 
 describe('MDAST.Root', () => {
   it('return RMDAST.Root', () => {

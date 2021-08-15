@@ -1,41 +1,19 @@
-const { pathsToModuleNameMapper } = require('ts-jest/utils')
-const { compilerOptions } = require('./tsconfig.base.json')
+import pkg from 'ts-jest/utils/index.js'
+import { readJSONFileSync } from 'extra-filesystem'
 
-const esModules = [
-  'micromark-util-symbol'
-, 'micromark-util-character'
-, 'micromark-util-html-tag-name'
-, 'micromark-factory-space'
-, 'mdast-util-from-markdown'
-, 'mdast-util-to-string'
-, 'micromark'
-, 'parse-entities'
-, 'character-entities'
-, 'unist-util-stringify-position'
-, 'unist-util-visit'
-, 'unist-util-visit-parents'
-, 'unist-util-is'
-, 'mdast-util-definitions'
-, 'mdast-util-gfm'
-, 'ccount'
-, 'mdast-util-find-and-replace'
-, 'escape-string-regexp'
-, 'mdast-util-to-markdown'
-, 'markdown-table'
-, 'mdast-util-footnote'
-, 'mdast-util-directive'
-, 'stringify-entities'
-].join('|')
+const { pathsToModuleNameMapper } = pkg
+const { compilerOptions } = readJSONFileSync('./tsconfig.base.json')
 
-module.exports = {
-  preset: 'ts-jest'
-, testEnvironment: 'node'
-, testMatch: ['**/__tests__/**/?(*.)+(spec|test).[jt]s?(x)']
-, transform: {
-    '^.+\\.ts$': 'ts-jest'
-  , [`(${esModules}).+\\.js$`]: 'babel-jest'
+export default {
+  preset: 'ts-jest/presets/default-esm'
+, globals: {
+    'ts-jest': {
+      useESM: true
+    }
   }
-, transformIgnorePatterns: [`/node_modules/(?!${esModules})`]
+, testEnvironment: 'node'
+, resolver: 'jest-ts-webcompat-resolver'
+, testMatch: ['**/__tests__/**/?(*.)+(spec|test).[jt]s?(x)']
 , moduleNameMapper: pathsToModuleNameMapper(compilerOptions.paths, {
     prefix: '<rootDir>/'
   })

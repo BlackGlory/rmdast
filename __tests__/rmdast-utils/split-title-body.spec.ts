@@ -1,5 +1,5 @@
-import { splitTitleBody } from '@src/rmdast-utils/split-title-body'
-import { root, heading, paragraph, text } from '@src/rmdast-utils/builder'
+import { splitTitleBody } from '@src/rmdast-utils/split-title-body.js'
+import { root, heading, paragraph, text } from '@src/rmdast-utils/builder.js'
 
 describe('splitTitleBody', () => {
   it('return title and body', () => {

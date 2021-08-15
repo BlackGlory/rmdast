@@ -1,6 +1,6 @@
-import { findAll } from '@src/rmdast-utils/find-all'
-import { isText } from '@src/rmdast-utils/is'
-import { paragraph, emphasis, text } from '@src/rmdast-utils/builder'
+import { findAll } from '@src/rmdast-utils/find-all.js'
+import { isText } from '@src/rmdast-utils/is.js'
+import { paragraph, emphasis, text } from '@src/rmdast-utils/builder.js'
 import { toArray } from 'iterable-operator'
 import '@blackglory/jest-matchers'
 

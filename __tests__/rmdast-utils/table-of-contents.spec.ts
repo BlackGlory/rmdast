@@ -1,8 +1,8 @@
-import { createTableOfContents } from '@src/rmdast-utils/table-of-contents'
-import * as R from '@src/rmdast-utils/builder'
-import * as AST from '@src/rmdast-utils/rmdast-2.0'
-import { isHeading, isText } from '@src/rmdast-utils/is'
-import { findAll, WrappedNode } from '@src/rmdast-utils'
+import { createTableOfContents } from '@src/rmdast-utils/table-of-contents.js'
+import * as R from '@src/rmdast-utils/builder.js'
+import * as AST from '@src/rmdast-utils/rmdast-2.0.js'
+import { isHeading, isText } from '@src/rmdast-utils/is.js'
+import { findAll, WrappedNode } from '@src/rmdast-utils/index.js'
 import { map, toArray } from 'iterable-operator'
 
 describe('createTableOfContents(root: AST.Root): TableOfContents', () => {
