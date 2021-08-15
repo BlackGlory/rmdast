@@ -2,6 +2,38 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.0](https://github.com/BlackGlory/rmdast/compare/v1.0.0...v2.0.0) (2021-08-15)
+
+
+### ⚠ BREAKING CHANGES
+
+* AST changed
+* Split RMDAST.Image into RMDAST.InlineImage and RMDAST.Image
+* rewrite
+
+### Features
+
+* add createTableOfContents ([8d34e46](https://github.com/BlackGlory/rmdast/commit/8d34e46637706d71db725fd1de7d2c24d76f1663))
+* add findAll ([4d81250](https://github.com/BlackGlory/rmdast/commit/4d81250e5431dec7ed58197073928bc0341d0423))
+* add InlineFootnote ([83d43b9](https://github.com/BlackGlory/rmdast/commit/83d43b9ccc5c1baf649c24a0f83ec9f214f77bc6))
+* add RootContent ([618e656](https://github.com/BlackGlory/rmdast/commit/618e65650fa3b67e694fb23139a767ff2482c5d9))
+* add wrapAST ([f3de1c8](https://github.com/BlackGlory/rmdast/commit/f3de1c8e4a168170a25355bf597471a63e3db8e6))
+* export AST ([972904c](https://github.com/BlackGlory/rmdast/commit/972904c829b5c94c6bf01fed674cd41682f7ad44))
+* improve Table, remove ListContent, TableContent, RowContent ([59b7ce4](https://github.com/BlackGlory/rmdast/commit/59b7ce409f3f8d2ac5961d9e92696c87016dd7b8))
+* improve wrapAST ([a876d3a](https://github.com/BlackGlory/rmdast/commit/a876d3a7a7df7c811b31c5d3244d47ed454ee979))
+* postprocess ([654242c](https://github.com/BlackGlory/rmdast/commit/654242c5827ea8d3548fef7f71b20b89dbf50b06))
+* remove `align` of `Table` ([a826b33](https://github.com/BlackGlory/rmdast/commit/a826b33fadadb7fcb39addcf9057429e14019e0d))
+* remove ListContent, TableContent, RowContent from BlockContent ([5fe7708](https://github.com/BlackGlory/rmdast/commit/5fe77080bbb165b14849b7c995934e4ec08eac9d))
+* rewrite ([60074e7](https://github.com/BlackGlory/rmdast/commit/60074e72462328e0dc4d282d927c9dde31e798ee))
+* rewrite createTableOfContents ([1388255](https://github.com/BlackGlory/rmdast/commit/1388255a9c6ea1083c60cc7daf4d11a121c8c6b3))
+* split RMDAST.Image into RMDAST.InlineImage and RMDAST.Image ([46cd16f](https://github.com/BlackGlory/rmdast/commit/46cd16f89658392697d6c15aa2aca73505883dda))
+
+
+### Bug Fixes
+
+* type ([d826c3a](https://github.com/BlackGlory/rmdast/commit/d826c3af96fe6d3cbcceb8475d2e9caae924de98))
+* type WrappedNode<Gallery> ([0b897a0](https://github.com/BlackGlory/rmdast/commit/0b897a0c9e915bfef79597beec14c6c8c3021ce7))
+
 ## 1.0.0 (2021-07-18)
 
 
