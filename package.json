@@ -1,7 +1,7 @@
 {
   "name": "rmdast",
   "version": "1.0.0",
-  "description": "",
+  "description": "Renderable Markdown Abstract Syntax Tree",
   "keywords": [],
   "files": [
     "lib",
@@ -11,6 +11,7 @@
   "types": "lib/es2018/index.d.ts",
   "module": "dist/es2018/index.mjs",
   "browser": "dist/es2018/index.umd.js",
+  "repository": "git@github.com:BlackGlory/rmdast.git",
   "author": "BlackGlory <woshenmedoubuzhidao@blackglory.me>",
   "license": "MIT",
   "scripts": {
