@@ -4,7 +4,7 @@
 
 rmdast v2 is an easy-to-render version of [mdast v4],
 the new AST is designed to render nodes directly from AST to any platform, e.g. React.
-So you can precisely control the translation results through recursive descent analysis.
+So you can precisely control the translation results by recursive descent analysis.
 
 [mdast v4]: https://github.com/syntax-tree/mdast/tree/4.0.0
 
@@ -289,13 +289,13 @@ The `Footnote` nodes have been renamed to `InlineFootnote`.
 
 The `Image` nodes are now divided into two types: `InlineImage` and `Image`.
 
-The `Paragraph` only containing `InlineImage` now be parsed as `Image`.
+The `Paragraph` nodes with only `InlineImage` as a child are now parsed as `Image`.
 
-The top-level `ListItem` with `Image` now be parsed as `Gallery`.
+The top-level `ListItem` nodes with `Image` are now parsed as `Gallery`.
 
-The `align` of `Table` node have been removed, `header` have been added.
+Removed `align` from `Table`, added `header`.
 
-The following nodes are not supported:
+The following node types are not supported:
 - `YAML`
 
 The following node types are removed:
@@ -311,14 +311,16 @@ The following node properties are removed:
 - `position`
 
 #### Why is there a `Gallery` node type?
-It is a common requirement to display multiple images with one component, but the syntax of Markdown determines that each image is independent, and it is difficult to link them together at the AST level.
+It is a common requirement to display multiple images with a single component,
+but the syntax of Markdown determines that each image is independent,
+and it is difficult to link them at the AST level.
 
-To solve this problem, RMDAST specifically adds this node type.
+To solve this problem, rmdast adds this node type.
 
 ##### Can't this be done through directive?
 Yes, but not elegant.
 
-The following Markdown text generates redundant text nodes(`\n`):
+The following Markdown text has additional text nodes(`\n`):
 ```markdown
 :::gallery
 ![](a)
@@ -327,7 +329,7 @@ The following Markdown text generates redundant text nodes(`\n`):
 :::
 ```
 
-The following Markdown text has redundant blank lines:
+The following Markdown text has additional blank lines:
 ```markdown
 :::gallery
 ![](a)
@@ -343,7 +345,7 @@ The following Markdown text has redundant blank lines:
 ### parse
 
 ```ts
-function parse(text: string): RMDAST.Root
+function parse(text: string): AST.Root
 ```
 
 ### is
