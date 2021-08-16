@@ -9,6 +9,14 @@
   ],
   "type": "module",
   "main": "lib/es2018/index.js",
+  "exports": {
+    ".": "./lib/es2018/index.js"
+  , "./utils/*": "./lib/es2018/rmdast-utils/*"
+  , "./es2018": "./lib/es2018/index.js"
+  , "./es2015": "./lib/es2015/index.js"
+  , "./es2018/utils/*": "./lib/es2018/rmdast-utils/*"
+  , "./es2015/utils/*": "./lib/es2015/rmdast-utils/*"
+  },
   "types": "lib/es2018/index.d.ts",
   "engines": {
     "node": "^12.20.0 || ^14.13.1 || >=16.0.0"
