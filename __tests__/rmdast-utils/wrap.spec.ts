@@ -1,4 +1,4 @@
-import { wrapAST, WrappedNode } from '@src/rmdast-utils/wrap.js'
+import { wrapAST } from '@src/rmdast-utils/wrap.js'
 import * as R from '@src/rmdast-utils/builder.js'
 
 describe('wrapAST', () => {

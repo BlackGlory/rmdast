@@ -244,6 +244,6 @@ function wrapNode<
   }
 }
 
-function wrapChildren<Parent extends AST.Node & AST.Parent>(parent: Parent): void { 
+function wrapChildren(parent: AST.Node & AST.Parent): void { 
   parent.children.forEach((node, i) => wrapNode(node, parent, i))
 }
