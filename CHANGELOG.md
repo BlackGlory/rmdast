@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.1.0](https://github.com/BlackGlory/rmdast/compare/v2.0.4...v2.1.0) (2021-08-16)
+
+
+### Features
+
+* add unwrapAST ([e8eff94](https://github.com/BlackGlory/rmdast/commit/e8eff94db6b393087113438156c230f7b662a85b))
+
 ### [2.0.4](https://github.com/BlackGlory/rmdast/compare/v2.0.3...v2.0.4) (2021-08-15)
 
 ### [2.0.3](https://github.com/BlackGlory/rmdast/compare/v2.0.2...v2.0.3) (2021-08-15)

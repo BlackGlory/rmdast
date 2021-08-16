@@ -1,6 +1,6 @@
 {
   "name": "rmdast",
-  "version": "2.0.4",
+  "version": "2.1.0",
   "description": "Renderable Markdown Abstract Syntax Tree",
   "keywords": [],
   "files": [
@@ -10,12 +10,12 @@
   "type": "module",
   "main": "lib/es2018/index.js",
   "exports": {
-    ".": "./lib/es2018/index.js"
-  , "./utils/*": "./lib/es2018/rmdast-utils/*"
-  , "./es2018": "./lib/es2018/index.js"
-  , "./es2015": "./lib/es2015/index.js"
-  , "./es2018/utils/*": "./lib/es2018/rmdast-utils/*"
-  , "./es2015/utils/*": "./lib/es2015/rmdast-utils/*"
+    ".": "./lib/es2018/index.js",
+    "./utils/*": "./lib/es2018/rmdast-utils/*",
+    "./es2018": "./lib/es2018/index.js",
+    "./es2015": "./lib/es2015/index.js",
+    "./es2018/utils/*": "./lib/es2018/rmdast-utils/*",
+    "./es2015/utils/*": "./lib/es2015/rmdast-utils/*"
   },
   "types": "lib/es2018/index.d.ts",
   "engines": {
