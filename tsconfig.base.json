@@ -16,6 +16,8 @@
   , "baseUrl": "."
   , "paths": {
       "@src/*": ["src/*"]
+    , "@mdast-utils/*": ["src/mdast-utils/*"]
+    , "@rmdast-utils/*": ["src/rmdast-utils/*"]
     , "@test/*": ["__tests__/*"]
     }
   }

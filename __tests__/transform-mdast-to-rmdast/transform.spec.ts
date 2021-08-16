@@ -1,4 +1,4 @@
-import { transform } from '@src/transform-mdast-to-rmdast/index.js'
+import { transformRoot } from '@src/transform-mdast-to-rmdast/transform.js'
 import * as M from '@src/mdast-utils/builder.js'
 import * as R from '@src/rmdast-utils/builder.js'
 
@@ -6,7 +6,7 @@ describe('MDAST.Root', () => {
   it('return RMDAST.Root', () => {
     const mdast = M.root([])
 
-    const result = transform(mdast)
+    const result = transformRoot(mdast)
 
     expect(result).toStrictEqual(R.root([]))
   })
@@ -18,7 +18,7 @@ describe('MDAST.Paragraph', () => {
       M.paragraph([])
     ])
 
-    const result = transform(mdast)
+    const result = transformRoot(mdast)
 
     expect(result).toStrictEqual(R.root([
       R.paragraph([])
@@ -32,7 +32,7 @@ describe('MDAST.Heading', () => {
       M.heading(1, [])
     ])
 
-    const result = transform(mdast)
+    const result = transformRoot(mdast)
 
     expect(result).toStrictEqual(R.root([
       R.heading(1, [])
@@ -46,7 +46,7 @@ describe('MDAST.ThematicBreak', () => {
       M.thematicBreak()
     ])
 
-    const result = transform(mdast)
+    const result = transformRoot(mdast)
 
     expect(result).toStrictEqual(R.root([
       R.thematicBreak()
@@ -60,7 +60,7 @@ describe('MDAST.Blockquote', () => {
       M.blockquote([])
     ])
 
-    const result = transform(mdast)
+    const result = transformRoot(mdast)
 
     expect(result).toStrictEqual(R.root([
       R.blockquote([])
@@ -77,7 +77,7 @@ describe('MDAST.List, MDAST.ListItem', () => {
 
     ])
 
-    const result = transform(mdast)
+    const result = transformRoot(mdast)
 
     expect(result).toStrictEqual(R.root([
       R.list([
@@ -98,7 +98,7 @@ describe('MDAST.HTML', () => {
         )
       ])
 
-      const result = transform(mdast)
+      const result = transformRoot(mdast)
 
       expect(result).toStrictEqual(R.root([]))
     })
@@ -110,7 +110,7 @@ describe('MDAST.HTML', () => {
         M.html('<a href="url"><em>content</em></a>')
       ])
 
-      const result = transform(mdast)
+      const result = transformRoot(mdast)
 
       expect(result).toStrictEqual(R.root([]))
     })
@@ -123,7 +123,7 @@ describe('MDAST.Code', () => {
       M.code('value', { lang: 'lang', meta: 'meta' })
     ])
 
-    const result = transform(mdast)
+    const result = transformRoot(mdast)
 
     expect(result).toStrictEqual(R.root([
       R.code('value', { lang: 'lang', meta: 'meta' })
@@ -137,7 +137,7 @@ describe('MDAST.Definition', () => {
       M.definition('identifier', 'url', { label: 'label', title: 'title' })
     ])
 
-    const result = transform(mdast)
+    const result = transformRoot(mdast)
 
     expect(result).toStrictEqual(R.root([]))
   })
@@ -151,7 +151,7 @@ describe('MDAST.Text', () => {
       ])
     ])
 
-    const result = transform(mdast)
+    const result = transformRoot(mdast)
 
     expect(result).toStrictEqual(R.root([
       R.paragraph([
@@ -169,7 +169,7 @@ describe('MDAST.Emphasis', () => {
       ])
     ])
 
-    const result = transform(mdast)
+    const result = transformRoot(mdast)
 
     expect(result).toStrictEqual(R.root([
       R.paragraph([
@@ -187,7 +187,7 @@ describe('MDAST.Strong', () => {
       ])
     ])
 
-    const result = transform(mdast)
+    const result = transformRoot(mdast)
 
     expect(result).toStrictEqual(R.root([
       R.paragraph([
@@ -205,7 +205,7 @@ describe('MDAST.InlineCode', () => {
       ])
     ])
 
-    const result = transform(mdast)
+    const result = transformRoot(mdast)
 
     expect(result).toStrictEqual(R.root([
       R.paragraph([
@@ -223,7 +223,7 @@ describe('MDAST.Break', () => {
       ])
     ])
 
-    const result = transform(mdast)
+    const result = transformRoot(mdast)
 
     expect(result).toStrictEqual(R.root([
       R.paragraph([
@@ -241,7 +241,7 @@ describe('MDAST.Link', () => {
       ])
     ])
 
-    const result = transform(mdast)
+    const result = transformRoot(mdast)
 
     expect(result).toStrictEqual(R.root([
       R.paragraph([
@@ -259,7 +259,7 @@ describe('MDAST.Image', () => {
       ])
     ])
 
-    const result = transform(mdast)
+    const result = transformRoot(mdast)
 
     expect(result).toStrictEqual(R.root([
       R.paragraph([
@@ -278,7 +278,7 @@ describe('MDAST.LinkReference', () => {
     , M.definition('identifier', 'url', { title: 'title', label: 'label' })
     ])
 
-    const result = transform(mdast)
+    const result = transformRoot(mdast)
 
     expect(result).toStrictEqual(R.root([
       R.paragraph([
@@ -297,7 +297,7 @@ describe('MDAST.ImageReference', () => {
     , M.definition('identifier', 'url', { title: 'title', label: 'label' })
     ])
 
-    const result = transform(mdast)
+    const result = transformRoot(mdast)
 
     expect(result).toStrictEqual(R.root([
       R.paragraph([
@@ -320,7 +320,7 @@ describe('MDAST.Table, MDAST.TableRow, MDAST.TableCell', () => {
       ])
     ])
 
-    const result = transform(mdast)
+    const result = transformRoot(mdast)
 
     expect(result).toStrictEqual(R.root([
       R.table(
@@ -345,7 +345,7 @@ describe('MDAST.Delete', () => {
       ])
     ])
 
-    const result = transform(mdast)
+    const result = transformRoot(mdast)
 
     expect(result).toStrictEqual(R.root([
       R.paragraph([
@@ -363,7 +363,7 @@ describe('MDAST.Footnote', () => {
       ])
     ])
 
-    const result = transform(mdast)
+    const result = transformRoot(mdast)
 
     expect(result).toStrictEqual(R.root([
       R.paragraph([
@@ -379,7 +379,7 @@ describe('MDAST.FootnoteDefinition', () => {
       M.footnoteDefinition('identifier', [])
     ])
 
-    const result = transform(mdast)
+    const result = transformRoot(mdast)
 
     expect(result).toStrictEqual(R.root([]))
   })
@@ -394,7 +394,7 @@ describe('MDAST.FootnoteReference', () => {
     , M.footnoteDefinition('identifier', [], { label: 'label' })
     ])
 
-    const result = transform(mdast)
+    const result = transformRoot(mdast)
 
     expect(result).toStrictEqual(R.root([
       R.paragraph([
@@ -412,7 +412,7 @@ describe('MDAST.TextDirective', () => {
       ])
     ])
 
-    const result = transform(mdast)
+    const result = transformRoot(mdast)
 
     expect(result).toStrictEqual(R.root([
       R.paragraph([
@@ -428,7 +428,7 @@ describe('MDAST.LeafDirective', () => {
       M.leafDirective('name', [], { attributes: { key: 'value' }})
     ])
 
-    const result = transform(mdast)
+    const result = transformRoot(mdast)
 
     expect(result).toStrictEqual(R.root([
       R.leafDirective('name', [], { attributes: { key: 'value' }})
@@ -442,7 +442,7 @@ describe('MDAST.ContainerDirective', () => {
       M.containerDirective('name', [], { attributes: { key: 'value' }})
     ])
 
-    const result = transform(mdast)
+    const result = transformRoot(mdast)
 
     expect(result).toStrictEqual(R.root([
       R.containerDirective('name', [], { attributes: { key: 'value' }})

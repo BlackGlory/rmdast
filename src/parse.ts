@@ -1,12 +1,6 @@
 import * as RMDAST from './rmdast-2.0.js'
 import * as MDAST from './mdast-4.0.js'
 import { transform } from '@src/transform-mdast-to-rmdast/index.js'
-import {
-  concatContinuousText
-, removeEmptyParagraph
-, transformImageOnlyListToGallery
-, transofrmInlineImageToImage
-} from '@src/rmdast-utils/postprocess.js'
 import { fromMarkdown } from 'mdast-util-from-markdown'
 import { gfmFromMarkdown } from 'mdast-util-gfm'
 import { gfm } from 'micromark-extension-gfm'
@@ -28,18 +22,6 @@ export function parse(text: string): RMDAST.Root {
     , directiveFromMarkdown
     ]
   }) as MDAST.Root
-  const rmdast = postprocess(transform(mdast))
+  const rmdast = transform(mdast)
   return rmdast
-}
-
-function postprocess(root: RMDAST.Root): RMDAST.Root {
-  return (
-    transformImageOnlyListToGallery(
-      transofrmInlineImageToImage(
-        removeEmptyParagraph(
-          concatContinuousText(root)
-        )
-      )
-    )
-  )
 }
