@@ -3,7 +3,7 @@ import { WrappedNode } from './wrap.js'
 import { isParent, isTable } from './is'
 import cloneDeep from 'lodash.clonedeep'
 
-export function unwrapAST<T extends AST.Node>(node: WrappedNode<T>): T {
+export function unwrap<T extends AST.Node>(node: WrappedNode<T>): T {
   const clone = cloneDeep(node)
   unwrapNode(clone)
   return clone as T

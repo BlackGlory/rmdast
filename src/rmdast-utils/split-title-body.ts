@@ -3,7 +3,10 @@ import { isHeading, isText } from './is.js'
 import { find } from './find.js'
 import { flatMap } from './flat-map.js'
 
-export function splitTitleBody(root: RMDAST.Root): { title: string, body: RMDAST.Root } {
+export function splitTitleBody(root: RMDAST.Root): {
+  title: string
+  body: RMDAST.Root
+} {
   const titleNode = findTitleNode(root)
   const title = titleNode.children.filter(isText).map(x => x.value).join('')
   const body = createBody(root, titleNode)

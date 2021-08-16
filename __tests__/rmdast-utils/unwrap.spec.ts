@@ -1,10 +1,10 @@
-import { wrapAST } from '@src/rmdast-utils/wrap.js'
-import { unwrapAST } from '@src/rmdast-utils/unwrap.js'
+import { wrap } from '@src/rmdast-utils/wrap.js'
+import { unwrap } from '@src/rmdast-utils/unwrap.js'
 import * as R from '@src/rmdast-utils/builder.js'
 
-describe('unwrapAST', () => {
+describe('unwrap', () => {
   test('root', () => {
-    const ast = wrapAST(
+    const ast = wrap(
       R.root([
         R.paragraph([
           R.text('first')
@@ -18,7 +18,7 @@ describe('unwrapAST', () => {
       ])
     )
 
-    const result = unwrapAST(ast)
+    const result = unwrap(ast)
 
     expect(result).toStrictEqual(
       R.root([
@@ -36,7 +36,7 @@ describe('unwrapAST', () => {
   })
 
   test('table.header', () => {
-    const ast = wrapAST(
+    const ast = wrap(
       R.root([
         R.table(
           R.tableRow([])
@@ -45,7 +45,7 @@ describe('unwrapAST', () => {
       ])
     )
 
-    const result = unwrapAST(ast)
+    const result = unwrap(ast)
 
     expect(result).toStrictEqual(
       R.root([

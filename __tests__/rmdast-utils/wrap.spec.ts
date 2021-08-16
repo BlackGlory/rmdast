@@ -1,7 +1,7 @@
-import { wrapAST } from '@src/rmdast-utils/wrap.js'
+import { wrap } from '@src/rmdast-utils/wrap.js'
 import * as R from '@src/rmdast-utils/builder.js'
 
-describe('wrapAST', () => {
+describe('wrap', () => {
   test('root', () => {
     const ast = R.root([
       R.paragraph([
@@ -15,7 +15,7 @@ describe('wrapAST', () => {
       ])
     ])
 
-    const result = wrapAST(ast)
+    const result = wrap(ast)
 
     expect(result).toMatchObject({
       type: 'root'
@@ -80,7 +80,7 @@ describe('wrapAST', () => {
       )
     ])
 
-    const result = wrapAST(ast)
+    const result = wrap(ast)
 
     expect(result).toMatchObject({
       type: 'root'

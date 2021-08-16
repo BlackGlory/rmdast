@@ -1,7 +1,7 @@
 import * as AST from '@src/rmdast-2.0.js'
 import { isHeading } from './is.js'
 import { findAll } from './find-all.js'
-import { wrapAST, WrappedNode } from './wrap.js'
+import { wrap, WrappedNode } from './wrap.js'
 
 export type TableOfContents = Heading[]
 
@@ -25,7 +25,7 @@ export function createTableOfContents(
   , ...children: InternalHeading[]
   ]
 
-  const ast = wrapAST(root)
+  const ast = wrap(root)
 
   const tableOfContents: InternalTableOfContents = []
   const stack: InternalHeading[] = []

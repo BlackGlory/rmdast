@@ -71,6 +71,8 @@ const rmdast = parse(markdown)
 // }
 ```
 
+## API
+
 ### AST
 
 ```ts
@@ -278,7 +280,7 @@ interface Gallery extends Node, ParentOf<Image[]>{
 
 ```
 
-### The difference between rmdast v2 and mdast v4
+#### The difference between rmdast v2 and mdast v4
 
 All reference nodes will be converted to no reference nodes:
 - `ImageReference` are converted to `Image`.
@@ -310,14 +312,14 @@ The following node properties are removed:
 - `data`
 - `position`
 
-#### Why is there a `Gallery` node type?
+##### Why is there a `Gallery` node type?
 It is a common requirement to display multiple images with a single component,
 but the syntax of Markdown determines that each image is independent,
 and it is difficult to link them at the AST level.
 
 To solve this problem, rmdast adds this node type.
 
-##### Can't this be done through directive?
+###### Can't this be done through directive?
 Yes, but not elegant.
 
 The following Markdown text has additional text nodes(`\n`):
@@ -340,14 +342,331 @@ The following Markdown text has additional blank lines:
 :::
 ```
 
-## API
-
 ### parse
 
 ```ts
 function parse(text: string): AST.Root
 ```
 
-### is
+### utils
+
+#### builder
+
+```ts
+import {} from 'rmdast/utils/builder.js'
+```
+
+Each rmdast node has a corresponding builder.
+
+#### is
+
+```ts
+import {} from 'rmdast/utils/is.js'
+```
 
 Each rmdast node has a corresponding `is` function.
+
+#### flatMap
+
+```ts
+import { flatMap } from 'rmdast/utils/flat-map.js'
+
+function flatMap(
+  node: AST.Node
+, fn: (node: AST.Node) => AST.Node[]
+): AST.Node[]
+```
+
+#### map
+
+```ts
+import { map } from 'rmdast/utils/map.js'
+
+function map(
+  node: AST.Node
+, fn: (node: AST.Node) => AST.Node
+): AST.Node
+```
+
+#### filter
+
+```ts
+import { filter } from 'rmdast/utils/filter.js'
+
+function filter(
+  node: AST.Node
+, predicate: (node: AST.Node) => unknown
+): AST.Node | undefined
+```
+
+#### find
+
+```ts
+import { find } from 'rmdast/utils/find.js'
+
+function find<T extends AST.Node>(
+  node: AST.Node
+, predicate: (node: AST.Node) => boolean
+): T | undefined
+```
+
+#### splitTitleBody
+
+```ts
+import { splitTitleBody } from 'rmdast/utils/split-title-body.js'
+
+function splitTitleBody(root: AST.Root): {
+  title: string
+  body: AST.Root
+}
+```
+
+#### createTableOfContents
+
+```ts
+import { TableOfContents, Heading, createTableOfContents }
+  from 'rmdast/utils/table-of-contents.js'
+
+type TableOfContents = Heading[]
+
+interface Heading {
+  text: string
+  url: string
+  level: 1 | 2 | 3 | 4 | 5 | 6
+  children: Heading[]  
+}
+
+function createTableOfContents(
+  root: AST.Root
+, {
+    createHeadingText: (heading: WrappedNode<AST.Heading>) => string
+  , createHeadingURL: (heading: WrappedNode<AST.Heading>) => string
+  }
+): TableOfContents
+```
+
+#### traverseDescendantNodes
+
+```ts
+function* traverseDescendantNodes(
+  parent: RMDAST.Parent
+): Iterable<RMDAST.Node>
+```
+
+#### wrap
+
+```ts
+import { wrap, WrappedNode } from 'rmdast/utils/wrap.js'
+
+type NullOrWrappedNode<T extends AST.Node | null> =
+  T extends null
+  ? null
+  : WrappedNode<NonNullable<T>>
+
+type WrappedNode<
+  Node extends AST.Node
+, Sibling extends AST.Node | null = AST.Node | null
+, Parent extends AST.Node | null = AST.Node | null
+> =
+  Node extends AST.Root
+  ? Mixin<Node, {
+      parent: null
+      previousSibling: null
+      nextSibling: null
+      children: Array<WrappedNode<AST.RootContent, AST.RootContent, AST.Root>>
+    }>
+: Node extends AST.Paragraph
+  ? Mixin<Node, {
+      parent: NullOrWrappedNode<Parent>
+      previousSibling: NullOrWrappedNode<Sibling>
+      nextSibling: NullOrWrappedNode<Sibling>
+      children: Array<
+        WrappedNode<
+          AST.UniversalInlineContent
+        , AST.UniversalInlineContent
+        , AST.Paragraph
+        >
+      >
+    }>
+: Node extends AST.Heading
+  ? Mixin<Node, {
+      parent: NullOrWrappedNode<Parent>
+      previousSibling: NullOrWrappedNode<Sibling>
+      nextSibling: NullOrWrappedNode<Sibling>
+      children: Array<
+        WrappedNode<
+          AST.UniversalInlineContent
+        , AST.UniversalInlineContent
+        , AST.Heading
+        >
+      >
+    }>
+: Node extends AST.Blockquote
+  ? Mixin<Node, {
+      parent: NullOrWrappedNode<Parent>
+      previousSibling: NullOrWrappedNode<Sibling>
+      nextSibling: NullOrWrappedNode<Sibling>
+      children: Array<
+        WrappedNode<
+          AST.UniversalBlockContent
+        , AST.UniversalBlockContent
+        , AST.Blockquote
+        >
+      >
+    }>
+: Node extends AST.List
+  ? Mixin<Node, {
+      parent: NullOrWrappedNode<Parent>
+      previousSibling: NullOrWrappedNode<Sibling>
+      nextSibling: NullOrWrappedNode<Sibling>
+      children: Array<WrappedNode<AST.ListItem, AST.ListItem, AST.List>>
+    }>
+: Node extends AST.ListItem
+  ? Mixin<Node, {
+      parent: NullOrWrappedNode<Parent>
+      previousSibling: NullOrWrappedNode<Sibling>
+      nextSibling: NullOrWrappedNode<Sibling>
+      children: Array<WrappedNode<AST.UniversalBlockContent, AST.UniversalBlockContent, AST.ListItem>>
+    }>
+: Node extends AST.Emphasis
+  ? Mixin<Node, {
+      parent: NullOrWrappedNode<Parent>
+      previousSibling: NullOrWrappedNode<Sibling>
+      nextSibling: NullOrWrappedNode<Sibling>
+      children: Array<WrappedNode<AST.UniversalInlineContent, AST.UniversalInlineContent, AST.Emphasis>>
+    }>
+: Node extends AST.Strong
+  ? Mixin<Node, {
+      parent: NullOrWrappedNode<Parent>
+      previousSibling: NullOrWrappedNode<Sibling>
+      nextSibling: NullOrWrappedNode<Sibling>
+      children: Array<WrappedNode<AST.UniversalInlineContent, AST.UniversalInlineContent, AST.Strong>>
+    }>
+: Node extends AST.Link
+  ? Mixin<Node, {
+      parent: NullOrWrappedNode<Parent>
+      previousSibling: NullOrWrappedNode<Sibling>
+      nextSibling: NullOrWrappedNode<Sibling>
+      children: Array<WrappedNode<AST.UniversalInlineContent, AST.UniversalInlineContent, AST.Link>>
+    }>
+: Node extends AST.Table
+  ? Mixin<Node, {
+      parent: NullOrWrappedNode<Parent>
+      previousSibling: NullOrWrappedNode<Sibling>
+      nextSibling: NullOrWrappedNode<Sibling>
+      header: WrappedNode<AST.TableRow, null, AST.Table>
+      children: Array<WrappedNode<AST.TableRow, AST.TableRow, AST.Table>>
+    }>
+: Node extends AST.TableRow
+  ? Mixin<Node, {
+      parent: NullOrWrappedNode<Parent>
+      previousSibling: NullOrWrappedNode<Sibling>
+      nextSibling: NullOrWrappedNode<Sibling>
+      children: Array<WrappedNode<AST.TableCell, AST.TableCell, AST.TableRow>>
+    }>
+: Node extends AST.TableCell
+  ? Mixin<Node, {
+      parent: NullOrWrappedNode<Parent>
+      previousSibling: NullOrWrappedNode<Sibling>
+      nextSibling: NullOrWrappedNode<Sibling>
+      children: Array<WrappedNode<AST.UniversalInlineContent, AST.UniversalInlineContent, AST.TableCell>>
+    }>
+: Node extends AST.Delete
+  ? Mixin<Node, {
+      parent: NullOrWrappedNode<Parent>
+      previousSibling: NullOrWrappedNode<Sibling>
+      nextSibling: NullOrWrappedNode<Sibling>
+      children: Array<WrappedNode<AST.UniversalInlineContent, AST.UniversalInlineContent, AST.Delete>>
+    }>
+: Node extends AST.Footnote
+  ? Mixin<Node, {
+      parent: NullOrWrappedNode<Parent>
+      previousSibling: NullOrWrappedNode<Sibling>
+      nextSibling: NullOrWrappedNode<Sibling>
+      children: Array<
+        WrappedNode<
+          AST.UniversalBlockContent
+        , AST.UniversalBlockContent
+        , AST.Footnote
+        >
+      >
+    }>
+: Node extends AST.InlineFootnote
+  ? Mixin<Node, {
+      parent: NullOrWrappedNode<Parent>
+      previousSibling: NullOrWrappedNode<Sibling>
+      nextSibling: NullOrWrappedNode<Sibling>
+      children: Array<
+        WrappedNode<
+          AST.UniversalInlineContent
+        , AST.UniversalInlineContent
+        , AST.InlineFootnote
+        >
+      >
+    }>
+: Node extends AST.TextDirective
+  ? Mixin<Node, {
+      parent: NullOrWrappedNode<Parent>
+      previousSibling: NullOrWrappedNode<Sibling>
+      nextSibling: NullOrWrappedNode<Sibling>
+      children: Array<
+        WrappedNode<
+          AST.UniversalInlineContent
+        , AST.UniversalInlineContent
+        , AST.TextDirective
+        >
+      >
+    }>
+: Node extends AST.LeafDirective
+  ? Mixin<Node, {
+      parent: NullOrWrappedNode<Parent>
+      previousSibling: NullOrWrappedNode<Sibling>
+      nextSibling: NullOrWrappedNode<Sibling>
+      children: Array<
+        WrappedNode<
+          AST.UniversalInlineContent
+        , AST.UniversalInlineContent
+        , AST.LeafDirective
+        >
+      >
+    }>
+: Node extends AST.ContainerDirective
+  ? Mixin<Node, {
+      parent: NullOrWrappedNode<Parent>
+      previousSibling: NullOrWrappedNode<Sibling>
+      nextSibling: NullOrWrappedNode<Sibling>
+      children: Array<
+        WrappedNode<
+          AST.UniversalBlockContent
+        , AST.UniversalBlockContent
+        , AST.ContainerDirective
+        >
+      >
+    }>
+: Node extends AST.Gallery
+  ? Mixin<Node, {
+      parent: NullOrWrappedNode<AST.Root>
+      previousSibling: null
+      nextSibling: null
+      children: Array<WrappedNode<AST.Image, AST.Image, AST.Gallery>>
+    }>
+: Mixin<Node, {
+    parent: NullOrWrappedNode<Parent>
+    previousSibling: NullOrWrappedNode<Sibling>
+    nextSibling: NullOrWrappedNode<Sibling>
+  }>
+
+function wrap<T extends AST.Node>(node: T): WrappedNode<T>
+```
+
+#### unwrap
+
+```ts
+import { unwrap } from 'rmdast/utils/unwrap.js'
+
+function unwrap<T extends AST.Node>(node: WrappedNode<T>): T {
+  const clone = cloneDeep(node)
+  unwrapNode(clone)
+  return clone as T
+}
+```
