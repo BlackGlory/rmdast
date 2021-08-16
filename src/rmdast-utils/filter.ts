@@ -1,5 +1,5 @@
 import { flatMap } from './flat-map.js'
-import * as RMDAST from './rmdast-2.0.js'
+import * as RMDAST from '@src/rmdast-2.0.js'
 
 export function filter(
   node: RMDAST.Node

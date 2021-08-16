@@ -1,4 +1,4 @@
-import * as AST from './rmdast-2.0.js'
+import * as AST from '@src/rmdast-2.0.js'
 import { Mixin } from 'hotypes'
 import { isParent, isTable } from './is.js'
 import cloneDeep from 'lodash.clonedeep'

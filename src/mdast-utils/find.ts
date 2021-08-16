@@ -1,4 +1,4 @@
-import * as MDAST from './mdast-4.0.js'
+import * as MDAST from '@src/mdast-4.0.js'
 import { traverseDescendantNodes } from './traverse-descendant-node.js'
 import { isParent } from './is.js'
 import { find as findInIterable } from 'iterable-operator'

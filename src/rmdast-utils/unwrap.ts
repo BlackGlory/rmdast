@@ -1,4 +1,4 @@
-import * as AST from './rmdast-2.0.js'
+import * as AST from '@src/rmdast-2.0.js'
 import { WrappedNode } from './wrap.js'
 import { isParent, isTable } from './is'
 import cloneDeep from 'lodash.clonedeep'

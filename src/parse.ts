@@ -1,5 +1,5 @@
-import * as RMDAST from '@src/rmdast-utils/rmdast-2.0.js'
-import * as MDAST from '@src/mdast-utils/mdast-4.0.js'
+import * as RMDAST from './rmdast-2.0.js'
+import * as MDAST from './mdast-4.0.js'
 import { transform } from '@src/transform-mdast-to-rmdast/index.js'
 import {
   concatContinuousText

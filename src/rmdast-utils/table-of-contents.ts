@@ -1,4 +1,4 @@
-import * as AST from './rmdast-2.0.js'
+import * as AST from '@src/rmdast-2.0.js'
 import { isHeading } from './is.js'
 import { findAll } from './find-all.js'
 import { wrapAST, WrappedNode } from './wrap.js'

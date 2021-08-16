@@ -1,4 +1,4 @@
-import * as RMDAST from './rmdast-2.0.js'
+import * as RMDAST from '@src/rmdast-2.0.js'
 import { filter } from './filter.js'
 import { flatMap } from './flat-map.js'
 import { map } from './map.js'

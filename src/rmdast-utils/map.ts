@@ -1,4 +1,4 @@
-import * as RMDAST from './rmdast-2.0.js'
+import * as RMDAST from '@src/rmdast-2.0.js'
 import { isParent } from './is.js'
 import { produce, original } from 'immer'
 

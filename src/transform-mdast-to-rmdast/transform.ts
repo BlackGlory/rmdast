@@ -1,5 +1,5 @@
-import * as MDAST from '@src/mdast-utils/mdast-4.0.js'
-import * as RMDAST from '@src/rmdast-utils/rmdast-2.0.js'
+import * as MDAST from '@src/mdast-4.0.js'
+import * as RMDAST from '@src/rmdast-2.0.js'
 import * as MDAST_IS from '@src/mdast-utils/is.js'
 import * as RMDAST_IS from '@src/rmdast-utils/is.js'
 import { findFootnoteDefinition } from './find-footnote-definition.js'
