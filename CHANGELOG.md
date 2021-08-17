@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.0.0](https://github.com/BlackGlory/rmdast/compare/v2.1.1...v3.0.0) (2021-08-17)
+
+
+### ⚠ BREAKING CHANGES
+
+* modify the return value of `splitTitleBody`
+
+### Features
+
+* modify the return value of `splitTitleBody` ([d9bd236](https://github.com/BlackGlory/rmdast/commit/d9bd2360919dc6af18e13096efbbd761d191b833))
+
 ### [2.1.1](https://github.com/BlackGlory/rmdast/compare/v2.1.0...v2.1.1) (2021-08-17)
 
 ## [2.1.0](https://github.com/BlackGlory/rmdast/compare/v2.0.4...v2.1.0) (2021-08-16)
