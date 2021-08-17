@@ -84,7 +84,6 @@
     "@blackglory/types": "^0.4.7",
     "@types/unist": "^2.0.6",
     "hotypes": "^0.4.2",
-    "immer": "^9.0.5",
     "iterable-operator": "^0.14.2",
     "lodash.clonedeep": "^4.5.0",
     "mdast-util-directive": "^2.1.0",
@@ -93,6 +92,7 @@
     "mdast-util-gfm": "^1.0.0",
     "micromark-extension-directive": "^2.0.0",
     "micromark-extension-footnote": "^1.0.0",
-    "micromark-extension-gfm": "^1.0.0"
+    "micromark-extension-gfm": "^1.0.0",
+    "nanoid": "^3.1.25"
   }
 }

@@ -19,12 +19,14 @@ describe('wrap', () => {
 
     expect(result).toMatchObject({
       type: 'root'
+    , id: expect.any(String)
     , parent: null
     , previousSibling: null
     , nextSibling: null
     , children: [
         {
           type: 'paragraph'
+        , id: expect.any(String)
         , previousSibling: null
         , children: [
             {
@@ -37,6 +39,7 @@ describe('wrap', () => {
         }
       , {
           type: 'paragraph'
+        , id: expect.any(String)
         , children: [
             {
               type: 'text'
@@ -48,6 +51,7 @@ describe('wrap', () => {
         }
       , {
           type: 'paragraph'
+        , id: expect.any(String)
         , nextSibling: null
         , children: [
             {
@@ -84,16 +88,19 @@ describe('wrap', () => {
 
     expect(result).toMatchObject({
       type: 'root'
+    , id: expect.any(String)
     , parent: null
     , previousSibling: null
     , nextSibling: null
     , children: [
         {
           type: 'table'
+        , id: expect.any(String)
         , previousSibling: null
         , nextSibling: null
         , header: {
             type: 'tableRow'
+          , id: expect.any(String)
           , children: []
           , previousSibling: null
           , nextSibling: null
