@@ -2,7 +2,7 @@
 
 **R**enderable **M**ark**d**own **A**bstract **S**yntax **T**ree.
 
-rmdast v2 is an easy-to-render version of [mdast v4],
+rmdast is an easy-to-render version of [mdast v4],
 the new AST is designed to render nodes directly from AST to any platform, e.g. React.
 So you can precisely control the translation results by recursive descent analysis.
 
@@ -280,7 +280,7 @@ interface Gallery extends Node, ParentOf<Image[]>{
 
 ```
 
-#### The difference between rmdast v2 and mdast v4
+#### The difference between rmdast and mdast v4
 
 All reference nodes will be converted to no reference nodes:
 - `ImageReference` are converted to `Image`.

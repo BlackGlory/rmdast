@@ -1,4 +1,4 @@
-import * as RMDAST from './rmdast-2.0.js'
+import * as RMDAST from './rmdast.js'
 import * as MDAST from './mdast-4.0.js'
 import { transform } from '@src/transform-mdast-to-rmdast/index.js'
 import { fromMarkdown } from 'mdast-util-from-markdown'

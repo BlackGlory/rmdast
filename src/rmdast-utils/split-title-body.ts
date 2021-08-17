@@ -1,4 +1,4 @@
-import * as RMDAST from '@src/rmdast-2.0.js'
+import * as RMDAST from '@src/rmdast.js'
 import { isHeading, isText } from './is.js'
 import { find } from './find.js'
 import { flatMap } from './flat-map.js'

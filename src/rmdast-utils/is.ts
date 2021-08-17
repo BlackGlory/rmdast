@@ -1,4 +1,4 @@
-import * as RMDAST from '@src/rmdast-2.0.js'
+import * as RMDAST from '@src/rmdast.js'
 
 export function is<T extends RMDAST.Node>(
   node: RMDAST.Node

@@ -1,2 +1,2 @@
-export * as AST from './rmdast-2.0.js'
+export * as AST from './rmdast.js'
 export { parse } from './parse.js'
