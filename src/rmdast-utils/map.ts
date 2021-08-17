@@ -6,9 +6,16 @@ export function map(
   node: RMDAST.Node
 , fn: (node: RMDAST.Node) => RMDAST.Node
 ): RMDAST.Node {
-  const newNode = fn(cloneDeep(node))
-  if (isParent(newNode)) {
-    newNode.children = newNode.children.map(x => map(x, fn))
+  return map(cloneDeep(node), fn)
+
+  function map(
+    node: RMDAST.Node
+  , fn: (node: RMDAST.Node) => RMDAST.Node
+  ): RMDAST.Node {
+    const newNode = fn(node)
+    if (isParent(newNode)) {
+      newNode.children = newNode.children.map(x => map(x, fn))
+    }
+    return newNode
   }
-  return newNode
 }
