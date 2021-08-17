@@ -11,7 +11,7 @@ describe('splitTitleBody', () => {
 
     const result = splitTitleBody(ast)
 
-    expect(result.title).toBe('title')
+    expect(result.title).toStrictEqual(heading(1, [text('title')]))
     expect(result.body).toStrictEqual(
       root([
         paragraph([text('body')])

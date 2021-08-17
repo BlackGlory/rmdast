@@ -416,7 +416,7 @@ function find<T extends AST.Node>(
 import { splitTitleBody } from 'rmdast/utils/split-title-body.js'
 
 function splitTitleBody(root: AST.Root): {
-  title: string
+  title: AST.Heading
   body: AST.Root
 }
 ```
