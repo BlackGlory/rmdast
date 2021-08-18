@@ -691,9 +691,5 @@ function wrap<T extends AST.Node>(node: T): WrappedNode<T>
 ```ts
 import { unwrap } from 'rmdast/utils/unwrap.js'
 
-function unwrap<T extends AST.Node>(node: WrappedNode<T>): T {
-  const clone = cloneDeep(node)
-  unwrapNode(clone)
-  return clone as T
-}
+function unwrap<T extends AST.Node>(node: WrappedNode<T>): T
 ```
