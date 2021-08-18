@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.1.0](https://github.com/BlackGlory/rmdast/compare/v3.0.1...v3.1.0) (2021-08-18)
+
+
+### Features
+
+* add Newline ([fc69acc](https://github.com/BlackGlory/rmdast/commit/fc69accfb191a2dcb2ec84d898d11add255fe5c7))
+
 ### [3.0.1](https://github.com/BlackGlory/rmdast/compare/v3.0.0...v3.0.1) (2021-08-17)
 
 ## [3.0.0](https://github.com/BlackGlory/rmdast/compare/v2.1.1...v3.0.0) (2021-08-17)
