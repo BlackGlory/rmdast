@@ -106,6 +106,12 @@ export function brk(): RMDAST.Break {
   }
 }
 
+export function newline(): RMDAST.Newline {
+  return {
+    type: 'newline'
+  }
+}
+
 export function link(
   url: RMDAST.Link['url']
 , children: RMDAST.Link['children']

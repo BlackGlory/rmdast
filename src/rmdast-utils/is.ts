@@ -35,6 +35,7 @@ export function isInlineNode(node: RMDAST.Node): node is RMDAST.InlineNode {
       || isStrong(node)
       || isInlineCode(node)
       || isBreak(node)
+      || isNewline(node)
       || isLink(node)
       || isInlineImage(node)
       || isDelete(node)
@@ -71,6 +72,7 @@ export function isUniversalInlineContent(
       || isStrong(node)
       || isInlineCode(node)
       || isBreak(node)
+      || isNewline(node)
       || isLink(node)
       || isInlineImage(node)
       || isDelete(node)
@@ -149,6 +151,10 @@ export function isInlineCode(node: RMDAST.Node): node is RMDAST.InlineCode {
 
 export function isBreak(node: RMDAST.Node): node is RMDAST.Break {
   return is(node, 'break')
+}
+
+export function isNewline(node: RMDAST.Node): node is RMDAST.Newline {
+  return is(node, 'newline')
 }
 
 export function isLink(node: RMDAST.Node): node is RMDAST.Link {

@@ -33,6 +33,7 @@ export type InlineNode =
 | Strong
 | InlineCode
 | Break
+| Newline
 | Link
 | InlineImage
 | Delete
@@ -62,6 +63,7 @@ export type UniversalInlineContent =
 | Strong
 | InlineCode
 | Break
+| Newline
 | Link
 | InlineImage
 | Delete
@@ -130,6 +132,10 @@ export interface InlineCode extends Node {
 
 export interface Break extends Node {
   type: 'break'
+}
+
+export interface Newline extends Node {
+  type: 'newline'
 }
 
 export interface Link extends Node, ParentOf<UniversalInlineContent[]> {

@@ -10,14 +10,16 @@ import {
 , isText
 , isInlineImage
 } from '@rmdast-utils/is.js'
-import { text, image, gallery } from '@rmdast-utils/builder.js'
+import { text, newline, image, gallery } from '@rmdast-utils/builder.js'
 
 export function postprocess(root: RMDAST.Root): RMDAST.Root {
   return (
     transformImageOnlyListToGallery(
-      transofrmInlineImageToImage(
+      transformInlineImageToImage(
         removeEmptyParagraph(
-          concatContinuousText(root)
+          transformTextToNewline(
+            concatContinuousText(root)
+          )
         )
       )
     )
@@ -66,7 +68,24 @@ function concatContinuousText(root: RMDAST.Root): RMDAST.Root {
   ) as RMDAST.Root
 }
 
-function transofrmInlineImageToImage(root: RMDAST.Root): RMDAST.Root {
+function transformTextToNewline(root: RMDAST.Root): RMDAST.Root {
+  return flatMap(root, node => {
+    if (isText(node)) {
+      const lines = node.value.split('\n')
+      const result: Array<RMDAST.Text | RMDAST.Newline> = []
+      for (const line of lines) {
+        result.push(text(line))
+        result.push(newline())
+      }
+      result.pop()
+      return result
+    }
+
+    return [node]
+  })[0] as RMDAST.Root
+}
+
+function transformInlineImageToImage(root: RMDAST.Root): RMDAST.Root {
   return flatMap(root, node => {
     if (isParagraph(node) && node.children.every(isInlineImage)) {
       return node.children.map(x => image(x.url, { title: x.title, alt: x.alt }))

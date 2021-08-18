@@ -16,10 +16,16 @@ test('Paragraph', () => {
 
   expect(result).toStrictEqual(R.root([
     R.paragraph([
-      R.text('Lorem ipsum dolor sit amet,\nconsectetur adipiscing elit,\nsed do eiusmod tempor incididunt ut labore et dolore magna aliqua.')
+      R.text('Lorem ipsum dolor sit amet,')
+    , R.newline()
+    , R.text('consectetur adipiscing elit,')
+    , R.newline()
+    , R.text('sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.')
     ])
   , R.paragraph([
-      R.text('Duis aute irure dolor in reprehenderit in voluptate\nvelit esse cillum dolore eu fugiat nulla pariatur.')
+      R.text('Duis aute irure dolor in reprehenderit in voluptate')
+    , R.newline()
+    , R.text('velit esse cillum dolore eu fugiat nulla pariatur.')
     ])
   ]))
 })

@@ -12,7 +12,8 @@ export class UnknownNodeError extends CustomError {}
 export function transformRoot(root: MDAST.Root): RMDAST.Root {
   return {
     type: 'root'
-  , children: map(root.children, x => transformMdastContent(x, root)).filter(RMDAST_IS.isUniversalBlockContent)
+  , children: map(root.children, x => transformMdastContent(x, root))
+                .filter(RMDAST_IS.isUniversalBlockContent)
   }
 }
 

@@ -111,6 +111,7 @@ type InlineNode =
 | Strong
 | InlineCode
 | Break
+| Newline
 | Link
 | InlineImage
 | Delete
@@ -140,6 +141,7 @@ type UniversalInlineContent =
 | Strong
 | InlineCode
 | Break
+| Newline
 | Link
 | InlineImage
 | Delete
@@ -210,6 +212,10 @@ interface Break extends Node {
   type: 'break'
 }
 
+interface Newline extends Node {
+  type: 'newline'
+}
+
 interface Link extends Node, ParentOf<UniversalInlineContent[]> {
   type: 'link'
   url: string
@@ -277,7 +283,6 @@ interface ContainerDirective extends Node, ParentOf<UniversalBlockContent[]> {
 interface Gallery extends Node, ParentOf<Image[]>{
   type: 'gallery'
 }
-
 ```
 
 #### The difference between rmdast and mdast v4
@@ -290,6 +295,8 @@ All reference nodes will be converted to no reference nodes:
 The `Footnote` nodes have been renamed to `InlineFootnote`.
 
 The `Image` nodes are now divided into two types: `InlineImage` and `Image`.
+
+The `Text` nodes are now divided into two types: `Text` and `Newline`.
 
 The `Paragraph` nodes with only `InlineImage` as a child are now parsed as `Image`.
 
