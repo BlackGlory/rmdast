@@ -2,6 +2,28 @@ import { parse } from '@src/parse.js'
 import { dedent } from 'extra-tags'
 import * as R from '@src/rmdast-utils/builder.js'
 
+test('Paragraph', () => {
+  const markdown = dedent`
+  Lorem ipsum dolor sit amet,
+  consectetur adipiscing elit,
+  sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+
+  Duis aute irure dolor in reprehenderit in voluptate
+  velit esse cillum dolore eu fugiat nulla pariatur.
+  `
+
+  const result = parse(markdown)
+
+  expect(result).toStrictEqual(R.root([
+    R.paragraph([
+      R.text('Lorem ipsum dolor sit amet,\nconsectetur adipiscing elit,\nsed do eiusmod tempor incididunt ut labore et dolore magna aliqua.')
+    ])
+  , R.paragraph([
+      R.text('Duis aute irure dolor in reprehenderit in voluptate\nvelit esse cillum dolore eu fugiat nulla pariatur.')
+    ])
+  ]))
+})
+
 test('Gallery', () => {
   const markdown = dedent`
   # Gallery
