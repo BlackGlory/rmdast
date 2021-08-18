@@ -7,13 +7,9 @@ import { footnoteFromMarkdown } from 'mdast-util-footnote'
 import { directive } from 'micromark-extension-directive'
 import { directiveFromMarkdown } from 'mdast-util-directive'
 
-test('Paragraph', () => {
+test('Break', () => {
   const markdown = dedent`
-  Lorem ipsum dolor sit amet,
-  consectetur adipiscing elit,
-  sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-
-  Duis aute irure dolor in reprehenderit in voluptate
+  Duis aute irure dolor in reprehenderit in voluptate 
   velit esse cillum dolore eu fugiat nulla pariatur.
   `
 
@@ -27,11 +23,31 @@ test('Paragraph', () => {
       , children: [
           {
             type: 'text'
-          , value: 'Lorem ipsum dolor sit amet,\nconsectetur adipiscing elit,\nsed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+          , value: 'Duis aute irure dolor in reprehenderit in voluptate'
+          }
+        , { type: 'break' }
+        , {
+            type: 'text'
+          , value: 'velit esse cillum dolore eu fugiat nulla pariatur.'
           }
         ]
       }
-    , {
+    ]
+  })
+})
+
+test('Newline', () => {
+  const markdown = dedent`
+  Duis aute irure dolor in reprehenderit in voluptate
+  velit esse cillum dolore eu fugiat nulla pariatur.
+  `
+
+  const result = parse(markdown)
+
+  expect(result).toMatchObject({
+    type: 'root'
+  , children: [
+      {
         type: 'paragraph'
       , children: [
           {
