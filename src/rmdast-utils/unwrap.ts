@@ -1,6 +1,6 @@
 import * as AST from '@src/rmdast.js'
 import { WrappedNode } from './wrap.js'
-import { isParent, isTable } from './is'
+import { isParent, isTable } from './is.js'
 import cloneDeep from 'lodash.clonedeep'
 
 export function unwrap<T extends AST.Node>(node: WrappedNode<T>): T {
