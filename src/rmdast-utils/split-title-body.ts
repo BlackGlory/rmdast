@@ -31,7 +31,7 @@ function createBody(
   )[0] as WrappedNode<RMDAST.Root>
 }
 
-function findTitleNode(node: WrappedNode<RMDAST.Node>): WrappedNode<RMDAST.Heading> {
+function findTitleNode(node: WrappedNode<RMDAST.Root>): WrappedNode<RMDAST.Heading> {
   const heading = find<WrappedNode<RMDAST.Heading>>(
     node
   , node => isHeading(node)

@@ -14,6 +14,7 @@ function unwrapNode<T extends AST.Node>(node: WrappedNode<T>): void {
   delete (node as Partial<WrappedNode<T>>).previousSibling
   delete (node as Partial<WrappedNode<T>>).nextSibling
   delete (node as Partial<WrappedNode<T>>).id
+  delete (node as Partial<WrappedNode<T>>).index
 
   if (isParent(node)) {
     unwrapChildren(node)

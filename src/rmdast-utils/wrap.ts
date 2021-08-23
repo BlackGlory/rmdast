@@ -19,6 +19,7 @@ export type WrappedNode<
   ? Mixin<Node, {
       id: string
       parent: null
+      index: null
       previousSibling: null
       nextSibling: null
       children: Array<WrappedNode<AST.RootContent, AST.RootContent, AST.Root>>
@@ -27,6 +28,7 @@ export type WrappedNode<
   ? Mixin<Node, {
       id: string
       parent: NullOrWrappedNode<Parent>
+      index: number
       previousSibling: NullOrWrappedNode<Sibling>
       nextSibling: NullOrWrappedNode<Sibling>
       children: Array<
@@ -41,6 +43,7 @@ export type WrappedNode<
   ? Mixin<Node, {
       id: string
       parent: NullOrWrappedNode<Parent>
+      index: number
       previousSibling: NullOrWrappedNode<Sibling>
       nextSibling: NullOrWrappedNode<Sibling>
       children: Array<
@@ -55,6 +58,7 @@ export type WrappedNode<
   ? Mixin<Node, {
       id: string
       parent: NullOrWrappedNode<Parent>
+      index: number
       previousSibling: NullOrWrappedNode<Sibling>
       nextSibling: NullOrWrappedNode<Sibling>
       children: Array<
@@ -69,6 +73,7 @@ export type WrappedNode<
   ? Mixin<Node, {
       id: string
       parent: NullOrWrappedNode<Parent>
+      index: number
       previousSibling: NullOrWrappedNode<Sibling>
       nextSibling: NullOrWrappedNode<Sibling>
       children: Array<WrappedNode<AST.ListItem, AST.ListItem, AST.List>>
@@ -77,6 +82,7 @@ export type WrappedNode<
   ? Mixin<Node, {
       id: string
       parent: NullOrWrappedNode<Parent>
+      index: number
       previousSibling: NullOrWrappedNode<Sibling>
       nextSibling: NullOrWrappedNode<Sibling>
       children: Array<WrappedNode<AST.UniversalBlockContent, AST.UniversalBlockContent, AST.ListItem>>
@@ -85,6 +91,7 @@ export type WrappedNode<
   ? Mixin<Node, {
       id: string
       parent: NullOrWrappedNode<Parent>
+      index: number
       previousSibling: NullOrWrappedNode<Sibling>
       nextSibling: NullOrWrappedNode<Sibling>
       children: Array<WrappedNode<AST.UniversalInlineContent, AST.UniversalInlineContent, AST.Emphasis>>
@@ -93,6 +100,7 @@ export type WrappedNode<
   ? Mixin<Node, {
       id: string
       parent: NullOrWrappedNode<Parent>
+      index: number
       previousSibling: NullOrWrappedNode<Sibling>
       nextSibling: NullOrWrappedNode<Sibling>
       children: Array<WrappedNode<AST.UniversalInlineContent, AST.UniversalInlineContent, AST.Strong>>
@@ -101,6 +109,7 @@ export type WrappedNode<
   ? Mixin<Node, {
       id: string
       parent: NullOrWrappedNode<Parent>
+      index: number
       previousSibling: NullOrWrappedNode<Sibling>
       nextSibling: NullOrWrappedNode<Sibling>
       children: Array<WrappedNode<AST.UniversalInlineContent, AST.UniversalInlineContent, AST.Link>>
@@ -109,6 +118,7 @@ export type WrappedNode<
   ? Mixin<Node, {
       id: string
       parent: NullOrWrappedNode<Parent>
+      index: number
       previousSibling: NullOrWrappedNode<Sibling>
       nextSibling: NullOrWrappedNode<Sibling>
       header: WrappedNode<AST.TableRow, null, AST.Table>
@@ -118,6 +128,7 @@ export type WrappedNode<
   ? Mixin<Node, {
       id: string
       parent: NullOrWrappedNode<Parent>
+      index: Sibling extends null ? null : number
       previousSibling: NullOrWrappedNode<Sibling>
       nextSibling: NullOrWrappedNode<Sibling>
       children: Array<WrappedNode<AST.TableCell, AST.TableCell, AST.TableRow>>
@@ -126,6 +137,7 @@ export type WrappedNode<
   ? Mixin<Node, {
       id: string
       parent: NullOrWrappedNode<Parent>
+      index: number
       previousSibling: NullOrWrappedNode<Sibling>
       nextSibling: NullOrWrappedNode<Sibling>
       children: Array<WrappedNode<AST.UniversalInlineContent, AST.UniversalInlineContent, AST.TableCell>>
@@ -134,6 +146,7 @@ export type WrappedNode<
   ? Mixin<Node, {
       id: string
       parent: NullOrWrappedNode<Parent>
+      index: number
       previousSibling: NullOrWrappedNode<Sibling>
       nextSibling: NullOrWrappedNode<Sibling>
       children: Array<WrappedNode<AST.UniversalInlineContent, AST.UniversalInlineContent, AST.Delete>>
@@ -142,6 +155,7 @@ export type WrappedNode<
   ? Mixin<Node, {
       id: string
       parent: NullOrWrappedNode<Parent>
+      index: number
       previousSibling: NullOrWrappedNode<Sibling>
       nextSibling: NullOrWrappedNode<Sibling>
       children: Array<
@@ -156,6 +170,7 @@ export type WrappedNode<
   ? Mixin<Node, {
       id: string
       parent: NullOrWrappedNode<Parent>
+      index: number
       previousSibling: NullOrWrappedNode<Sibling>
       nextSibling: NullOrWrappedNode<Sibling>
       children: Array<
@@ -170,6 +185,7 @@ export type WrappedNode<
   ? Mixin<Node, {
       id: string
       parent: NullOrWrappedNode<Parent>
+      index: number
       previousSibling: NullOrWrappedNode<Sibling>
       nextSibling: NullOrWrappedNode<Sibling>
       children: Array<
@@ -184,6 +200,7 @@ export type WrappedNode<
   ? Mixin<Node, {
       id: string
       parent: NullOrWrappedNode<Parent>
+      index: number
       previousSibling: NullOrWrappedNode<Sibling>
       nextSibling: NullOrWrappedNode<Sibling>
       children: Array<
@@ -198,6 +215,7 @@ export type WrappedNode<
   ? Mixin<Node, {
       id: string
       parent: NullOrWrappedNode<Parent>
+      index: number
       previousSibling: NullOrWrappedNode<Sibling>
       nextSibling: NullOrWrappedNode<Sibling>
       children: Array<
@@ -212,6 +230,7 @@ export type WrappedNode<
   ? Mixin<Node, {
       id: string
       parent: NullOrWrappedNode<AST.Root>
+      index: number
       previousSibling: null
       nextSibling: null
       children: Array<WrappedNode<AST.Image, AST.Image, AST.Gallery>>
@@ -219,6 +238,7 @@ export type WrappedNode<
 : Mixin<Node, {
     id: string
     parent: NullOrWrappedNode<Parent>
+    index: number
     previousSibling: NullOrWrappedNode<Sibling>
     nextSibling: NullOrWrappedNode<Sibling>
   }>
@@ -237,8 +257,9 @@ function wrapNode<
 , parent?: Parent
 , index?: number
 ): void {
-  const wrappedNode = node as WrappedNode<Node>
+  const wrappedNode = node as any
   wrappedNode.parent = null
+  wrappedNode.index = null
   wrappedNode.previousSibling = null
   wrappedNode.nextSibling = null
   wrappedNode.id = nanoid()
@@ -247,11 +268,10 @@ function wrapNode<
     wrappedNode.parent = parent as unknown as WrappedNode<Parent>
 
     if (isntUndefined(index)) {
-      const previousSibling =
-        parent.children[index - 1] as WrappedNode<Node> | undefined
-      const nextSibling =
-        parent.children[index + 1] as WrappedNode<Node> | undefined
+      const previousSibling = parent.children[index - 1]
+      const nextSibling = parent.children[index + 1]
 
+      wrappedNode.index = index
       wrappedNode.previousSibling = previousSibling ?? null
       wrappedNode.nextSibling = nextSibling ?? null
     }

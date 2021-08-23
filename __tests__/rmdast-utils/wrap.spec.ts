@@ -21,17 +21,20 @@ describe('wrap', () => {
       type: 'root'
     , id: expect.any(String)
     , parent: null
+    , index: null
     , previousSibling: null
     , nextSibling: null
     , children: [
         {
           type: 'paragraph'
         , id: expect.any(String)
+        , index: 0
         , previousSibling: null
         , children: [
             {
               type: 'text'
             , value: 'first'
+            , index: 0
             , previousSibling: null
             , nextSibling: null
             }
@@ -40,10 +43,12 @@ describe('wrap', () => {
       , {
           type: 'paragraph'
         , id: expect.any(String)
+        , index: 1
         , children: [
             {
               type: 'text'
             , value: 'middle'
+            , index: 0
             , previousSibling: null
             , nextSibling: null
             }
@@ -52,11 +57,13 @@ describe('wrap', () => {
       , {
           type: 'paragraph'
         , id: expect.any(String)
+        , index: 2
         , nextSibling: null
         , children: [
             {
               type: 'text'
             , value: 'last'
+            , index: 0
             , previousSibling: null
             , nextSibling: null
             }
@@ -90,18 +97,21 @@ describe('wrap', () => {
       type: 'root'
     , id: expect.any(String)
     , parent: null
+    , index: null
     , previousSibling: null
     , nextSibling: null
     , children: [
         {
           type: 'table'
         , id: expect.any(String)
+        , index: 0
         , previousSibling: null
         , nextSibling: null
         , header: {
             type: 'tableRow'
           , id: expect.any(String)
           , children: []
+          , index: null
           , previousSibling: null
           , nextSibling: null
           }
