@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.2.0](https://github.com/BlackGlory/rmdast/compare/v3.1.1...v3.2.0) (2021-08-23)
+
+
+### Features
+
+* add `index` field ([ebac362](https://github.com/BlackGlory/rmdast/commit/ebac3623f758538f6f2ca596c97ebed3ffa0e673))
+
 ### [3.1.1](https://github.com/BlackGlory/rmdast/compare/v3.1.0...v3.1.1) (2021-08-21)
 
 
