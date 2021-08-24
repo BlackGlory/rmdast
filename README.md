@@ -417,6 +417,17 @@ function find<T extends AST.Node>(
 ): T | undefined
 ```
 
+#### findAll
+
+```ts
+import { findAll } from 'rmdast/utils/find-all.js'
+
+function* findAll<T extends AST.Node>(
+  node: AST.Node
+, predicate: (node: AST.Node) => boolean
+): Iterable<T>
+```
+
 #### splitTitleBody
 
 ```ts
