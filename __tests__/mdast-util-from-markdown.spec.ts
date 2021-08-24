@@ -7,6 +7,68 @@ import { footnoteFromMarkdown } from 'mdast-util-footnote'
 import { directive } from 'micromark-extension-directive'
 import { directiveFromMarkdown } from 'mdast-util-directive'
 
+describe('List', () => {
+  test('multiline list item', () => {
+    const markdown = dedent`
+    - line1
+      line2
+    - line1
+      
+      line2
+    `
+
+    const result = parse(markdown)
+
+    expect(result).toMatchObject({
+      type: 'root'
+    , children: [
+        {
+          type: 'list'
+        , children: [
+            {
+              type: 'listItem'
+            , children: [
+                {
+                  type: 'paragraph'
+                , children: [
+                    {
+                      type: 'text'
+                    , value: 'line1\nline2'
+                    }
+                  ]
+                }
+              ]
+            }
+          , {
+              type: 'listItem'
+            , children: [
+                {
+                  type: 'paragraph'
+                , children: [
+                    {
+                      type: 'text'
+                    , value: 'line1'
+                    }
+                  ]
+                }
+              , {
+                  type: 'paragraph'
+                , children: [
+                    {
+                      type: 'text'
+                    , value: 'line2'
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    })
+  })
+})
+
 test('Break', () => {
   const markdown = dedent`
   Duis aute irure dolor in reprehenderit in voluptate  
@@ -14,7 +76,6 @@ test('Break', () => {
   `
 
   const result = parse(markdown)
-  console.log(JSON.stringify(result, null, 2))
 
   expect(result).toMatchObject({
     type: 'root'
