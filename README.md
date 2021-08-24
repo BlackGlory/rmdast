@@ -466,9 +466,9 @@ function createTableOfContents(
 #### traverseDescendantNodes
 
 ```ts
-function* traverseDescendantNodes(
-  parent: RMDAST.Parent
-): Iterable<RMDAST.Node>
+function traverseDescendantNodes(
+  parent: AST.Parent
+): Iterable<AST.Node>
 ```
 
 #### wrap
