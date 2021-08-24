@@ -1,6 +1,6 @@
 import { parse } from '@src/parse.js'
 import { dedent } from 'extra-tags'
-import * as R from '@src/rmdast-utils/builder.js'
+import * as R from '@rmdast-utils/builder.js'
 
 test('Paragraph', () => {
   const markdown = dedent`

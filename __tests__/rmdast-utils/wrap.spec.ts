@@ -1,5 +1,5 @@
-import { wrap } from '@src/rmdast-utils/wrap.js'
-import * as R from '@src/rmdast-utils/builder.js'
+import { wrap } from '@rmdast-utils/wrap.js'
+import * as R from '@rmdast-utils/builder.js'
 
 describe('wrap', () => {
   test('root', () => {

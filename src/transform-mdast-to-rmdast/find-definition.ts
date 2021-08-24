@@ -1,6 +1,6 @@
 import * as MDAST from '@src/mdast-4.0.js'
-import { isDefinition } from '@src/mdast-utils/is.js'
-import { find } from '@src/mdast-utils/find.js'
+import { isDefinition } from '@mdast-utils/is.js'
+import { find } from '@mdast-utils/find.js'
 
 export function findDefinition(node: MDAST.Node, identifier: string): MDAST.Definition | null {
   const normalizedIdentifier = normalizeIdentifier(identifier)

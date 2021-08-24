@@ -1,6 +1,6 @@
-import { wrap } from '@src/rmdast-utils/wrap.js'
-import { unwrap } from '@src/rmdast-utils/unwrap.js'
-import * as R from '@src/rmdast-utils/builder.js'
+import { wrap } from '@rmdast-utils/wrap.js'
+import { unwrap } from '@rmdast-utils/unwrap.js'
+import * as R from '@rmdast-utils/builder.js'
 
 describe('unwrap', () => {
   test('root', () => {
