@@ -1,6 +1,7 @@
 import * as RMDAST from '@src/rmdast.js'
 import { isParent } from './is.js'
 import cloneDeep from 'lodash.clonedeep'
+import 'core-js/features/array/flat'
 
 export function flatMap(
   node: RMDAST.Node

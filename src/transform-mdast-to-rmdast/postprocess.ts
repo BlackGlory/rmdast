@@ -11,6 +11,7 @@ import {
 , isInlineImage
 } from '@rmdast-utils/is.js'
 import { text, newline, image, gallery } from '@rmdast-utils/builder.js'
+import 'core-js/features/array/flat'
 
 export function postprocess(root: RMDAST.Root): RMDAST.Root {
   return (
