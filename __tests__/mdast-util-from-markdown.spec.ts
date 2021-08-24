@@ -9,11 +9,12 @@ import { directiveFromMarkdown } from 'mdast-util-directive'
 
 test('Break', () => {
   const markdown = dedent`
-  Duis aute irure dolor in reprehenderit in voluptate 
+  Duis aute irure dolor in reprehenderit in voluptate  
   velit esse cillum dolore eu fugiat nulla pariatur.
   `
 
   const result = parse(markdown)
+  console.log(JSON.stringify(result, null, 2))
 
   expect(result).toMatchObject({
     type: 'root'
