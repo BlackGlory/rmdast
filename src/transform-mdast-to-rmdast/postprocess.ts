@@ -11,7 +11,7 @@ import {
 , isInlineImage
 } from '@rmdast-utils/is.js'
 import { text, newline, image, gallery } from '@rmdast-utils/builder.js'
-import 'core-js/features/array/flat.js'
+import 'core-js/features/array/flat-map.js'
 
 export function postprocess(root: RMDAST.Root): RMDAST.Root {
   return (
@@ -30,7 +30,7 @@ export function postprocess(root: RMDAST.Root): RMDAST.Root {
 function transformImageOnlyListToGallery(root: RMDAST.Root): RMDAST.Root {
   const newChildren = root.children.map(node => {
     if (isList(node) && node.children.every(item => item.children.every(isImage))) {
-      return gallery(node.children.map(item => item.children as RMDAST.Image[]).flat())
+      return gallery(node.children.flatMap(item => item.children as RMDAST.Image[]))
     } else {
       return node
     }

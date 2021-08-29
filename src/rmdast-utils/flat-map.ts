@@ -2,7 +2,7 @@ import * as RMDAST from '@src/rmdast.js'
 import { isParent, isTable, isTableRow } from './is.js'
 import cloneDeep from 'lodash.clonedeep'
 import { assert } from '@blackglory/errors'
-import 'core-js/features/array/flat.js'
+import 'core-js/features/array/flat-map.js'
 
 export function flatMap(
   node: RMDAST.Node
@@ -28,7 +28,7 @@ export function flatMap(
       }
 
       if (isParent(node)) {
-        node.children = node.children.map(x => flatMap(x, fn)).flat()
+        node.children = node.children.flatMap(x => flatMap(x, fn))
       }
 
       return node
