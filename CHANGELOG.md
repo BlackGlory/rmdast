@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.4.0](https://github.com/BlackGlory/rmdast/compare/v3.3.2...v3.4.0) (2021-09-01)
+
+
+### Features
+
+* improve UnknownNodeError ([c1eed1a](https://github.com/BlackGlory/rmdast/commit/c1eed1add6c36ef8e1ed01df7ead233ce5446d50))
+
 ### [3.3.2](https://github.com/BlackGlory/rmdast/compare/v3.3.1...v3.3.2) (2021-08-29)
 
 
