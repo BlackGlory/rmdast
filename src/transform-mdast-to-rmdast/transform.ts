@@ -7,7 +7,11 @@ import { findDefinition } from './find-definition.js'
 import { CustomError } from '@blackglory/errors'
 import { isntUndefined } from '@blackglory/types'
 
-export class UnknownNodeError extends CustomError {}
+export class UnknownNodeError extends CustomError {
+  constructor(node: MDAST.Node) {
+    super(JSON.stringify(node, null, 2))
+  }
+}
 
 export function transformRoot(root: MDAST.Root): RMDAST.Root {
   return {
@@ -26,7 +30,7 @@ function transformMdastContent(
   if (MDAST_IS.isPhrasingContent(node)) return transformPhrasingContent(node, root)
   if (MDAST_IS.isTableContent(node)) return transformTableContent(node, root)
   if (MDAST_IS.isRowContent(node)) return transformRowContent(node, root)
-  throw new UnknownNodeError()
+  throw new UnknownNodeError(node)
 }
 
 function transformFlowContent(
@@ -44,7 +48,7 @@ function transformFlowContent(
   if (MDAST_IS.isFootnoteDefinition(node)) return transformFootnoteDefinition(node, root)
   if (MDAST_IS.isLeafDirective(node)) return transformLeafDirective(node, root)
   if (MDAST_IS.isContainerDirective(node)) return transformContainerDirective(node, root)
-  throw new UnknownNodeError()
+  throw new UnknownNodeError(node)
 }
 
 function transformContent(
@@ -53,12 +57,12 @@ function transformContent(
 ): RMDAST.UniversalBlockContent | undefined {
   if (MDAST_IS.isDefinition(node)) return transformDefinition(node, root)
   if (MDAST_IS.isParagraph(node)) return transformParagraph(node, root)
-  throw new UnknownNodeError()
+  throw new UnknownNodeError(node)
 }
 
 function transformListContent(node: MDAST.ListContent, root: MDAST.Root): RMDAST.ListItem {
   if (MDAST_IS.isListItem(node)) return transformListItem(node, root)
-  throw new UnknownNodeError()
+  throw new UnknownNodeError(node)
 }
 
 function transformPhrasingContent(
@@ -69,7 +73,7 @@ function transformPhrasingContent(
   if (MDAST_IS.isLinkReference(node)) return transformLinkReference(node, root)
   if (MDAST_IS.isStaticPhrasingContent(node)) return transformStaticPhrasingContent(node, root)
   if (MDAST_IS.isTextDirective(node)) return transformTextDirective(node, root)
-  throw new UnknownNodeError()
+  throw new UnknownNodeError(node)
 }
 
 function transformStaticPhrasingContent(
@@ -87,7 +91,7 @@ function transformStaticPhrasingContent(
   if (MDAST_IS.isDelete(node)) return transformDelete(node, root)
   if (MDAST_IS.isFootnote(node)) return transformFootnote(node, root)
   if (MDAST_IS.isFootnoteReference(node)) return transformFootnoteReference(node, root)
-  throw new UnknownNodeError()
+  throw new UnknownNodeError(node)
 }
 
 function transformTableContent(
@@ -95,12 +99,12 @@ function transformTableContent(
 , root: MDAST.Root
 ): RMDAST.TableRow {
   if (MDAST_IS.isTableRow(node)) return transformTableRow(node, root)
-  throw new UnknownNodeError()
+  throw new UnknownNodeError(node)
 }
 
 function transformRowContent(node: MDAST.RowContent, root: MDAST.Root): RMDAST.TableCell {
   if (MDAST_IS.isTableCell(node)) return transformTableCell(node, root)
-  throw new UnknownNodeError()
+  throw new UnknownNodeError(node)
 }
 
 function transformParagraph(node: MDAST.Paragraph, root: MDAST.Root): RMDAST.Paragraph {
