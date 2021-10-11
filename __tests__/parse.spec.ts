@@ -71,3 +71,41 @@ test('Top-level InlineImage', () => {
   , R.image('c', { alt: '' })
   ]))
 })
+
+test('Footnote', () => {
+  const markdown = dedent`
+  Hello [^1]
+
+  [^1]: World
+  `
+
+  const result = parse(markdown)
+
+  expect(result).toStrictEqual(R.root([
+    R.paragraph([
+      R.text('Hello ')
+    , R.footnote([
+        R.paragraph([
+          R.text('World')
+        ])
+      ])
+    ])
+  ]))
+})
+
+test('InlineFootnote', () => {
+  const markdown = dedent`
+  Hello ^[World]
+  `
+
+  const result = parse(markdown)
+
+  expect(result).toStrictEqual(R.root([
+    R.paragraph([
+      R.text('Hello ')
+    , R.inlineFootnote([
+        R.text('World')
+      ])
+    ])
+  ]))
+})
