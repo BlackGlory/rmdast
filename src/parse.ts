@@ -4,10 +4,11 @@ import { transform } from '@src/transform-mdast-to-rmdast/index.js'
 import { fromMarkdown } from 'mdast-util-from-markdown'
 import { gfmFromMarkdown } from 'mdast-util-gfm'
 import { gfm } from 'micromark-extension-gfm'
-import { footnote } from 'micromark-extension-footnote'
-import { footnoteFromMarkdown } from 'mdast-util-footnote'
 import { directive } from 'micromark-extension-directive'
 import { directiveFromMarkdown } from 'mdast-util-directive'
+// 不可移除, 因为GFM风格的footnote不支持内联形式.
+import { footnote } from 'micromark-extension-footnote'
+import { footnoteFromMarkdown } from 'mdast-util-footnote'
 
 export function parse(text: string): RMDAST.Root {
   const mdast = fromMarkdown(text, 'utf-8', {
