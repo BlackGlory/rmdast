@@ -130,7 +130,7 @@ function parse(text: string) {
     , directive()
     ]
   , mdastExtensions: [
-      gfmFromMarkdown
+      gfmFromMarkdown()
     , footnoteFromMarkdown
     , directiveFromMarkdown
     ]

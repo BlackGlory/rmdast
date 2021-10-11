@@ -10,14 +10,14 @@ import { directive } from 'micromark-extension-directive'
 import { directiveFromMarkdown } from 'mdast-util-directive'
 
 export function parse(text: string): RMDAST.Root {
-  const mdast = fromMarkdown(text, {
+  const mdast = fromMarkdown(text, 'utf-8', {
     extensions: [
       gfm()
     , footnote({ inlineNotes: true })
     , directive()
     ]
   , mdastExtensions: [
-      gfmFromMarkdown
+      gfmFromMarkdown()
     , footnoteFromMarkdown
     , directiveFromMarkdown
     ]
