@@ -1,4 +1,4 @@
-import pkg from 'ts-jest/utils/index.js'
+import pkg from 'ts-jest'
 import { readJSONFileSync } from 'extra-filesystem'
 
 const { pathsToModuleNameMapper } = pkg
