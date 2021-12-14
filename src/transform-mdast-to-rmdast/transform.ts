@@ -16,13 +16,13 @@ export class UnknownNodeError extends CustomError {
 export function transformRoot(root: MDAST.Root): RMDAST.Root {
   return {
     type: 'root'
-  , children: map(root.children, x => transformMdastContent(x, root))
+  , children: map(root.children, x => transformRootContent(x, root))
                 .filter(RMDAST_IS.isUniversalBlockContent)
   }
 }
 
-function transformMdastContent(
-  node: MDAST.MdastContent
+function transformRootContent(
+  node: MDAST.RootContent
 , root: MDAST.Root
 ): RMDAST.UniversalBlockContent | RMDAST.UniversalInlineContent | RMDAST.ListItem | RMDAST.TableRow | RMDAST.TableCell | undefined {
   if (MDAST_IS.isFlowContent(node)) return transformFlowContent(node, root)

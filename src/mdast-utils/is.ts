@@ -8,7 +8,7 @@ export function isParent(node: MDAST.Node): node is MDAST.Parent {
   return 'children' in node
 }
 
-export function isMdastContent(node: MDAST.Node): node is MDAST.MdastContent {
+export function isRootContent(node: MDAST.Node): node is MDAST.RootContent {
   return isFlowContent(node)
       || isListContent(node)
       || isPhrasingContent(node)

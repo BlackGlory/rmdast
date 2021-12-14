@@ -5,7 +5,7 @@ export { Node } from 'unist'
 // Nodes
 
 export interface Parent extends UnistParent {
-  children: MdastContent[]
+  children: Node[]
 }
 
 interface Literal extends UnistLiteral {
@@ -14,6 +14,7 @@ interface Literal extends UnistLiteral {
 
 export interface Root extends Parent {
   type: 'root'
+  children: RootContent[]
 }
 
 export interface Paragraph extends Parent {
@@ -194,7 +195,7 @@ type Attributes = Record<string, string>
 
 // Content model
 
-export type MdastContent =
+export type RootContent =
 | FlowContent
 | ListContent
 | PhrasingContent
