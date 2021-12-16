@@ -1,7 +1,7 @@
-import { wrap } from '@rmdast-utils/wrap.js'
+import { addHelpers } from '@rmdast-utils/add-helpers.js'
 import * as R from '@rmdast-utils/builder.js'
 
-describe('wrap', () => {
+describe('addHelpers', () => {
   test('root', () => {
     const ast = R.root([
       R.paragraph([
@@ -15,7 +15,7 @@ describe('wrap', () => {
       ])
     ])
 
-    const result = wrap(ast)
+    const result = addHelpers(ast)
 
     expect(result).toMatchObject({
       type: 'root'
@@ -91,7 +91,7 @@ describe('wrap', () => {
       )
     ])
 
-    const result = wrap(ast)
+    const result = addHelpers(ast)
 
     expect(result).toMatchObject({
       type: 'root'

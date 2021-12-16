@@ -457,8 +457,8 @@ interface Heading {
 function createTableOfContents(
   root: AST.Root
 , {
-    createHeadingText: (heading: WrappedNode<AST.Heading>) => string
-  , createHeadingURL: (heading: WrappedNode<AST.Heading>) => string
+    createHeadingText: (heading: NodeWithHelpers<AST.Heading>) => string
+  , createHeadingURL: (heading: NodeWithHelpers<AST.Heading>) => string
   }
 ): TableOfContents
 ```
@@ -469,17 +469,17 @@ function createTableOfContents(
 function traverseDescendantNodes(node: AST.Node): Iterable<AST.Node>
 ```
 
-#### wrap
+#### addHelpers
 
 ```ts
-import { wrap, WrappedNode } from 'rmdast/utils/wrap.js'
+import { addHelpers, NodeWithHelpers } from 'rmdast/utils/add-helpers.js'
 
-type NullOrWrappedNode<T extends AST.Node | null> =
+type NullOrNodeWithHelpers<T extends AST.Node | null> =
   T extends null
   ? null
-  : WrappedNode<NonNullable<T>>
+  : NodeWithHelpers<NonNullable<T>>
 
-type WrappedNode<
+type NodeWithHelpers<
   Node extends AST.Node
 , Sibling extends AST.Node | null = AST.Node | null
 , Parent extends AST.Node | null = AST.Node | null
@@ -491,17 +491,17 @@ type WrappedNode<
       index: null
       previousSibling: null
       nextSibling: null
-      children: Array<WrappedNode<AST.RootContent, AST.RootContent, AST.Root>>
+      children: Array<NodeWithHelpers<AST.RootContent, AST.RootContent, AST.Root>>
     }>
 : Node extends AST.Paragraph
   ? Mixin<Node, {
       id: string
-      parent: NullOrWrappedNode<Parent>
+      parent: NullOrNodeWithHelpers<Parent>
       index: number
-      previousSibling: NullOrWrappedNode<Sibling>
-      nextSibling: NullOrWrappedNode<Sibling>
+      previousSibling: NullOrNodeWithHelpers<Sibling>
+      nextSibling: NullOrNodeWithHelpers<Sibling>
       children: Array<
-        WrappedNode<
+        NodeWithHelpers<
           AST.UniversalInlineContent
         , AST.UniversalInlineContent
         , AST.Paragraph
@@ -511,12 +511,12 @@ type WrappedNode<
 : Node extends AST.Heading
   ? Mixin<Node, {
       id: string
-      parent: NullOrWrappedNode<Parent>
+      parent: NullOrNodeWithHelpers<Parent>
       index: number
-      previousSibling: NullOrWrappedNode<Sibling>
-      nextSibling: NullOrWrappedNode<Sibling>
+      previousSibling: NullOrNodeWithHelpers<Sibling>
+      nextSibling: NullOrNodeWithHelpers<Sibling>
       children: Array<
-        WrappedNode<
+        NodeWithHelpers<
           AST.UniversalInlineContent
         , AST.UniversalInlineContent
         , AST.Heading
@@ -526,12 +526,12 @@ type WrappedNode<
 : Node extends AST.Blockquote
   ? Mixin<Node, {
       id: string
-      parent: NullOrWrappedNode<Parent>
+      parent: NullOrNodeWithHelpers<Parent>
       index: number
-      previousSibling: NullOrWrappedNode<Sibling>
-      nextSibling: NullOrWrappedNode<Sibling>
+      previousSibling: NullOrNodeWithHelpers<Sibling>
+      nextSibling: NullOrNodeWithHelpers<Sibling>
       children: Array<
-        WrappedNode<
+        NodeWithHelpers<
           AST.UniversalBlockContent
         , AST.UniversalBlockContent
         , AST.Blockquote
@@ -541,94 +541,94 @@ type WrappedNode<
 : Node extends AST.List
   ? Mixin<Node, {
       id: string
-      parent: NullOrWrappedNode<Parent>
+      parent: NullOrNodeWithHelpers<Parent>
       index: number
-      previousSibling: NullOrWrappedNode<Sibling>
-      nextSibling: NullOrWrappedNode<Sibling>
-      children: Array<WrappedNode<AST.ListItem, AST.ListItem, AST.List>>
+      previousSibling: NullOrNodeWithHelpers<Sibling>
+      nextSibling: NullOrNodeWithHelpers<Sibling>
+      children: Array<NodeWithHelpers<AST.ListItem, AST.ListItem, AST.List>>
     }>
 : Node extends AST.ListItem
   ? Mixin<Node, {
       id: string
-      parent: NullOrWrappedNode<Parent>
+      parent: NullOrNodeWithHelpers<Parent>
       index: number
-      previousSibling: NullOrWrappedNode<Sibling>
-      nextSibling: NullOrWrappedNode<Sibling>
-      children: Array<WrappedNode<AST.UniversalBlockContent, AST.UniversalBlockContent, AST.ListItem>>
+      previousSibling: NullOrNodeWithHelpers<Sibling>
+      nextSibling: NullOrNodeWithHelpers<Sibling>
+      children: Array<NodeWithHelpers<AST.UniversalBlockContent, AST.UniversalBlockContent, AST.ListItem>>
     }>
 : Node extends AST.Emphasis
   ? Mixin<Node, {
       id: string
-      parent: NullOrWrappedNode<Parent>
+      parent: NullOrNodeWithHelpers<Parent>
       index: number
-      previousSibling: NullOrWrappedNode<Sibling>
-      nextSibling: NullOrWrappedNode<Sibling>
-      children: Array<WrappedNode<AST.UniversalInlineContent, AST.UniversalInlineContent, AST.Emphasis>>
+      previousSibling: NullOrNodeWithHelpers<Sibling>
+      nextSibling: NullOrNodeWithHelpers<Sibling>
+      children: Array<NodeWithHelpers<AST.UniversalInlineContent, AST.UniversalInlineContent, AST.Emphasis>>
     }>
 : Node extends AST.Strong
   ? Mixin<Node, {
       id: string
-      parent: NullOrWrappedNode<Parent>
+      parent: NullOrNodeWithHelpers<Parent>
       index: number
-      previousSibling: NullOrWrappedNode<Sibling>
-      nextSibling: NullOrWrappedNode<Sibling>
-      children: Array<WrappedNode<AST.UniversalInlineContent, AST.UniversalInlineContent, AST.Strong>>
+      previousSibling: NullOrNodeWithHelpers<Sibling>
+      nextSibling: NullOrNodeWithHelpers<Sibling>
+      children: Array<NodeWithHelpers<AST.UniversalInlineContent, AST.UniversalInlineContent, AST.Strong>>
     }>
 : Node extends AST.Link
   ? Mixin<Node, {
       id: string
-      parent: NullOrWrappedNode<Parent>
+      parent: NullOrNodeWithHelpers<Parent>
       index: number
-      previousSibling: NullOrWrappedNode<Sibling>
-      nextSibling: NullOrWrappedNode<Sibling>
-      children: Array<WrappedNode<AST.UniversalInlineContent, AST.UniversalInlineContent, AST.Link>>
+      previousSibling: NullOrNodeWithHelpers<Sibling>
+      nextSibling: NullOrNodeWithHelpers<Sibling>
+      children: Array<NodeWithHelpers<AST.UniversalInlineContent, AST.UniversalInlineContent, AST.Link>>
     }>
 : Node extends AST.Table
   ? Mixin<Node, {
       id: string
-      parent: NullOrWrappedNode<Parent>
+      parent: NullOrNodeWithHelpers<Parent>
       index: number
-      previousSibling: NullOrWrappedNode<Sibling>
-      nextSibling: NullOrWrappedNode<Sibling>
-      header: WrappedNode<AST.TableRow, null, AST.Table>
-      children: Array<WrappedNode<AST.TableRow, AST.TableRow, AST.Table>>
+      previousSibling: NullOrNodeWithHelpers<Sibling>
+      nextSibling: NullOrNodeWithHelpers<Sibling>
+      header: NodeWithHelpers<AST.TableRow, null, AST.Table>
+      children: Array<NodeWithHelpers<AST.TableRow, AST.TableRow, AST.Table>>
     }>
 : Node extends AST.TableRow
   ? Mixin<Node, {
       id: string
-      parent: NullOrWrappedNode<Parent>
+      parent: NullOrNodeWithHelpers<Parent>
       index: Sibling extends null ? null : number
-      previousSibling: NullOrWrappedNode<Sibling>
-      nextSibling: NullOrWrappedNode<Sibling>
-      children: Array<WrappedNode<AST.TableCell, AST.TableCell, AST.TableRow>>
+      previousSibling: NullOrNodeWithHelpers<Sibling>
+      nextSibling: NullOrNodeWithHelpers<Sibling>
+      children: Array<NodeWithHelpers<AST.TableCell, AST.TableCell, AST.TableRow>>
     }>
 : Node extends AST.TableCell
   ? Mixin<Node, {
       id: string
-      parent: NullOrWrappedNode<Parent>
+      parent: NullOrNodeWithHelpers<Parent>
       index: number
-      previousSibling: NullOrWrappedNode<Sibling>
-      nextSibling: NullOrWrappedNode<Sibling>
-      children: Array<WrappedNode<AST.UniversalInlineContent, AST.UniversalInlineContent, AST.TableCell>>
+      previousSibling: NullOrNodeWithHelpers<Sibling>
+      nextSibling: NullOrNodeWithHelpers<Sibling>
+      children: Array<NodeWithHelpers<AST.UniversalInlineContent, AST.UniversalInlineContent, AST.TableCell>>
     }>
 : Node extends AST.Delete
   ? Mixin<Node, {
       id: string
-      parent: NullOrWrappedNode<Parent>
+      parent: NullOrNodeWithHelpers<Parent>
       index: number
-      previousSibling: NullOrWrappedNode<Sibling>
-      nextSibling: NullOrWrappedNode<Sibling>
-      children: Array<WrappedNode<AST.UniversalInlineContent, AST.UniversalInlineContent, AST.Delete>>
+      previousSibling: NullOrNodeWithHelpers<Sibling>
+      nextSibling: NullOrNodeWithHelpers<Sibling>
+      children: Array<NodeWithHelpers<AST.UniversalInlineContent, AST.UniversalInlineContent, AST.Delete>>
     }>
 : Node extends AST.Footnote
   ? Mixin<Node, {
       id: string
-      parent: NullOrWrappedNode<Parent>
+      parent: NullOrNodeWithHelpers<Parent>
       index: number
-      previousSibling: NullOrWrappedNode<Sibling>
-      nextSibling: NullOrWrappedNode<Sibling>
+      previousSibling: NullOrNodeWithHelpers<Sibling>
+      nextSibling: NullOrNodeWithHelpers<Sibling>
       children: Array<
-        WrappedNode<
+        NodeWithHelpers<
           AST.UniversalBlockContent
         , AST.UniversalBlockContent
         , AST.Footnote
@@ -638,12 +638,12 @@ type WrappedNode<
 : Node extends AST.InlineFootnote
   ? Mixin<Node, {
       id: string
-      parent: NullOrWrappedNode<Parent>
+      parent: NullOrNodeWithHelpers<Parent>
       index: number
-      previousSibling: NullOrWrappedNode<Sibling>
-      nextSibling: NullOrWrappedNode<Sibling>
+      previousSibling: NullOrNodeWithHelpers<Sibling>
+      nextSibling: NullOrNodeWithHelpers<Sibling>
       children: Array<
-        WrappedNode<
+        NodeWithHelpers<
           AST.UniversalInlineContent
         , AST.UniversalInlineContent
         , AST.InlineFootnote
@@ -653,12 +653,12 @@ type WrappedNode<
 : Node extends AST.TextDirective
   ? Mixin<Node, {
       id: string
-      parent: NullOrWrappedNode<Parent>
+      parent: NullOrNodeWithHelpers<Parent>
       index: number
-      previousSibling: NullOrWrappedNode<Sibling>
-      nextSibling: NullOrWrappedNode<Sibling>
+      previousSibling: NullOrNodeWithHelpers<Sibling>
+      nextSibling: NullOrNodeWithHelpers<Sibling>
       children: Array<
-        WrappedNode<
+        NodeWithHelpers<
           AST.UniversalInlineContent
         , AST.UniversalInlineContent
         , AST.TextDirective
@@ -668,12 +668,12 @@ type WrappedNode<
 : Node extends AST.LeafDirective
   ? Mixin<Node, {
       id: string
-      parent: NullOrWrappedNode<Parent>
+      parent: NullOrNodeWithHelpers<Parent>
       index: number
-      previousSibling: NullOrWrappedNode<Sibling>
-      nextSibling: NullOrWrappedNode<Sibling>
+      previousSibling: NullOrNodeWithHelpers<Sibling>
+      nextSibling: NullOrNodeWithHelpers<Sibling>
       children: Array<
-        WrappedNode<
+        NodeWithHelpers<
           AST.UniversalInlineContent
         , AST.UniversalInlineContent
         , AST.LeafDirective
@@ -683,12 +683,12 @@ type WrappedNode<
 : Node extends AST.ContainerDirective
   ? Mixin<Node, {
       id: string
-      parent: NullOrWrappedNode<Parent>
+      parent: NullOrNodeWithHelpers<Parent>
       index: number
-      previousSibling: NullOrWrappedNode<Sibling>
-      nextSibling: NullOrWrappedNode<Sibling>
+      previousSibling: NullOrNodeWithHelpers<Sibling>
+      nextSibling: NullOrNodeWithHelpers<Sibling>
       children: Array<
-        WrappedNode<
+        NodeWithHelpers<
           AST.UniversalBlockContent
         , AST.UniversalBlockContent
         , AST.ContainerDirective
@@ -698,27 +698,27 @@ type WrappedNode<
 : Node extends AST.Gallery
   ? Mixin<Node, {
       id: string
-      parent: NullOrWrappedNode<AST.Root>
+      parent: NullOrNodeWithHelpers<AST.Root>
       index: number
       previousSibling: null
       nextSibling: null
-      children: Array<WrappedNode<AST.Image, AST.Image, AST.Gallery>>
+      children: Array<NodeWithHelpers<AST.Image, AST.Image, AST.Gallery>>
     }>
 : Mixin<Node, {
     id: string
-    parent: NullOrWrappedNode<Parent>
+    parent: NullOrNodeWithHelpers<Parent>
     index: number | null
-    previousSibling: NullOrWrappedNode<Sibling>
-    nextSibling: NullOrWrappedNode<Sibling>
+    previousSibling: NullOrNodeWithHelpers<Sibling>
+    nextSibling: NullOrNodeWithHelpers<Sibling>
   }>
 
-function wrap<T extends AST.Node>(node: T): WrappedNode<T>
+function addHelpers<T extends AST.Node>(node: T): NodeWithHelpers<T>
 ```
 
-#### unwrap
+#### removeHelpers
 
 ```ts
-import { unwrap } from 'rmdast/utils/unwrap.js'
+import { removeHelpers } from 'rmdast/utils/remove-helpers.js'
 
-function unwrap<T extends AST.Node>(node: WrappedNode<T>): T
+function removeHelpers<T extends AST.Node>(node: NodeWithHelpers<T>): T
 ```

@@ -3,7 +3,7 @@ import * as R from '@rmdast-utils/builder.js'
 import * as AST from '@src/rmdast.js'
 import { isHeading, isText } from '@rmdast-utils/is.js'
 import { findAll } from '@rmdast-utils/find-all'
-import { WrappedNode } from '@rmdast-utils/wrap'
+import { NodeWithHelpers } from '@rmdast-utils/add-helpers'
 import { map, toArray } from 'iterable-operator'
 
 describe('createTableOfContents(root: AST.Root): TableOfContents', () => {
@@ -180,11 +180,11 @@ describe('createTableOfContents(root: AST.Root): TableOfContents', () => {
   })
 })
 
-function createHeadingURL(heading: WrappedNode<AST.Heading>): string {
+function createHeadingURL(heading: NodeWithHelpers<AST.Heading>): string {
   const results: string[] = []
 
   let lastHeadingDepth = Infinity
-  let current: WrappedNode<AST.Node> | null = heading
+  let current: NodeWithHelpers<AST.Node> | null = heading
   while (current !== null) {
     if (isHeading(current) && current.depth < lastHeadingDepth) {
       lastHeadingDepth = current.depth

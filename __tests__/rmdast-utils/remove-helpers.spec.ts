@@ -1,10 +1,10 @@
-import { wrap } from '@rmdast-utils/wrap.js'
-import { unwrap } from '@rmdast-utils/unwrap.js'
+import { addHelpers } from '@rmdast-utils/add-helpers.js'
+import { removeHelpers } from '@rmdast-utils/remove-helpers.js'
 import * as R from '@rmdast-utils/builder.js'
 
-describe('unwrap', () => {
+describe('removeHelpers', () => {
   test('root', () => {
-    const ast = wrap(
+    const ast = addHelpers(
       R.root([
         R.paragraph([
           R.text('first')
@@ -18,7 +18,7 @@ describe('unwrap', () => {
       ])
     )
 
-    const result = unwrap(ast)
+    const result = removeHelpers(ast)
 
     expect(result).toStrictEqual(
       R.root([
@@ -36,7 +36,7 @@ describe('unwrap', () => {
   })
 
   test('table.header', () => {
-    const ast = wrap(
+    const ast = addHelpers(
       R.root([
         R.table(
           R.tableRow([])
@@ -45,7 +45,7 @@ describe('unwrap', () => {
       ])
     )
 
-    const result = unwrap(ast)
+    const result = removeHelpers(ast)
 
     expect(result).toStrictEqual(
       R.root([

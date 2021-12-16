@@ -1,7 +1,7 @@
 import * as AST from '@src/rmdast.js'
 import { isHeading } from './is.js'
 import { findAll } from './find-all.js'
-import { wrap, WrappedNode } from './wrap.js'
+import { addHelpers, NodeWithHelpers } from './add-helpers.js'
 
 export type TableOfContents = Heading[]
 
@@ -15,21 +15,21 @@ export interface Heading {
 export function createTableOfContents(
   root: AST.Root
 , { createHeadingText, createHeadingURL }: {
-    createHeadingText: (heading: WrappedNode<AST.Heading>) => string
-  , createHeadingURL: (heading: WrappedNode<AST.Heading>) => string
+    createHeadingText: (heading: NodeWithHelpers<AST.Heading>) => string
+  , createHeadingURL: (heading: NodeWithHelpers<AST.Heading>) => string
   }
 ): TableOfContents {
   type InternalTableOfContents = InternalHeading[]
   type InternalHeading = [
-    heading: WrappedNode<AST.Heading>
+    heading: NodeWithHelpers<AST.Heading>
   , ...children: InternalHeading[]
   ]
 
-  const ast = wrap(root)
+  const ast = addHelpers(root)
 
   const tableOfContents: InternalTableOfContents = []
   const stack: InternalHeading[] = []
-  for (const headingNode of findAll<WrappedNode<AST.Heading>>(ast, isHeading)) {
+  for (const headingNode of findAll<NodeWithHelpers<AST.Heading>>(ast, isHeading)) {
     const heading: InternalHeading = [headingNode]
 
     while (true) {
