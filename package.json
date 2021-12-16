@@ -1,6 +1,6 @@
 {
   "name": "rmdast",
-  "version": "3.4.5",
+  "version": "4.0.0",
   "description": "Renderable Markdown Abstract Syntax Tree",
   "keywords": [],
   "files": [

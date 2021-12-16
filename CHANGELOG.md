@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.0.0](https://github.com/BlackGlory/rmdast/compare/v3.4.5...v4.0.0) (2021-12-16)
+
+
+### ⚠ BREAKING CHANGES
+
+* - `wrap` => `addHelpers`
+- `unwrap` => `removeHelpers`
+
+* rename wrap to addHelpers, unwrap to removeHelpers ([ee2a273](https://github.com/BlackGlory/rmdast/commit/ee2a273faa9990b9531e3650f98b85da7dfa96b6))
+
 ### [3.4.5](https://github.com/BlackGlory/rmdast/compare/v3.4.4...v3.4.5) (2021-12-15)
 
 ### [3.4.4](https://github.com/BlackGlory/rmdast/compare/v3.4.3...v3.4.4) (2021-12-08)
