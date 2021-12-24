@@ -523,14 +523,15 @@
     extra-timers "^0.2.2"
     justypes "^0.1.5"
 
-"@blackglory/structures@^0.2.8":
-  version "0.2.8"
-  resolved "https://registry.yarnpkg.com/@blackglory/structures/-/structures-0.2.8.tgz#055da70de9d08a9e065d76468749044472d709c2"
-  integrity sha512-cfxV5xNoLgv64U0gidn7DnECyC5ooz5mV3RUfmw1vyAv/1Jbv+Gv5X6bENr4Of92TNFgT05NeZvRBDD+q20fTw==
+"@blackglory/structures@^0.3.1":
+  version "0.3.1"
+  resolved "https://registry.yarnpkg.com/@blackglory/structures/-/structures-0.3.1.tgz#3308a8d33a967d9acf74c05f01ff70b3cf814ff3"
+  integrity sha512-lmrEWrYOZM7IziO1gkyqddqXw/TZ/ITbfBz72tLVKjLZdhIDMStbRk3IXJHeEC65LrOkLfqy5EiOh+xJqDcJRA==
   dependencies:
     "@blackglory/errors" "^1.1.2"
     "@blackglory/types" "^0.5.2"
     extra-timers "^0.2.4"
+    iterable-operator "^0.14.4"
     rxjs "^7.4.0"
 
 "@blackglory/types@^0.4.6":
@@ -567,6 +568,14 @@
   integrity sha512-lzKg5ybpiPT6FJ6g6YlmX/03oOWW+LjFO9HFxSLFsDHGmpe19d8o5bWmTKf0tsAifg/qXDsLTLO/E3EgGj+xvQ==
   dependencies:
     justypes "^0.1.6"
+
+"@blackglory/types@^0.6.1":
+  version "0.6.4"
+  resolved "https://registry.yarnpkg.com/@blackglory/types/-/types-0.6.4.tgz#ba511c58d4a8cf321bfc34c4b3c94e8a9b3341bd"
+  integrity sha512-QtiPJllbKOXHbX9S/h2NsUbP+vgm6J5w2oQI4N4IuoTdzBbQJZNkcHTf2FeD/1yi/xhzEVdR0L4ZKfLlcmAJbw==
+  dependencies:
+    justypes "^0.1.6"
+    lodash.isplainobject "^4.0.6"
 
 "@commitlint/cli@^15.0.0":
   version "15.0.0"
@@ -2011,11 +2020,6 @@ core-js@^3.18.2:
   resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.18.2.tgz#63a551e8a29f305cd4123754846e65896619ba5b"
   integrity sha512-zNhPOUoSgoizoSQFdX1MeZO16ORRb9FFQLts8gSYbZU5FcgXhp24iMWMxnOQo5uIaIG7/6FA/IqJPwev1o9ZXQ==
 
-core-js@^3.19.3:
-  version "3.19.3"
-  resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.19.3.tgz#6df8142a996337503019ff3235a7022d7cdf4559"
-  integrity sha512-LeLBMgEGSsG7giquSzvgBrTS7V5UL6ks3eQlUSbN8dJStlLFiRzUm5iqsRyzUB8carhfKjkJ2vzKqE6z1Vga9g==
-
 core-js@^3.20.0:
   version "3.20.0"
   resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.20.0.tgz#1c5ac07986b8d15473ab192e45a2e115a4a95b79"
@@ -2530,13 +2534,13 @@ extra-filesystem@^0.3.10:
     fs-extra "^10.0.0"
     tmp-promise "^3.0.2"
 
-extra-filesystem@^0.3.14:
-  version "0.3.14"
-  resolved "https://registry.yarnpkg.com/extra-filesystem/-/extra-filesystem-0.3.14.tgz#ec52185c3889ed2498bb62a6acd1e7eb5d3c4a9b"
-  integrity sha512-QraL6B5ufX3OILXEibUlk+lJR4DdpPX7FoPaTNm+Z2P3WrpfHTyLqvY2SlLx2fsDOqQHOAtCUT69aW8f9n3lcw==
+extra-filesystem@^0.4.1:
+  version "0.4.1"
+  resolved "https://registry.yarnpkg.com/extra-filesystem/-/extra-filesystem-0.4.1.tgz#3887cdfbfe323dff27481cf78cf8d66364cb3e3b"
+  integrity sha512-H1pKoR5E0P0rgyhg+/h5/cfD//4ADcS2z7LZRNyAupmIamnHo+bwj7lV3w67Tkb69uEZ1DmU2BBsw9i2+qmyfg==
   dependencies:
     "@blackglory/pass" "^0.1.0"
-    extra-promise "^0.19.4"
+    extra-promise "^0.21.0"
     fs-extra "^10.0.0"
     tmp-promise "^3.0.3"
 
@@ -2583,18 +2587,17 @@ extra-promise@^0.19.0:
     reflect-metadata "^0.1.13"
     return-style "^0.12.3"
 
-extra-promise@^0.19.4:
-  version "0.19.6"
-  resolved "https://registry.yarnpkg.com/extra-promise/-/extra-promise-0.19.6.tgz#ab9dc030b648c815713be04000dc5d2c13ce295f"
-  integrity sha512-EMCpUwdtPjh81MC9TvLph58JjJakq68izSDFiWWwiu4AchfnWsPNErQX55ZwoR9vlmnQdNgwSPFXD3r6NqD+RQ==
+extra-promise@^0.21.0:
+  version "0.21.0"
+  resolved "https://registry.yarnpkg.com/extra-promise/-/extra-promise-0.21.0.tgz#855d0a34d344c7b0bd82f9866ee526367c1770b1"
+  integrity sha512-yPJat8oubkp+sK3ONrsIJ651eN1eGsKJY9+valfiY5ihugjpB+L3gWG7/iGiQZgkIZT4i2N71YMA9itLTWgfvw==
   dependencies:
     "@blackglory/errors" "^1.1.2"
     "@blackglory/go" "^0.1.1"
     "@blackglory/pass" "^0.1.0"
-    "@blackglory/structures" "^0.2.8"
-    "@blackglory/types" "^0.5.2"
-    abort-controller "^3.0.0"
-    core-js "^3.19.3"
+    "@blackglory/structures" "^0.3.1"
+    "@blackglory/types" "^0.6.1"
+    core-js "^3.20.0"
     eventemitter3 "^4.0.7"
     extra-generator "^0.2.15"
     iterable-operator "^0.14.4"
@@ -4051,6 +4054,11 @@ lodash.ismatch@^4.4.0:
   version "4.4.0"
   resolved "https://registry.yarnpkg.com/lodash.ismatch/-/lodash.ismatch-4.4.0.tgz#756cb5150ca3ba6f11085a78849645f188f85f37"
   integrity sha1-dWy1FQyjum8RCFp4hJZF8Yj4Xzc=
+
+lodash.isplainobject@^4.0.6:
+  version "4.0.6"
+  resolved "https://registry.yarnpkg.com/lodash.isplainobject/-/lodash.isplainobject-4.0.6.tgz#7c526a52d89b45c45cc690b88163be0497f550cb"
+  integrity sha1-fFJqUtibRcRcxpC4gWO+BJf1UMs=
 
 lodash.memoize@4.x:
   version "4.1.2"
@@ -5855,14 +5863,7 @@ through@2, "through@>=2.2.7 <3":
   resolved "https://registry.yarnpkg.com/through/-/through-2.3.8.tgz#0dd4c9ffaabc357960b1b724115d7e0e86a2e1f5"
   integrity sha1-DdTJ/6q8NXlgsbckEV1+Doai4fU=
 
-tmp-promise@^3.0.2:
-  version "3.0.2"
-  resolved "https://registry.yarnpkg.com/tmp-promise/-/tmp-promise-3.0.2.tgz#6e933782abff8b00c3119d63589ca1fb9caaa62a"
-  integrity sha512-OyCLAKU1HzBjL6Ev3gxUeraJNlbNingmi8IrHHEsYH8LTmEuhvYfqvhn2F/je+mjf4N58UmZ96OMEy1JanSCpA==
-  dependencies:
-    tmp "^0.2.0"
-
-tmp-promise@^3.0.3:
+tmp-promise@^3.0.2, tmp-promise@^3.0.3:
   version "3.0.3"
   resolved "https://registry.yarnpkg.com/tmp-promise/-/tmp-promise-3.0.3.tgz#60a1a1cc98c988674fcbfd23b6e3367bdeac4ce7"
   integrity sha512-RwM7MoPojPxsOBYnyd2hy0bxtIlVrihNs9pj5SUvY8Zz1sQcQG2tG1hSr8PDxfgEB8RNKDhqbIlroIarSNDNsQ==
