@@ -27,7 +27,7 @@
   "scripts": {
     "prepare": "ts-patch install -s",
     "lint": "eslint --ext .js,.jsx,.ts,.tsx --quiet src __tests__",
-    "test": "cross-env NODE_OPTIONS=--experimental-vm-modules jest --no-cache --config jest.config.js",
+    "test": "cross-env NODE_OPTIONS=--experimental-vm-modules jest --runInBand --no-cache --config jest.config.js",
     "test:debug": "cross-env NODE_OPTIONS=--experimental-vm-modules node --inspect-brk node_modules/.bin/jest --runInBand",
     "test:coverage": "cross-env NODE_OPTIONS=--experimental-vm-modules jest --coverage --config jest.config.js",
     "prepublishOnly": "run-s prepare clean build bundle",
