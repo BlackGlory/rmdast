@@ -14,16 +14,13 @@ import { text, newline, image, gallery } from '@rmdast-utils/builder.js'
 import 'core-js/features/array/flat-map.js'
 
 export function postprocess(root: RMDAST.Root): RMDAST.Root {
-  return (
-    transformImageOnlyListToGallery(
-      transformInlineImageToImage(
-        removeEmptyParagraph(
-          transformTextToNewline(
-            concatContinuousText(root)
-          )
-        )
-      )
-    )
+  return pipe(
+    root
+  , concatContinuousText
+  , transformTextToNewline
+  , removeEmptyParagraph
+  , transformInlineImageToImage
+  , transformImageOnlyListToGallery
   )
 }
 
@@ -98,4 +95,8 @@ function transformInlineImageToImage(root: RMDAST.Root): RMDAST.Root {
 
 function last<T>(arr: T[]): T | undefined {
   return arr[arr.length - 1]
+}
+
+function pipe<T>(value: T, ...fns: Array<(value: T) => T>): T {
+  return fns.reduce((result, fn) => fn(result), value)
 }
