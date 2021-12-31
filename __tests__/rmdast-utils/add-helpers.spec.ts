@@ -1,4 +1,4 @@
-import { addHelpers } from '@rmdast-utils/add-helpers.js'
+import { addHelpersInPlace } from '@rmdast-utils/add-helpers.js'
 import * as R from '@rmdast-utils/builder.js'
 
 describe('addHelpers', () => {
@@ -15,7 +15,7 @@ describe('addHelpers', () => {
       ])
     ])
 
-    const result = addHelpers(ast)
+    const result = addHelpersInPlace(ast)
 
     expect(result).toMatchObject({
       type: 'root'
@@ -91,7 +91,7 @@ describe('addHelpers', () => {
       )
     ])
 
-    const result = addHelpers(ast)
+    const result = addHelpersInPlace(ast)
 
     expect(result).toMatchObject({
       type: 'root'

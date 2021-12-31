@@ -1,10 +1,10 @@
-import { addHelpers } from '@rmdast-utils/add-helpers.js'
-import { removeHelpers } from '@rmdast-utils/remove-helpers.js'
+import { addHelpersInPlace } from '@rmdast-utils/add-helpers.js'
+import { removeHelpersInPlace } from '@rmdast-utils/remove-helpers.js'
 import * as R from '@rmdast-utils/builder.js'
 
 describe('removeHelpers', () => {
   test('root', () => {
-    const ast = addHelpers(
+    const ast = addHelpersInPlace(
       R.root([
         R.paragraph([
           R.text('first')
@@ -18,7 +18,7 @@ describe('removeHelpers', () => {
       ])
     )
 
-    const result = removeHelpers(ast)
+    const result = removeHelpersInPlace(ast)
 
     expect(result).toStrictEqual(
       R.root([
@@ -36,7 +36,7 @@ describe('removeHelpers', () => {
   })
 
   test('table.header', () => {
-    const ast = addHelpers(
+    const ast = addHelpersInPlace(
       R.root([
         R.table(
           R.tableRow([])
@@ -45,7 +45,7 @@ describe('removeHelpers', () => {
       ])
     )
 
-    const result = removeHelpers(ast)
+    const result = removeHelpersInPlace(ast)
 
     expect(result).toStrictEqual(
       R.root([

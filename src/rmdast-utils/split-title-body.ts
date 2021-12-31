@@ -2,20 +2,20 @@ import * as RMDAST from '@src/rmdast.js'
 import { isHeading, isText } from './is.js'
 import { find } from './find.js'
 import { flatMap } from './flat-map.js'
-import { addHelpers, NodeWithHelpers } from './add-helpers.js'
-import { removeHelpers } from './remove-helpers.js'
+import { addHelpersInPlace, NodeWithHelpers } from './add-helpers.js'
+import { removeHelpersInPlace } from './remove-helpers.js'
 
 export function splitTitleBody(root: RMDAST.Root): {
   title: RMDAST.Heading
   body: RMDAST.Root
 } {
-  const wrappedRoot = addHelpers(root)
+  const wrappedRoot = addHelpersInPlace(root)
   const titleNode = findTitleNode(wrappedRoot)
   const body = createBody(wrappedRoot, titleNode)
 
   return {
-    title: removeHelpers(titleNode)
-  , body: removeHelpers(body)
+    title: removeHelpersInPlace(titleNode)
+  , body: removeHelpersInPlace(body)
   }
 }
 

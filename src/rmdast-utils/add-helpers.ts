@@ -1,7 +1,6 @@
 import * as AST from '@src/rmdast.js'
 import { Mixin } from 'hotypes'
 import { isParent, isTable } from './is.js'
-import cloneDeep from 'lodash.clonedeep'
 import { isntUndefined } from '@blackglory/types'
 import { nanoid } from 'nanoid'
 
@@ -243,10 +242,9 @@ export type NodeWithHelpers<
     nextSibling: NullOrNodeWithHelpers<Sibling>
   }>
 
-export function addHelpers<T extends AST.Node>(node: T): NodeWithHelpers<T> {
-  const clone = cloneDeep(node)
-  addHelpersToTree(clone)
-  return clone as NodeWithHelpers<T>
+export function addHelpersInPlace<T extends AST.Node>(node: T): NodeWithHelpers<T> {
+  addHelpersToTree(node)
+  return node as NodeWithHelpers<T>
 }
 
 function addHelpersToTree<

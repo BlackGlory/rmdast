@@ -1,7 +1,7 @@
 import * as AST from '@src/rmdast.js'
 import { isHeading } from './is.js'
 import { findAll } from './find-all.js'
-import { addHelpers, NodeWithHelpers } from './add-helpers.js'
+import { addHelpersInPlace, NodeWithHelpers } from './add-helpers.js'
 
 export type TableOfContents = Heading[]
 
@@ -25,7 +25,7 @@ export function createTableOfContents(
   , ...children: InternalHeading[]
   ]
 
-  const ast = addHelpers(root)
+  const ast = addHelpersInPlace(root)
 
   const tableOfContents: InternalTableOfContents = []
   const stack: InternalHeading[] = []
