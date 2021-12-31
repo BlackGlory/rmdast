@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.0.0](https://github.com/BlackGlory/rmdast/compare/v4.0.0...v5.0.0) (2021-12-31)
+
+
+### ⚠ BREAKING CHANGES
+
+* `map` and `flatMap` now use shallow copy.
+Rename `addHelpers` to `addHelpersInPlace`.
+Rename `removeHelpers` to `removeHelpersInPlace`.
+
+* replace deep copy with shallow copy ([63e662f](https://github.com/BlackGlory/rmdast/commit/63e662fb03acd63af5f7b8a469c829b316b92671))
+
 ## [4.0.0](https://github.com/BlackGlory/rmdast/compare/v3.4.5...v4.0.0) (2021-12-16)
 
 
