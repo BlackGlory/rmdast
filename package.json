@@ -17,6 +17,7 @@
     "./es2018/utils/*": "./lib/es2018/rmdast-utils/*",
     "./es2015/utils/*": "./lib/es2015/rmdast-utils/*"
   },
+  "sideEffects": false,
   "types": "lib/es2018/index.d.ts",
   "engines": {
     "node": "^12.20.0 || ^14.13.1 || >=16.0.0"
