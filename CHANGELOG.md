@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.2.0](https://github.com/BlackGlory/rmdast/compare/v5.1.0...v5.2.0) (2022-01-06)
+
+
+### Features
+
+* add addHelpers, removeHelpers, withHelpersInPlace ([dae3cec](https://github.com/BlackGlory/rmdast/commit/dae3cec508f68607d2d028f10260d8501a652a89))
+
 ## [5.1.0](https://github.com/BlackGlory/rmdast/compare/v5.0.2...v5.1.0) (2022-01-06)
 
 
