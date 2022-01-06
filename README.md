@@ -469,7 +469,7 @@ function createTableOfContents(
 function traverseDescendantNodes(node: AST.Node): Iterable<AST.Node>
 ```
 
-#### addHelpersInPlace
+#### addHelpers
 
 ```ts
 import { addHelpers, addHelpersInPlace, NodeWithHelpers } from 'rmdast/utils/add-helpers.js'
@@ -716,7 +716,7 @@ function addHelpers<T extends AST.Node>(node: T): NodeWithHelpers<T>
 function addHelpersInPlace<T extends AST.Node>(node: T): NodeWithHelpers<T>
 ```
 
-#### removeHelpersInPlace
+#### removeHelpers
 
 ```ts
 import { removeHelpers, removeHelpersInPlace } from 'rmdast/utils/remove-helpers.js'
