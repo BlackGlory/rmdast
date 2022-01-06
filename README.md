@@ -472,7 +472,7 @@ function traverseDescendantNodes(node: AST.Node): Iterable<AST.Node>
 #### addHelpersInPlace
 
 ```ts
-import { addHelpersInPlace, NodeWithHelpers } from 'rmdast/utils/add-helpers.js'
+import { addHelpers, addHelpersInPlace, NodeWithHelpers } from 'rmdast/utils/add-helpers.js'
 
 type NullOrNodeWithHelpers<T extends AST.Node | null> =
   T extends null
@@ -712,13 +712,16 @@ type NodeWithHelpers<
     nextSibling: NullOrNodeWithHelpers<Sibling>
   }>
 
+function addHelpers<T extends AST.Node>(node: T): NodeWithHelpers<T>
 function addHelpersInPlace<T extends AST.Node>(node: T): NodeWithHelpers<T>
 ```
 
 #### removeHelpersInPlace
 
 ```ts
-import { removeHelpersInPlace } from 'rmdast/utils/remove-helpers.js'
+import { removeHelpers, removeHelpersInPlace } from 'rmdast/utils/remove-helpers.js'
+
+function remove
 
 function removeHelpersInPlace<T extends AST.Node>(node: NodeWithHelpers<T>): T
 ```
@@ -726,10 +729,15 @@ function removeHelpersInPlace<T extends AST.Node>(node: NodeWithHelpers<T>): T
 #### withHelpers
 
 ```ts
-import { withHelpers } from 'rmdast/utils/with-helpers.js'
+import { withHelpers, withHelpersInPlace } from 'rmdast/utils/with-helpers.js'
 
 function withHelpers<T extends AST.Node, U>(
   node: T
-, handler: (node: NodeWithHelpers<T>) => U
+, fn: (node: NodeWithHelpers<T>) => U
+): U
+
+function withHelpersInPlace<T extends AST.Node, U>(
+  node: T
+, fn: (node: NodeWithHelpers<T>) => U
 ): U
 ```
