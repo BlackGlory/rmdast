@@ -722,3 +722,14 @@ import { removeHelpersInPlace } from 'rmdast/utils/remove-helpers.js'
 
 function removeHelpersInPlace<T extends AST.Node>(node: NodeWithHelpers<T>): T
 ```
+
+#### withHelpers
+
+```ts
+import { withHelpers } from 'rmdast/utils/with-helpers.js'
+
+function withHelpers<T extends AST.Node, U>(
+  node: T
+, handler: (node: NodeWithHelpers<T>) => U
+): U
+```

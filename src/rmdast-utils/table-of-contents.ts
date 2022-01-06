@@ -1,7 +1,7 @@
 import * as AST from '@src/rmdast.js'
 import { isHeading } from './is.js'
 import { findAll } from './find-all.js'
-import { addHelpersInPlace, NodeWithHelpers } from './add-helpers.js'
+import { withHelpers, NodeWithHelpers } from './with-helpers.js'
 
 export type TableOfContents = Heading[]
 
@@ -25,31 +25,31 @@ export function createTableOfContents(
   , ...children: InternalHeading[]
   ]
 
-  const ast = addHelpersInPlace(root)
+  return withHelpers(root, ast => {
+    const tableOfContents: InternalTableOfContents = []
+    const stack: InternalHeading[] = []
+    for (const headingNode of findAll<NodeWithHelpers<AST.Heading>>(ast, isHeading)) {
+      const heading: InternalHeading = [headingNode]
 
-  const tableOfContents: InternalTableOfContents = []
-  const stack: InternalHeading[] = []
-  for (const headingNode of findAll<NodeWithHelpers<AST.Heading>>(ast, isHeading)) {
-    const heading: InternalHeading = [headingNode]
-
-    while (true) {
-      if (stack.length === 0) {
-        tableOfContents.push(heading)
-        break
-      } else {
-        if (headingNode.depth > last(stack)[0].depth) {
-          last(stack).push(heading)
+      while (true) {
+        if (stack.length === 0) {
+          tableOfContents.push(heading)
           break
         } else {
-          stack.pop()
+          if (headingNode.depth > last(stack)[0].depth) {
+            last(stack).push(heading)
+            break
+          } else {
+            stack.pop()
+          }
         }
       }
+
+      stack.push(heading)
     }
 
-    stack.push(heading)
-  }
-
-  return internalTableOfContentsToTableOfContents(tableOfContents)
+    return internalTableOfContentsToTableOfContents(tableOfContents)
+  })
 
   function internalTableOfContentsToTableOfContents(
     toc: InternalTableOfContents
