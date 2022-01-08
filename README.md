@@ -428,41 +428,6 @@ function* findAll<T extends AST.Node>(
 ): Iterable<T>
 ```
 
-#### splitTitleBody
-
-```ts
-import { splitTitleBody } from 'rmdast/utils/split-title-body.js'
-
-function splitTitleBody(root: AST.Root): {
-  title: AST.Heading
-  body: AST.Root
-}
-```
-
-#### createTableOfContents
-
-```ts
-import { TableOfContents, Heading, createTableOfContents }
-  from 'rmdast/utils/table-of-contents.js'
-
-type TableOfContents = Heading[]
-
-interface Heading {
-  text: string
-  url: string
-  level: 1 | 2 | 3 | 4 | 5 | 6
-  children: Heading[]  
-}
-
-function createTableOfContents(
-  root: AST.Root
-, {
-    createHeadingText: (heading: NodeWithHelpers<AST.Heading>) => string
-  , createHeadingURL: (heading: NodeWithHelpers<AST.Heading>) => string
-  }
-): TableOfContents
-```
-
 #### traverseDescendantNodes
 
 ```ts
