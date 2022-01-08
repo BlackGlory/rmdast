@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [6.0.0](https://github.com/BlackGlory/rmdast/compare/v5.2.0...v6.0.0) (2022-01-08)
+
+
+### ⚠ BREAKING CHANGES
+
+* Remove splitTitleBody, createTableOfContents
+
+* remove splitTitleBody, createTableOfContents ([f4008a6](https://github.com/BlackGlory/rmdast/commit/f4008a672b7157273bb77f47788045736077d251))
+
 ## [5.2.0](https://github.com/BlackGlory/rmdast/compare/v5.1.0...v5.2.0) (2022-01-06)
 
 
