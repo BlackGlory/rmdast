@@ -18,10 +18,10 @@ export function flatMap(
     return newNodes.map(node => {
       if (isTable(node)) {
         const result = flatMap(node.header, fn)
-        assert(result.length === 1)
+        assert(result.length === 1, 'result.length must be 1')
 
         const [newHeader] = result
-        assert(isTableRow(newHeader))
+        assert(isTableRow(newHeader), 'newHeader must be TableRow')
 
         node = {
           ...node

@@ -16,7 +16,7 @@ export function map(
 
     if (isTable(newNode)) {
       const newHeader = map(newNode.header, fn)
-      assert(isTableRow(newHeader))
+      assert(isTableRow(newHeader), 'newHeader must be TableRow')
 
       newNode = {
         ...newNode
