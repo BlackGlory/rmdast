@@ -1,7 +1,7 @@
 import * as AST from '@src/rmdast.js'
 import { NodeWithHelpers } from './add-helpers.js'
 import { isParent, isTable } from './is.js'
-import cloneDeep from 'lodash.clonedeep'
+import cloneDeep from 'lodash/cloneDeep'
 
 export function removeHelpers<T extends AST.Node>(node: NodeWithHelpers<T>): T {
   return removeHelpersInPlace(cloneDeep(node))

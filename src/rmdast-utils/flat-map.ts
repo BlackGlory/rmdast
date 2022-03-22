@@ -1,7 +1,7 @@
 import * as RMDAST from '@src/rmdast.js'
 import { isParent, isTable, isTableRow } from './is.js'
 import { assert } from '@blackglory/errors'
-import _flatMap from 'lodash.flatmap'
+import _flatMap from 'lodash/flatMap'
 
 export function flatMap(
   node: RMDAST.Node

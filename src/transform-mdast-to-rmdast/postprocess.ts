@@ -11,7 +11,7 @@ import {
 , isInlineImage
 } from '@rmdast-utils/is.js'
 import { text, newline, image, gallery } from '@rmdast-utils/builder.js'
-import _flatMap from 'lodash.flatmap'
+import _flatMap from 'lodash/flatMap'
 
 export function postprocess(root: RMDAST.Root): RMDAST.Root {
   return pipe(
