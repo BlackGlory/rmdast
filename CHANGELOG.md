@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [6.0.2](https://github.com/BlackGlory/rmdast/compare/v6.0.1...v6.0.2) (2022-03-23)
+
+
+### Bug Fixes
+
+* import ([d0c506c](https://github.com/BlackGlory/rmdast/commit/d0c506c8fbe57a878b69fc043a4a4af5e540f612))
+
 ### [6.0.1](https://github.com/BlackGlory/rmdast/compare/v6.0.0...v6.0.1) (2022-03-22)
 
 ## [6.0.0](https://github.com/BlackGlory/rmdast/compare/v5.2.0...v6.0.0) (2022-01-08)
