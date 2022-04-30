@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [7.0.0](https://github.com/BlackGlory/rmdast/compare/v6.0.4...v7.0.0) (2022-04-30)
+
+
+### ⚠ BREAKING CHANGES
+
+* The exports field changed
+
+* improve exports ([27f5d33](https://github.com/BlackGlory/rmdast/commit/27f5d33964ef4eebf9650f0c298e74dd02d5f932))
+
 ### [6.0.4](https://github.com/BlackGlory/rmdast/compare/v6.0.3...v6.0.4) (2022-04-30)
 
 ### [6.0.3](https://github.com/BlackGlory/rmdast/compare/v6.0.2...v6.0.3) (2022-04-30)
