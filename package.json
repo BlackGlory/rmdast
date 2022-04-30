@@ -11,11 +11,11 @@
   "main": "lib/es2018/index.js",
   "exports": {
     ".": "./lib/es2018/index.js",
-    "./utils/*": "./lib/es2018/rmdast-utils/*",
+    "./utils/*": "./lib/es2018/rmdast-utils/*.js",
     "./es2018": "./lib/es2018/index.js",
     "./es2015": "./lib/es2015/index.js",
-    "./es2018/utils/*": "./lib/es2018/rmdast-utils/*",
-    "./es2015/utils/*": "./lib/es2015/rmdast-utils/*"
+    "./es2018/utils/*": "./lib/es2018/rmdast-utils/*.js",
+    "./es2015/utils/*": "./lib/es2015/rmdast-utils/*.js"
   },
   "sideEffects": false,
   "types": "lib/es2018/index.d.ts",
