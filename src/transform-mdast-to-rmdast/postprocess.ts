@@ -11,7 +11,7 @@ import {
 , isInlineImage
 } from '@rmdast-utils/is.js'
 import { text, newline, image, gallery } from '@rmdast-utils/builder.js'
-import _flatMap from 'lodash/flatMap.js'
+import { flatten, map as iterMap, toArray } from 'iterable-operator'
 
 export function postprocess(root: RMDAST.Root): RMDAST.Root {
   return pipe(
@@ -27,7 +27,9 @@ export function postprocess(root: RMDAST.Root): RMDAST.Root {
 function transformImageOnlyListToGallery(root: RMDAST.Root): RMDAST.Root {
   const newChildren = root.children.map(node => {
     if (isList(node) && node.children.every(item => item.children.every(isImage))) {
-      return gallery(_flatMap(node.children, item => item.children as RMDAST.Image[]))
+      return gallery(
+        toArray(flatten(iterMap(node.children, item => item.children as RMDAST.Image[])))
+      )
     } else {
       return node
     }
