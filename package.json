@@ -1,9 +1,11 @@
 {
   "name": "rmdast",
-  "version": "7.0.3",
+  "version": "7.0.4",
   "description": "Renderable Markdown Abstract Syntax Tree",
   "keywords": [],
-  "files": ["lib"],
+  "files": [
+    "lib"
+  ],
   "type": "module",
   "main": "lib/es2018/index.js",
   "exports": {
