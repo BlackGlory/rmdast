@@ -12,6 +12,7 @@ import {
 } from '@rmdast-utils/is.js'
 import { text, newline, image, gallery } from '@rmdast-utils/builder.js'
 import { flatten, map as iterMap, toArray } from 'iterable-operator'
+import { pipe } from 'extra-utils'
 
 export function postprocess(root: RMDAST.Root): RMDAST.Root {
   return pipe(
@@ -97,8 +98,4 @@ function transformInlineImageToImage(root: RMDAST.Root): RMDAST.Root {
 
 function last<T>(arr: T[]): T | undefined {
   return arr[arr.length - 1]
-}
-
-function pipe<T>(value: T, ...fns: Array<(value: T) => T>): T {
-  return fns.reduce((result, fn) => fn(result), value)
 }

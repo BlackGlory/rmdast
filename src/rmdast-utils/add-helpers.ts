@@ -1,7 +1,7 @@
 import * as AST from '@src/rmdast.js'
 import { Mixin } from 'hotypes'
 import { isParent, isTable } from './is.js'
-import { isntUndefined } from '@blackglory/types'
+import { isntUndefined } from 'extra-utils'
 import { nanoid } from 'nanoid'
 import cloneDeep from 'lodash/cloneDeep.js'
 

@@ -6,7 +6,7 @@ import * as Builder from '@rmdast-utils/builder.js'
 import { findFootnoteDefinition } from './find-footnote-definition.js'
 import { findDefinition } from './find-definition.js'
 import { CustomError } from '@blackglory/errors'
-import { isntUndefined } from '@blackglory/types'
+import { isntUndefined } from 'extra-utils'
 
 export class UnknownNodeError extends CustomError {
   constructor(node: MDAST.Node) {
