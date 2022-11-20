@@ -360,7 +360,7 @@ function parse(text: string): AST.Root
 #### builder
 
 ```ts
-import {} from 'rmdast/utils/builder.js'
+import * as Builder from 'rmdast/utils/builder'
 ```
 
 Each rmdast node has a corresponding builder.
@@ -368,7 +368,7 @@ Each rmdast node has a corresponding builder.
 #### is
 
 ```ts
-import {} from 'rmdast/utils/is.js'
+import * as Is from 'rmdast/utils/is'
 ```
 
 Each rmdast node has a corresponding `is` function.
@@ -376,7 +376,7 @@ Each rmdast node has a corresponding `is` function.
 #### flatMap
 
 ```ts
-import { flatMap } from 'rmdast/utils/flat-map.js'
+import { flatMap } from 'rmdast/utils/flat-map'
 
 function flatMap(
   node: AST.Node
@@ -387,7 +387,7 @@ function flatMap(
 #### map
 
 ```ts
-import { map } from 'rmdast/utils/map.js'
+import { map } from 'rmdast/utils/map'
 
 function map(
   node: AST.Node
@@ -398,7 +398,7 @@ function map(
 #### filter
 
 ```ts
-import { filter } from 'rmdast/utils/filter.js'
+import { filter } from 'rmdast/utils/filter'
 
 function filter(
   node: AST.Node
@@ -409,7 +409,7 @@ function filter(
 #### find
 
 ```ts
-import { find } from 'rmdast/utils/find.js'
+import { find } from 'rmdast/utils/find'
 
 function find<T extends AST.Node>(
   node: AST.Node
@@ -420,7 +420,7 @@ function find<T extends AST.Node>(
 #### findAll
 
 ```ts
-import { findAll } from 'rmdast/utils/find-all.js'
+import { findAll } from 'rmdast/utils/find-all'
 
 function* findAll<T extends AST.Node>(
   node: AST.Node
@@ -437,7 +437,7 @@ function traverseDescendantNodes(node: AST.Node): Iterable<AST.Node>
 #### addHelpers
 
 ```ts
-import { addHelpers, addHelpersInPlace, NodeWithHelpers } from 'rmdast/utils/add-helpers.js'
+import { addHelpers, addHelpersInPlace, NodeWithHelpers } from 'rmdast/utils/add-helpers'
 
 type NullOrNodeWithHelpers<T extends AST.Node | null> =
   T extends null
@@ -684,7 +684,7 @@ function addHelpersInPlace<T extends AST.Node>(node: T): NodeWithHelpers<T>
 #### removeHelpers
 
 ```ts
-import { removeHelpers, removeHelpersInPlace } from 'rmdast/utils/remove-helpers.js'
+import { removeHelpers, removeHelpersInPlace } from 'rmdast/utils/remove-helpers'
 
 function remove
 
@@ -694,7 +694,7 @@ function removeHelpersInPlace<T extends AST.Node>(node: NodeWithHelpers<T>): T
 #### withHelpers
 
 ```ts
-import { withHelpers, withHelpersInPlace } from 'rmdast/utils/with-helpers.js'
+import { withHelpers, withHelpersInPlace } from 'rmdast/utils/with-helpers'
 
 function withHelpers<T extends AST.Node, U>(
   node: T
