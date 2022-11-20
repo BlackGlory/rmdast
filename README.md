@@ -1,5 +1,4 @@
 # rmdast
-
 **R**enderable **M**ark**d**own **A**bstract **S**yntax **T**ree.
 
 rmdast is an easy-to-render version of [mdast v4],
@@ -9,7 +8,6 @@ So you can precisely control the translation results by recursive descent analys
 [mdast v4]: https://github.com/syntax-tree/mdast/tree/4.0.0
 
 ## Install
-
 ```sh
 npm install --save rmdast
 # or
@@ -17,7 +15,6 @@ yarn add rmdast
 ```
 
 ## Usage
-
 ```ts
 import { parse } from 'rmdast'
 import { dedent } from 'extra-tags'
@@ -72,9 +69,7 @@ const rmdast = parse(markdown)
 ```
 
 ## API
-
 ### AST
-
 ```ts
 interface Node {
   type: string
@@ -286,7 +281,6 @@ interface Gallery extends Node, ParentOf<Image[]>{
 ```
 
 #### The difference between rmdast and mdast v4
-
 All reference nodes will be converted to no reference nodes:
 - `ImageReference` are converted to `Image`.
 - `LinkReference` are converted to `Link`.
@@ -350,15 +344,12 @@ The following Markdown text has additional blank lines:
 ```
 
 ### parse
-
 ```ts
 function parse(text: string): AST.Root
 ```
 
 ### utils
-
 #### builder
-
 ```ts
 import * as Builder from 'rmdast/utils/builder'
 ```
@@ -366,7 +357,6 @@ import * as Builder from 'rmdast/utils/builder'
 Each rmdast node has a corresponding builder.
 
 #### is
-
 ```ts
 import * as Is from 'rmdast/utils/is'
 ```
@@ -374,7 +364,6 @@ import * as Is from 'rmdast/utils/is'
 Each rmdast node has a corresponding `is` function.
 
 #### flatMap
-
 ```ts
 import { flatMap } from 'rmdast/utils/flat-map'
 
@@ -385,7 +374,6 @@ function flatMap(
 ```
 
 #### map
-
 ```ts
 import { map } from 'rmdast/utils/map'
 
@@ -396,7 +384,6 @@ function map(
 ```
 
 #### filter
-
 ```ts
 import { filter } from 'rmdast/utils/filter'
 
@@ -407,7 +394,6 @@ function filter(
 ```
 
 #### find
-
 ```ts
 import { find } from 'rmdast/utils/find'
 
@@ -418,7 +404,6 @@ function find<T extends AST.Node>(
 ```
 
 #### findAll
-
 ```ts
 import { findAll } from 'rmdast/utils/find-all'
 
@@ -429,13 +414,11 @@ function* findAll<T extends AST.Node>(
 ```
 
 #### traverseDescendantNodes
-
 ```ts
 function traverseDescendantNodes(node: AST.Node): Iterable<AST.Node>
 ```
 
 #### addHelpers
-
 ```ts
 import { addHelpers, addHelpersInPlace, NodeWithHelpers } from 'rmdast/utils/add-helpers'
 
@@ -682,7 +665,6 @@ function addHelpersInPlace<T extends AST.Node>(node: T): NodeWithHelpers<T>
 ```
 
 #### removeHelpers
-
 ```ts
 import { removeHelpers, removeHelpersInPlace } from 'rmdast/utils/remove-helpers'
 
@@ -692,7 +674,6 @@ function removeHelpersInPlace<T extends AST.Node>(node: NodeWithHelpers<T>): T
 ```
 
 #### withHelpers
-
 ```ts
 import { withHelpers, withHelpersInPlace } from 'rmdast/utils/with-helpers'
 
