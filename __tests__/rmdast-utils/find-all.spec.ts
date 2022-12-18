@@ -2,7 +2,6 @@ import { findAll } from '@rmdast-utils/find-all.js'
 import { isText } from '@rmdast-utils/is.js'
 import { paragraph, emphasis, text } from '@rmdast-utils/builder.js'
 import { toArray } from 'iterable-operator'
-import '@blackglory/jest-matchers'
 
 describe('findAll', () => {
   it('is preorder', () => {
@@ -50,11 +49,10 @@ describe('findAll', () => {
         , text('inside paragraph')
         ])
 
-      const result = findAll(ast, isText)
-      const arrResult = toArray(result)
+      const iter = findAll(ast, isText)
+      const result = toArray(iter)
 
-      expect(result).toBeIterable()
-      expect(arrResult).toStrictEqual([
+      expect(result).toStrictEqual([
         text('inside emphasis')
       , text('inside paragraph')
       ])
