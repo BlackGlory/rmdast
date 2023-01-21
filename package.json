@@ -28,7 +28,7 @@
     "prepare": "ts-patch install -s",
     "lint": "eslint --ext .js,.jsx,.ts,.tsx --quiet src __tests__",
     "test": "cross-env NODE_OPTIONS=--experimental-vm-modules jest --runInBand --no-cache --config jest.config.js",
-    "test:debug": "cross-env NODE_OPTIONS=--experimental-vm-modules node --inspect-brk jest --runInBand",
+    "test:debug": "cross-env NODE_OPTIONS=--experimental-vm-modules node --inspect-brk jest --runInBand --config jest.config.js",
     "test:coverage": "cross-env NODE_OPTIONS=--experimental-vm-modules jest --coverage --config jest.config.js",
     "prepublishOnly": "run-s prepare clean build",
     "clean": "rimraf lib",
@@ -40,7 +40,7 @@
   "husky": {
     "hooks": {
       "pre-commit": "run-s prepare lint build test",
-      "commit-msg": "commitlint --config commitlint.config.cjs --env HUSKY_GIT_PARAMS"
+      "commit-msg": "commitlint --env HUSKY_GIT_PARAMS"
     }
   },
   "devDependencies": {

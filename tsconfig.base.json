@@ -8,10 +8,6 @@
   , "noUnusedLocals": false
   , "noUnusedParameters": false
   , "skipLibCheck": true
-  , "plugins": [
-      { "transform": "typescript-transform-paths" }
-    , { "transform": "typescript-transform-paths", "afterDeclarations": true }
-    ]
   , "baseUrl": "."
   , "paths": {
       "@src/*": ["src/*"]
@@ -19,5 +15,9 @@
     , "@rmdast-utils/*": ["src/rmdast-utils/*"]
     , "@test/*": ["__tests__/*"]
     }
+  , "plugins": [
+      { "transform": "typescript-transform-paths" }
+    , { "transform": "typescript-transform-paths", "afterDeclarations": true }
+    ]
   }
 }
