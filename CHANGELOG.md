@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [8.0.0](https://github.com/BlackGlory/rmdast/compare/v7.0.5...v8.0.0) (2023-01-22)
+
+
+### ⚠ BREAKING CHANGES
+
+* The minimal version of Node.js is 16.
+
+* upgrade dependencies, remove es2015 support ([75af660](https://github.com/BlackGlory/rmdast/commit/75af66011103cd0fece9f34713eacb1a9b138d0f))
+
 ### [7.0.5](https://github.com/BlackGlory/rmdast/compare/v7.0.4...v7.0.5) (2023-01-21)
 
 ### [7.0.4](https://github.com/BlackGlory/rmdast/compare/v7.0.3...v7.0.4) (2022-11-07)
