@@ -109,3 +109,233 @@ test('InlineFootnote', () => {
     ])
   ]))
 })
+
+test('TextDirective', () => {
+  const markdown = dedent`
+  :directive[*content*]{key=val}
+
+  :directive[*content*]{key1=val1 key2=val2}
+
+  :directive[*content*]{key='quotation marks'}
+
+  :directive[*content*]{key="quotation marks"}
+
+  :directive[*content*]{.className}
+
+  :directive[*content*]{#idName}
+  `
+
+  const result = parse(markdown)
+
+  expect(result).toStrictEqual(R.root([
+    R.paragraph([
+      R.textDirective(
+        'directive'
+      , [R.emphasis([R.text('content')])]
+      , { attributes: { key: 'val' } }
+      )
+    ])
+  , R.paragraph([
+      R.textDirective(
+        'directive'
+      , [R.emphasis([R.text('content')])]
+      , { attributes: { key1: 'val1', key2: 'val2' } }
+      )
+    ])
+  , R.paragraph([
+      R.textDirective(
+        'directive'
+      , [R.emphasis([R.text('content')])]
+      , { attributes: { key: 'quotation marks' } }
+      )
+    ])
+  , R.paragraph([
+      R.textDirective(
+        'directive'
+      , [R.emphasis([R.text('content')])]
+      , { attributes: { key: 'quotation marks' } }
+      )
+    ])
+  , R.paragraph([
+      R.textDirective(
+        'directive'
+      , [R.emphasis([R.text('content')])]
+      , { attributes: { class: 'className' } }
+      )
+    ])
+  , R.paragraph([
+      R.textDirective(
+        'directive'
+      , [R.emphasis([R.text('content')])]
+      , { attributes: { id: 'idName' } }
+      )
+    ])
+  ]))
+})
+
+test('LeftDirective', () => {
+  const markdown = dedent`
+  ::directive[*content*]{key=val}
+
+  ::directive[*content*]{key1=val1 key2=val2}
+
+  ::directive[*content*]{key='quotation marks'}
+
+  ::directive[*content*]{key="quotation marks"}
+
+  ::directive[*content*]{.className}
+
+  ::directive[*content*]{#idName}
+  `
+
+  const result = parse(markdown)
+
+  expect(result).toStrictEqual(R.root([
+    R.leafDirective(
+      'directive'
+    , [R.emphasis([R.text('content')])]
+    , { attributes: { key: 'val' } }
+    )
+  , R.leafDirective(
+      'directive'
+    , [R.emphasis([R.text('content')])]
+    , { attributes: { key1: 'val1', key2: 'val2' } }
+    )
+  , R.leafDirective(
+      'directive'
+    , [R.emphasis([R.text('content')])]
+    , { attributes: { key: 'quotation marks' } }
+    )
+  , R.leafDirective(
+      'directive'
+    , [R.emphasis([R.text('content')])]
+    , { attributes: { key: 'quotation marks' } }
+    )
+  , R.leafDirective(
+      'directive'
+    , [R.emphasis([R.text('content')])]
+    , { attributes: { class: 'className' } }
+    )
+  , R.leafDirective(
+      'directive'
+    , [R.emphasis([R.text('content')])]
+    , { attributes: { id: 'idName' } }
+    )
+  ]))
+})
+
+test('ContainerDirective', () => {
+  const markdown = dedent`
+  :::directive{key=val}
+  *content*
+  :::
+
+  :::directive[*inline-content*]{key=val}
+  *content*
+  :::
+
+  :::directive[*inline-content*]{key1=val1 key2=val2}
+  *content*
+  :::
+
+  :::directive[*inline-content*]{key='quotation marks'}
+  *content*
+  :::
+
+  :::directive[*inline-content*]{key="quotation marks"}
+  *content*
+  :::
+
+  :::directive[*inline-content*]{.className}
+  *content*
+  :::
+
+  :::directive[*inline-content*]{#idName}
+  *content*
+  :::
+  `
+
+  const result = parse(markdown)
+
+  expect(result).toStrictEqual(R.root([
+    R.containerDirective(
+      'directive'
+    , [R.paragraph([
+        R.emphasis([R.text('content')])
+      ])]
+    , { attributes: { key: 'val' } }
+    )
+  , R.containerDirective(
+      'directive'
+    , [
+        R.paragraph([
+          R.emphasis([R.text('inline-content')])
+        ])
+      , R.paragraph([
+          R.emphasis([R.text('content')])
+        ])
+      ]
+    , { attributes: { key: 'val' } }
+    )
+  , R.containerDirective(
+      'directive'
+    , [
+        R.paragraph([
+          R.emphasis([R.text('inline-content')])
+        ])
+      , R.paragraph([
+          R.emphasis([R.text('content')])
+        ])
+      ]
+    , { attributes: { key1: 'val1', key2: 'val2' } }
+    )
+  , R.containerDirective(
+      'directive'
+    , [
+        R.paragraph([
+          R.emphasis([R.text('inline-content')])
+        ])
+      , R.paragraph([
+          R.emphasis([R.text('content')])
+        ])
+      ]
+    , { attributes: { key: 'quotation marks' } }
+    )
+  , R.containerDirective(
+      'directive'
+    , [
+        R.paragraph([
+          R.emphasis([R.text('inline-content')])
+        ])
+      , R.paragraph([
+          R.emphasis([R.text('content')])
+        ])
+      ]
+    , { attributes: { key: 'quotation marks' } }
+    )
+  , R.containerDirective(
+      'directive'
+    , [
+        R.paragraph([
+          R.emphasis([R.text('inline-content')])
+        ])
+      , R.paragraph([
+          R.emphasis([R.text('content')])
+        ])
+      ]
+    , { attributes: { class: 'className' } }
+    )
+  , R.containerDirective(
+      'directive'
+    , [
+        R.paragraph([
+          R.emphasis([R.text('inline-content')])
+        ])
+      , R.paragraph([
+          R.emphasis([R.text('content')])
+        ])
+      ]
+    , { attributes: { id: 'idName' } }
+    )
+  ]))
+})
