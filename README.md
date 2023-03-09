@@ -3,7 +3,6 @@
 
 rmdast is an easy-to-render version of [mdast v4],
 the new AST is designed to render nodes directly from AST to any platform, e.g. React.
-So you can precisely control the translation results by recursive descent analysis.
 
 [mdast v4]: https://github.com/syntax-tree/mdast/tree/4.0.0
 
