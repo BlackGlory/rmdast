@@ -4,7 +4,8 @@
   "description": "Renderable Markdown Abstract Syntax Tree",
   "keywords": [],
   "files": [
-    "lib"
+    "lib",
+    "src"
   ],
   "type": "module",
   "main": "lib/index.js",
