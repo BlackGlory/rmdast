@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [8.0.3](https://github.com/BlackGlory/rmdast/compare/v8.0.2...v8.0.3) (2023-06-11)
+
+
+### Bug Fixes
+
+* export src ([7c7b829](https://github.com/BlackGlory/rmdast/commit/7c7b8290183aba16917af48448f713dbfa891ae6))
+
 ### [8.0.2](https://github.com/BlackGlory/rmdast/compare/v8.0.1...v8.0.2) (2023-01-22)
 
 ### [8.0.1](https://github.com/BlackGlory/rmdast/compare/v8.0.0...v8.0.1) (2023-01-22)
