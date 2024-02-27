@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [8.0.4](https://github.com/BlackGlory/rmdast/compare/v8.0.3...v8.0.4) (2024-02-27)
+
+
+### Bug Fixes
+
+* replace crlf with lf ([5b413d6](https://github.com/BlackGlory/rmdast/commit/5b413d6505879e767c92e790eaca59e844bfa024))
+
 ### [8.0.3](https://github.com/BlackGlory/rmdast/compare/v8.0.2...v8.0.3) (2023-06-11)
 
 
