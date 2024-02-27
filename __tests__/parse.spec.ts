@@ -339,3 +339,25 @@ test('ContainerDirective', () => {
     )
   ]))
 })
+
+describe('edge: CRLF', () => {
+  test('paragraph', () => {
+    const markdown = dedent`
+    Lorem ipsum dolor sit amet,\r
+    consectetur adipiscing elit,\r
+    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+    `
+
+    const result = parse(markdown)
+
+    expect(result).toStrictEqual(R.root([
+      R.paragraph([
+        R.text('Lorem ipsum dolor sit amet,')
+      , R.newline()
+      , R.text('consectetur adipiscing elit,')
+      , R.newline()
+      , R.text('sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.')
+      ])
+    ]))
+  })
+})

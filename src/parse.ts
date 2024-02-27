@@ -11,7 +11,7 @@ import { footnote } from 'micromark-extension-footnote'
 import { footnoteFromMarkdown } from 'mdast-util-footnote'
 
 export function parse(text: string): RMDAST.Root {
-  const mdast = fromMarkdown(text, 'utf-8', {
+  const mdast = fromMarkdown(dosToUnix(text), 'utf-8', {
     extensions: [
       gfm()
     , footnote({ inlineNotes: true })
@@ -25,4 +25,8 @@ export function parse(text: string): RMDAST.Root {
   }) as MDAST.Root
   const rmdast = transform(mdast)
   return rmdast
+}
+
+function dosToUnix(text: string): string {
+  return text.replace(/\r\n/g, '\n')
 }
