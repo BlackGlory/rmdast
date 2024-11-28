@@ -667,7 +667,7 @@ function addHelpersInPlace<T extends AST.Node>(node: T): NodeWithHelpers<T>
 ```ts
 import { removeHelpers, removeHelpersInPlace } from 'rmdast/utils/remove-helpers'
 
-function remove
+function removeHelpers<T extends AST.Node>(node: NodeWithHelpers<T>): T
 
 function removeHelpersInPlace<T extends AST.Node>(node: NodeWithHelpers<T>): T
 ```
