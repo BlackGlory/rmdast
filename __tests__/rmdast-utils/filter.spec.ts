@@ -1,9 +1,9 @@
-import { flatMap } from '@rmdast-utils/flat-map.js'
+import { filter } from '@rmdast-utils/filter.js'
 import { isText, isEmphasis } from '@rmdast-utils/is.js'
 import { paragraph, emphasis, strong, text } from '@rmdast-utils/builder.js'
 
-describe('flatMap', () => {
-  it('is preorder', () => {
+describe('filter', () => {
+  test('preorder', () => {
     const ast = paragraph([
       emphasis([
         text('text')
@@ -11,15 +11,15 @@ describe('flatMap', () => {
     ])
 
     const result: string[] = []
-    flatMap(ast, node => {
+    filter(ast, node => {
       result.push(node.type)
-      return [node]
+      return true
     })
 
     expect(result).toEqual(['paragraph', 'emphasis', 'text'])
   })
 
-  it('is DFS', () => {
+  test('DFS', () => {
     const ast = paragraph([
       emphasis([
         text('deep')
@@ -28,33 +28,34 @@ describe('flatMap', () => {
     ])
 
     const result: string[] = []
-    flatMap(ast, node => {
+    filter(ast, node => {
       if (isText(node)) result.push(node.value)
-      return [node]
+      return true
     })
 
     expect(result).toEqual(['deep', 'shallow'])
   })
 
-  it('create a new tree', () => {
+  test('create a new tree', () => {
     const ast = paragraph([
       emphasis([
         text('foo')
       ])
-    ])
-
-    const result = flatMap(ast, node => {
-      if (isEmphasis(node)) return [strong(node.children)]
-      if (isText(node)) return [text('bar')]
-      return [node]
-    })
-
-    expect(result).toStrictEqual([
-      paragraph([
-        strong([
-          text('bar')
-        ])
+    , strong([
+        text('bar')
       ])
     ])
+
+    const result = filter(ast, node => {
+      if (isEmphasis(node)) return false
+      if (isText(node) && node.value === 'bar') return false
+      return true
+    })
+
+    expect(result).toStrictEqual(
+      paragraph([
+        strong([])
+      ])
+    )
   })
 })

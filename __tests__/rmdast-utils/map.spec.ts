@@ -4,12 +4,11 @@ import { paragraph, emphasis, strong, text } from '@rmdast-utils/builder.js'
 
 describe('map', () => {
   it('is preorder', () => {
-    const ast =
-      paragraph([
-        emphasis([
-          text('text')
-        ])
+    const ast = paragraph([
+      emphasis([
+        text('text')
       ])
+    ])
 
     const result: string[] = []
     map(ast, node => {
@@ -21,13 +20,12 @@ describe('map', () => {
   })
 
   it('is DFS', () => {
-    const ast =
-      paragraph([
-        emphasis([
-          text('deep')
-        ])
-      , text('shallow')
+    const ast = paragraph([
+      emphasis([
+        text('deep')
       ])
+    , text('shallow')
+    ])
 
     const result: string[] = []
     map(ast, node => {
@@ -39,23 +37,22 @@ describe('map', () => {
   })
 
   it('create a new tree', () => {
-    const ast =
-      paragraph([
-        emphasis([
-          text('inside emphasis')
-        ])
+    const ast = paragraph([
+      emphasis([
+        text('foo')
       ])
+    ])
 
     const result = map(ast, node => {
       if (isEmphasis(node)) return strong(node.children)
-      if (isText(node)) return text('inside strong')
+      if (isText(node)) return text('bar')
       return node
     })
 
     expect(result).toStrictEqual(
       paragraph([
         strong([
-          text('inside strong')
+          text('bar')
         ])
       ])
     )
