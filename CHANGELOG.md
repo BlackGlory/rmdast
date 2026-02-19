@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [8.0.5](https://github.com/BlackGlory/rmdast/compare/v8.0.4...v8.0.5) (2026-02-19)
+
+
+### Bug Fixes
+
+* **traverse-descendant-nodes:** handle nested table headers ([5f88aad](https://github.com/BlackGlory/rmdast/commit/5f88aadf3762bcbe9e11f9faa576980af4074d1b))
+
 ### [8.0.4](https://github.com/BlackGlory/rmdast/compare/v8.0.3...v8.0.4) (2024-02-27)
 
 
